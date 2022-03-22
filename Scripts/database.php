@@ -11,7 +11,7 @@ class Database
      */
     public static function connect(): ?mysqli
     {
-        $db = 'PHPExample';
+        $db = 'BKB';
         $user = 'root';
         $password = 'MYSQL_ROOT_PASSWORD';
         $host = 'db';
