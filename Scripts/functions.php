@@ -1,10 +1,10 @@
 <?php
-session_start();
 //Require files based on which files are actually necessary to each page respectively
 if (isset($PageName)) {
     switch ($PageName) {
         //Index, Create and Staff only require Functions.php#
-        case "Index" || "Gallery":
+        case "Index":
+            require_once('Scripts/functions.php');
             break;
         //Product requires the Products model
         case "Products":
@@ -14,11 +14,12 @@ if (isset($PageName)) {
             require("../Models/Offer.php");
             break;
         //Login requires the Employee and Customer Model
-        case "Account":
+        case "Accounts":
+            require("../Models/Account.php");
             require("../models/Employee.php");
             require("../models/Customer.php");
+            require_once("../Scripts/functions.php");
             require("../Scripts/database.php");
-            require("../Scripts/functions.php");
             break;
         case "Contact":
             require('Scripts/functions.php');
