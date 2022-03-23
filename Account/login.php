@@ -10,10 +10,6 @@ include('../Scripts/functions.php');
     $PageTitle = "Login";
     require('../Scripts/header.php');
     //Require the header of the page (Includes Navigation, meta-data, etc.)
-    if (isset($_GET['message'])) {
-        functions::SendMessage(base64_decode($_GET['message']));
-    }
-
 ?>
 <section id="header">
     <div class="container-fluid bg-dark text-light p-5">
@@ -23,6 +19,12 @@ include('../Scripts/functions.php');
         </div>
     </div>
 </section>
+<?php
+    //Check if message has been set in url
+    if (isset($_GET['message'])) {
+        functions::SendMessage(base64_decode($_GET['message']));
+    }
+?>
     <div class="container-md bg-dark text-light border rounded" style="margin-top: 6%;">
         <div class="row p-2">
             <div class="col-lg text-center py-2">

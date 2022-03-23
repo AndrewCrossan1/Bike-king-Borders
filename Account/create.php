@@ -13,12 +13,22 @@
     require('../Scripts/header.php');
 ?>
 
+<section id="header">
+    <div class="container-fluid bg-dark text-light p-5">
+        <div class="jumbotron">
+            <h1 class="display-5"><?php echo $PageTitle; ?></h1>
+            <p class="lead">Create your own Bike King Borders account</p>
+        </div>
+    </div>
+</section>
+
 <!--Send message to UI if an error or notification occurs-->
 <?php
-    if (isset($_GET['message'])) {
-        Functions::SendMessage($_GET['message']);
-    }
+if (isset($_GET['message'])) {
+    Functions::SendMessage($_GET['message']);
+}
 ?>
+
 <div class="container-fluid mr-auto ml-auto" style="margin-top: 3%;">
     <h1 class="display-3 fw-bold text-center" style="font-family: Ubuntu, Verdana">Why join Bike King Borders?</h1>
     <div class="row p-3 justify-content-center">

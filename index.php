@@ -21,12 +21,6 @@
     //Require the header of the page (Includes Navigation, meta-data, etc.)
     require('Scripts/header.php');
     require('Scripts/functions.php');
-
-
-    if (isset($_GET['message'])) {
-        functions::SendMessage(base64_decode($_GET['message']));
-    }
-
 ?>
 
 <section id="header">
@@ -37,3 +31,9 @@
         </div>
     </div>
 </section>
+<?php
+    //Send message if it is set
+    if (isset($_GET['message'])) {
+        functions::SendMessage(base64_decode($_GET['message']));
+    }
+?>
