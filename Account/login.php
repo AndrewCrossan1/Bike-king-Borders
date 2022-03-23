@@ -15,6 +15,14 @@ include('../Scripts/functions.php');
     }
 
 ?>
+<section id="header">
+    <div class="container-fluid bg-dark text-light p-5">
+        <div class="jumbotron">
+            <h1 class="display-5"><?php echo $PageTitle; ?></h1>
+            <p class="lead">Login to your account</p>
+        </div>
+    </div>
+</section>
     <div class="container-md bg-dark text-light border rounded" style="margin-top: 6%;">
         <div class="row p-2">
             <div class="col-lg text-center py-2">
