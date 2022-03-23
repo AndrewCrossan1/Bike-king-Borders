@@ -1,4 +1,5 @@
 <?php
+    session_start();
     //Page Description: Allows users to logout of their account
 
     //Set page name for required content in functions.php (Avoids file navigation errors which are extremely annoying - PHP just be smarter :,( )
@@ -10,3 +11,13 @@
 
     //Require the header of the page (Includes Navigation, meta-data, etc.)
     require('../Scripts/header.php');
+
+    session_destroy();
+    $Message = base64_encode("Logged out successfully!");
+    ?>
+    <script>
+        setTimeout(function(){
+            window.location.href = '../index.php?message=<?php echo $Message; ?>';
+        }, 10);
+    </script>
+

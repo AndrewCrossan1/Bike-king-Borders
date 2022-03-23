@@ -1,4 +1,5 @@
 <?php
+    session_start();
     //Author: Andrew Crossan
     //Project Name: Bike King Borders
     //Description: A website for a small bike selling company in the borders of scotland
@@ -19,4 +20,11 @@
 
     //Require the header of the page (Includes Navigation, meta-data, etc.)
     require('Scripts/header.php');
+    require('Scripts/functions.php');
+
+
+    if (isset($_GET['message'])) {
+        functions::SendMessage(base64_decode($_GET['message']));
+    }
+
 ?>

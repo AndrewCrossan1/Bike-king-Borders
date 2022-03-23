@@ -1,4 +1,5 @@
 <?php
+    session_start();
     //Page Description: Allows users to create an account where they can access member exclusive deals and other bonuses.
 
     //Set page name for required content in functions.php (Avoids file navigation errors which are extremely annoying - PHP just be smarter :,( )

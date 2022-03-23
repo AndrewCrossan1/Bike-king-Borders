@@ -1,4 +1,5 @@
 <?php
+    session_start();
     //Page Description: Allows the admin to view each account, also delete if needs be
 
     //Set page name for required content in functions.php (Avoids file navigation errors which are extremely annoying - PHP just be smarter :,( )

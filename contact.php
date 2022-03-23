@@ -1,4 +1,5 @@
 <?php
+    session_start();
     //Page Description: Allows the user to contact the shop
 
     //Set page name for required content in functions.php (Avoids file navigation errors which are extremely annoying - PHP just be smarter :,( )
