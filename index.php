@@ -28,3 +28,12 @@
     }
 
 ?>
+
+<section id="header">
+    <div class="container-fluid bg-dark text-light p-5">
+        <div class="jumbotron">
+            <h1 class="display-5"><?php echo $PageTitle; ?></h1>
+            <p class="lead">Welcome to Bike King Borders.</p>
+        </div>
+    </div>
+</section>
