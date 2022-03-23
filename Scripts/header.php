@@ -63,7 +63,7 @@
                             </li>
                         <?php } else {?>
                             <li>
-                                <a class="dropdown-item" href="/Account/account.php">My Account</a>
+                                <a class="dropdown-item" href="/Account/account.php"><?php if (isset($_SESSION['Username'])) {echo $_SESSION['Username'];}?></a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="/Account/Reset.php">Reset password</a>
