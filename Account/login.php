@@ -25,7 +25,7 @@ include('../Scripts/functions.php');
         functions::SendMessage(base64_decode($_GET['message']));
     }
 ?>
-    <div class="container-md bg-dark text-light border rounded" style="margin-top: 6%;">
+    <div class="container-md bg-dark text-light border rounded " style="margin-top: 6%;">
         <div class="row p-2">
             <div class="col-lg text-center py-2">
                 <p class="display-5">Bike King Borders</p>
@@ -122,3 +122,7 @@ include('../Scripts/functions.php');
             </div>
         </div>
     </div>
+
+<?php
+    include('../Scripts/footer.php');
+?>
