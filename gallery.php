@@ -27,3 +27,7 @@ if (isset($_GET['message'])) {
     functions::SendMessage(base64_decode($_GET['message']));
 }
 ?>
+
+<?php
+    include('Scripts/footer.php');
+?>
