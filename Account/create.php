@@ -47,7 +47,7 @@ if (isset($_GET['message'])) {
     </div>
 </div>
     <!--The form-->
-<div class="container-md bg-dark text-light border rounded my-2" style="margin-top: 1%;">
+<div class="container-md bg-dark text-light border rounded my-5" style="margin-top: 1%;">
     <div class="row p-2">
         <div class="col-lg text-center text-dark bg-light p-2" style="box-shadow: 0px 0px 12px 1px #A2A3A5;">
             <p class="lead text-center">Fill in the form below and click submit to create your very own Bike King Borders account and reap the benefits of member perks!</p>
@@ -119,3 +119,8 @@ if (isset($_GET['message'])) {
         </div>
     </div>
 </div>
+
+<?php
+
+    include('../Scripts/footer.php');
+?>
