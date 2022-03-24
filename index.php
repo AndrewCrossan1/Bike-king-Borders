@@ -22,7 +22,6 @@
     require('Scripts/header.php');
     require('Scripts/functions.php');
 ?>
-
 <section id="header">
     <div class="container-fluid bg-dark text-light p-5">
         <div class="jumbotron">
@@ -31,12 +30,62 @@
         </div>
     </div>
 </section>
+
 <?php
-    //Send message if it is set
-    if (isset($_GET['message'])) {
-        functions::SendMessage(base64_decode($_GET['message']));
-    }
+//Send message if it is set
+if (isset($_GET['message'])) {
+    functions::SendMessage(base64_decode($_GET['message']));
+}
 ?>
+
+<div class="container-md">
+    <div class="row mt-5">
+        <div class="col-12 text-center" style="font-family: Ubuntu, Verdana">
+            <h1 class="display-3">Bike King Borders</h1>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-md-4 text-center">
+            <div class="card border-dark p-2">
+                <div class="card border">
+                    <div class="card-header"><h2 class="display-6">Who are we?</h2></div>
+                    <div class="card-body">
+                        <h5 class="card-title">Bike King Borders</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.
+                            ahhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 text-center">
+            <div class="card border-dark p-2">
+                <div class="card border">
+                    <div class="card-header"><h2 class="display-6">Why us?</h2></div>
+                    <div class="card-body text">
+                        <h5 class="card-title">Quality Servicing and Hires</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.
+                            ahhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 text-center">
+            <div class="card border-dark p-2">
+                <div class="card border">
+                    <div class="card-header"><h2 class="display-6">Our Guarantee</h2></div>
+                    <div class="card-body text">
+                        <h5 class="card-title">Giving Back</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.
+                            ahhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <?php
     include('Scripts/footer.php');
