@@ -10,12 +10,12 @@
     <title><?php if (isset($PageTitle)) {echo $PageTitle;}?></title>
     <!--Importing bootstrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="/JS/base.js" rel="stylesheet"></script>
+    <script src="/JS/base.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/b4c6b2d3ed.js" crossorigin="anonymous"></script>
     <!--Importing local javascript file-->
-    <script src="/JS/base.js" rel="stylesheet"></script>
+    <script src="/JS/base.js"></script>
     <!--Importing local css file-->
     <link href="/CSS/base.css" rel="stylesheet"/>
 </head>
@@ -23,29 +23,23 @@
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark p-3 sticky-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Bike King Borders</a>
+        <a class="navbar-brand" href="javascript:void(0)">Bike King Borders</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
-            <ul class="navbar-nav me-auto">
+            <ul class="navbar-nav ms-auto">
                 <!-- Home -->
-                <li class="nav-item">
+                <li class="nav-item m-2 middle">
                     <a class="nav-link<?php if (isset($PageName) && $PageName == 'Index') { echo ' active'; }?>" href="/index.php"><i class="fas fa-house"></i> Home</a>
                 </li>
-                <!-- Products -->
-                <li class="nav-item">
-                    <a class="nav-link<?php if (isset($PageName) && $PageName == "Products") { echo ' active'; }?>" href="/Products/products.php"><i class="far fa-rectangle-list"></i> Products</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link<?php if (isset($PageName) && $PageName == "Contact") { echo ' active'; }?>" href="/contact.php"><i class="fas fa-phone"></i> Contact us</a>
-                </li>
-                <li class="nav-item">
+                <!--Gallery-->
+                <li class="nav-item m-2 middle">
                     <a class="nav-link<?php if (isset($PageName) && $PageName == "Gallery") { echo ' active'; }?>" href="/gallery.php"><i class="fas fa-photo-film"></i> Gallery</a>
                 </li>
                 <!-- Account Dropdown menu -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle <?php if (isset($PageName) && $PageName == "Account") { echo ' active'; }?>" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <li class="nav-item dropdown m-2 middle">
+                    <a class="nav-link dropdown-toggle <?php if (isset($PageName) && $PageName == "Accounts") { echo ' active'; }?>" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="far fa-user"></i> Account
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -74,6 +68,14 @@
                             </li>
                         <?php } ?>
                     </ul>
+                </li>
+                <!--Products-->
+                <li class="nav-item m-2 middle">
+                    <a class="nav-link<?php if (isset($PageName) && $PageName == "Products") { echo ' active'; }?>" href="/Products/products.php"><i class="far fa-rectangle-list"></i> Products</a>
+                </li>
+                <!--Contact us-->
+                <li class="nav-item m-2 middle">
+                    <a class="nav-link<?php if (isset($PageName) && $PageName == "Contact") { echo ' active'; }?>" href="/contact.php"><i class="fas fa-phone"></i> Contact us</a>
                 </li>
             </ul>
         </div>
