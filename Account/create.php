@@ -51,19 +51,25 @@ if (isset($_GET['message'])) {
     <div class="row p-2">
         <div class="col-lg text-center text-dark bg-light p-2" style="box-shadow: 0px 0px 12px 1px #A2A3A5;">
             <p class="lead text-center">Fill in the form below and click submit to create your very own Bike King Borders account and reap the benefits of member perks!</p>
-            <form class="p-3 m-2" method="POST" action="validate.php">
+            <form class="p-3 m-2 needs-validation" method="POST" action="validate.php" novalidate>
                 <!--Username Input-->
                 <div class="form-group row pt-1">
                     <label for="UsernameInput" class="col-sm-2 col-form-label">Username</label>
                     <div class="col-sm-10">
-                        <input type="text" id="UsernameInput" name="UsernameInput" class="form-control" placeholder="Username" required>
+                        <input type="text" id="UsernameInput" name="UsernameInput" class="form-control" minlength="7" placeholder="Username" required>
+                        <div class="invalid-feedback">
+                            Oops! Something doesn't look right
+                        </div>
                     </div>
                 </div>
                 <!--Password Input-->
                 <div class="form-group row pt-3">
                     <label for="PasswordInput" class="col-sm-2 col-form-label">Password</label>
                     <div class="col-sm-10">
-                        <input type="password" id="PasswordInput" name="PasswordInput" class="form-control" placeholder="Password" required>
+                        <input type="password" id="PasswordInput" name="PasswordInput" class="form-control" minlength="9" placeholder="Password" required>
+                        <div class="invalid-feedback">
+                            Oops! Something doesn't look right
+                        </div>
                     </div>
                 </div>
                 <!--Confirm password-->
@@ -71,43 +77,85 @@ if (isset($_GET['message'])) {
                     <label for="PasswordInputConfirm" class="col-sm-2 col-form-label">Confirm Password</label>
                     <div class="col-sm-10">
                         <input type="password" id="PasswordInputConfirm" name="PasswordInputConfirm" class="form-control" placeholder="Confirm Password" required>
+                        <div class="invalid-feedback">
+                            Oops! Something doesn't look right
+                        </div>
                     </div>
                 </div>
                 <!--Forename, Surname, Phone Number-->
                 <div class="row pt-3">
                     <div class="col">
                         <label for="ForenameInput">Forename</label>
-                        <input type="text" id="ForenameInput" name="ForenameInput" class="form-control" placeholder="Forename" required>
+                        <input type="text" id="ForenameInput" name="ForenameInput" class="form-control" minlength="1" placeholder="Forename" required>
+                        <div class="invalid-feedback">
+                            Oops! Something doesn't look right
+                        </div>
                     </div>
                     <div class="col">
                         <label for="SurnameInput">Surname</label>
-                        <input type="text" id="SurnameInput" name="SurnameInput" class="form-control" placeholder="Surname" required>
+                        <input type="text" id="SurnameInput" name="SurnameInput" class="form-control" minlength="1" placeholder="Surname" required>
+                        <div class="invalid-feedback">
+                            Oops! Something doesn't look right
+                        </div>
                     </div>
                     <div class="col">
                         <label for="PhoneInput">Phone Number</label>
-                        <input type="text" id="PhoneInput" name="PhoneInput" class="form-control" placeholder="Phone Number" required>
+                        <input type="text" id="PhoneInput" name="PhoneInput" class="form-control" minlength="1" placeholder="Phone Number" required>
+                        <div class="invalid-feedback">
+                            Oops! Something doesn't look right
+                        </div>
                     </div>
                 </div>
                 <!--Email and Address-->
                 <div class="row pt-3">
                     <div class="col">
                         <label for="EmailInput">Email</label>
-                        <input type="email" id="EmailInput" name="EmailInput" class="form-control" placeholder="Email" required>
+                        <input type="email" id="EmailInput" name="EmailInput" class="form-control" minlength="1" placeholder="Email" required>
+                        <div class="invalid-feedback">
+                            Oops! Something doesn't look right
+                        </div>
                     </div>
                     <div class="col">
                         <div class="row">
                             <div class="col-md-4">
                                 <label for="HouseInput">Number</label>
-                                <input type="number" id="HouseInput" name="HouseInput" class="form-control col-md-6" placeholder="1234" required>
+                                <input type="number" id="HouseInput" name="HouseInput" min="0" class="form-control col-md-6" placeholder="1234" required>
+                                <div class="invalid-feedback">
+                                    Oops! Something doesn't look right
+                                </div>
                             </div>
                             <div class="col-md-8">
                                 <label for="AddressInput">Address Line 1</label>
-                                <input type="text" id="AddressInput" name="AddressInput" class="form-control col-md-6" placeholder="Address" required>
+                                <input type="text" id="AddressInput" name="AddressInput" minlength="1" class="form-control col-md-6" placeholder="Address" required>
+                                <div class="invalid-feedback">
+                                    Oops! Something doesn't look right
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <p class="small mt-3">Already have an account? Click <a href="login.php">here</a> to login!</p>
                 </div>
-                <div class="row pt-5">
+                <script>
+                    // Example starter JavaScript for disabling form submissions if there are invalid fields
+                    (function() {
+                        'use strict';
+                        window.addEventListener('load', function() {
+                            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                            var forms = document.getElementsByClassName('needs-validation');
+                            // Loop over them and prevent submission
+                            var validation = Array.prototype.filter.call(forms, function(form) {
+                                form.addEventListener('submit', function(event) {
+                                    if (form.checkValidity() === false) {
+                                        event.preventDefault();
+                                        event.stopPropagation();
+                                    }
+                                    form.classList.add('was-validated');
+                                }, false);
+                            });
+                        }, false);
+                    })();
+                </script>
+                <div class="row pt-3">
                     <div class="col-6">
                         <input type="submit" name="submit" id="submit" class="btn btn-primary w-75" value="Create"/>
                     </div>
