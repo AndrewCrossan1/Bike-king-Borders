@@ -85,13 +85,14 @@ include('../Scripts/functions.php');
                             </div>
                         </div>
                         <div class="col-md">
-                            <div class="form-outline mb-4 p-2">
+                             <div class="form-outline mb-2 p-2">
                                 <label for="Password" class="form-label">Password: </label><br>
                                 <input type="password" id="Password" name="Password" minlength="12" class="form-control w-75 m-auto" placeholder="Password" required/>
                                 <div class="invalid-feedback">
                                     Oops! Something doesn't look right
                                 </div>
                             </div>
+                            <p class="small">New user? Click <a href="create.php">here</a> to create an account!</p>
                         </div>
                         <div class="col-md p-2">
                             <input type="submit" name="submit" id="submit" class="btn btn-primary w-25">
