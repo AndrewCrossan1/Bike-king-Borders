@@ -40,7 +40,7 @@ if (isset($_GET['message'])) {
 
 <div class="container-md">
     <div class="row mt-5">
-        <div class="col-12 text-center" style="font-family: Ubuntu, Verdana">
+        <div class="col-12 text-center" style="font-family: Ubuntu, Verdana,serif">
             <h1 class="display-3">Bike King Borders</h1>
         </div>
     </div>
