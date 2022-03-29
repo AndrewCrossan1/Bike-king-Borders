@@ -21,6 +21,10 @@ if (isset($PageName)) {
             require_once("../Scripts/functions.php");
             require("../Scripts/database.php");
             break;
+        case "Create":
+            require_once('../Scripts/functions.php');
+            require('../Scripts/database.php');
+            break;
         case "Contact":
             require('Scripts/functions.php');
             require("Scripts/database.php");
@@ -61,10 +65,10 @@ class functions
         $stmt = "SELECT * FROM accounts WHERE Username = ?";
         //Select all users from database with given username (Should only be 1)
         $result = $Database->Select($stmt, array($Username));
-        if (!empty($result) || !null) {
-            return false;
-        } else {
+        if (empty($result) || $result == null) {
             return true;
+        } else {
+            return false;
         }
     }
 
@@ -132,7 +136,7 @@ class functions
      * @return bool
      */
     public static function CreateAccount($Username, $Password, $ConfirmPass, $Forename, $Surname, $Email, $Phone, $House, $Address): bool {
-        if (self::CheckUsers($Username)) {
+        if (!self::CheckUsers($Username)) {
             return false;
         } else {
             if ($Password != $ConfirmPass) {
@@ -150,13 +154,19 @@ class functions
                 $House = trim($House);
                 $Address = $House . " " . $Address;
                 $db = new Database();
-                if ($db->Insert("INSERT INTO customers (Forename, Surname, Address, Email, PhoneNum) VALUES (?, ?, ?, ?, ?);", array($Forename, $Surname, $Address, $Email, $Phone))) {
-                    if ($query = $db->Select("SELECT * FROM customers WHERE email = ?", array($Email)) == null|false) {
-                        while ($row = $query->fetch_assoc()) {
-                            $CustomerID = $row['CustomerID'];
-                            echo $CustomerID;
+                //Creating a query to insert user into database (database.php insert doesn't like my methods despite the fact i made it :0)
+                $stmt = "INSERT INTO customers (Forename, Surname, Address, Email, PhoneNum) VALUES (?, ?, ?, ?, ?);";
+                $query = $db->conn->prepare($stmt);
+                $query->bind_param("sssss", $Forename, $Surname, $Address, $Email, $Phone);
+                if ($query->execute()) {
+                    if ($query = $db->Select("SELECT * FROM customers WHERE Email = ?", array($Email))) {
+                        while ($row = $query->fetch_row()) {
+                            $CustomerID = $row[0];
                         }
-                        if ($db->Insert("INSERT INTO accounts (Username, Password, CustomerID) VALUES (?, ?, ?);", array($Username, $Password, $CustomerID))) {
+                        $stmt = "INSERT INTO accounts (Username, Password, CustomerID)  VALUES (?, ?, ?);";
+                        $query = $db->conn->prepare($stmt);
+                        $query->bind_param("sss", $Username, $Password, $CustomerID);
+                        if ($query->execute()) {
                             return true;
                         } else {
                             return false;
