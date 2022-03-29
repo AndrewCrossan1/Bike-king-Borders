@@ -1,4 +1,14 @@
 <?php
+session_start();
+if (isset($_SESSION['Username'])) {
+    ?>
+    <script>
+        setTimeout(function(){
+            window.location.href = 'account.php';
+        }, 10);
+    </script>
+    <?php
+} else {
     $PageName = "Accounts";
     require('../Scripts/functions.php');
     if (isset($_POST['submit'])) {
@@ -21,19 +31,26 @@
                         window.location.href = '../index.php?message=<?php echo $Message; ?>';
                     }, 10);
                 </script>
-            <?php
+                <?php
             } else {
                 $Message = base64_encode("Username or password incorrect");
                 ?>
                 <script>
-                setTimeout(function(){
-                    window.location.href = 'login.php?message=<?php echo $Message; ?>';
-                }, 10);
+                    setTimeout(function(){
+                        window.location.href = 'login.php?message=<?php echo $Message; ?>';
+                    }, 10);
                 </script>
-            <?php
+                <?php
             }
         }
     } else {
-        echo "No";
+        ?>
+        <script>
+            setTimeout(function(){
+                window.location.href = 'index.php';
+            }, 10);
+        </script>
+        <?php
     }
-    ?>
+}
+?>
