@@ -1,6 +1,45 @@
 <?php
-$PageName = "Accounts";
+session_start();
+if (isset($_SESSION['Username'])) {
+    ?>
+    <script>
+        setTimeout(function(){
+            window.location.href = 'account.php';
+        }, 10);
+    </script>
+    <?php
+} else {
+    $PageName = "Accounts";
     include("../Scripts/functions.php");
+
     if (isset($_POST['submit'])) {
-        echo functions::CreateAccount($_POST['UsernameInput'], $_POST['PasswordInput'], $_POST['PasswordInputConfirm'], $_POST['ForenameInput'], $_POST['SurnameInput'], $_POST['EmailInput'], $_POST['PhoneInput'], $_POST['HouseInput'], $_POST['AddressInput']);
+        if (functions::CreateAccount($_POST['UsernameInput'], $_POST['PasswordInput'], $_POST['PasswordInputConfirm'], $_POST['ForenameInput'], $_POST['SurnameInput'], $_POST['EmailInput'], $_POST['PhoneInput'], $_POST['HouseInput'], $_POST['AddressInput'])) {
+            $Message = base64_encode("Account Created! Welcome {$_POST['UsernameInput']}");
+            ?>
+            <script>
+                setTimeout(function(){
+                    window.location.href = '../index.php?message=<?php echo $Message; ?>';
+                }, 10);
+            </script>
+            <?php
+        } else {
+            $Message = base64_encode("Account could not be created, try again later!");
+            ?>
+            <script>
+                setTimeout(function(){
+                    window.location.href = 'create.php?message=<?php echo $Message; ?>';
+                }, 10);
+            </script>
+            <?php
+        }
+    } else {
+        $Message = base64_encode("Account could not be created, try again later!");
+        ?>
+        <script>
+            setTimeout(function(){
+                window.location.href = 'create.php?message=<?php echo $Message; ?>';
+            }, 10);
+        </script>
+        <?php
     }
+}?>
