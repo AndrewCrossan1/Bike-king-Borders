@@ -119,7 +119,7 @@ if (isset($_GET['message'])) {
                         <div class="row">
                             <div class="col-md-4">
                                 <label for="HouseInput">Number</label>
-                                <input type="number" id="HouseInput" name="HouseInput" min="0" class="form-control col-md-6" placeholder="1234" required>
+                                <input type="text" id="HouseInput" name="HouseInput" class="form-control col-md-6" placeholder="1234" required>
                                 <div class="invalid-feedback">
                                     Oops! Something doesn't look right
                                 </div>

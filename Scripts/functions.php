@@ -131,9 +131,44 @@ class functions
      *
      * @return bool
      */
-    public static function CreateAccount($Username, $password, $Forename, $Surname, $Email, $Phone, $House, $Address): bool {
-        // TODO: Create function which inserts
-        // TODO: to both Customer and Account
+    public static function CreateAccount($Username, $Password, $ConfirmPass, $Forename, $Surname, $Email, $Phone, $House, $Address): bool {
+        if (self::CheckUsers($Username)) {
+            return false;
+        } else {
+            if ($Password != $ConfirmPass) {
+                return false;
+            } else {
+                //Clean all data except address (Its allowed spaces)
+                $Username = trim($Username);
+                $Password = trim($Password);
+                //Password hashing
+                $Password = password_hash($Password, PASSWORD_DEFAULT);
+                $Forename = trim($Forename);
+                $Surname = trim($Surname);
+                $Email = trim($Email);
+                $Phone = trim($Phone);
+                $House = trim($House);
+                $Address = $House . " " . $Address;
+                $db = new Database();
+                if ($db->Insert("INSERT INTO customers (Forename, Surname, Address, Email, PhoneNum) VALUES (?, ?, ?, ?, ?);", array($Forename, $Surname, $Address, $Email, $Phone))) {
+                    if ($query = $db->Select("SELECT * FROM customers WHERE email = ?", array($Email)) == null|false) {
+                        while ($row = $query->fetch_assoc()) {
+                            $CustomerID = $row['CustomerID'];
+                            echo $CustomerID;
+                        }
+                        if ($db->Insert("INSERT INTO accounts (Username, Password, CustomerID) VALUES (?, ?, ?);", array($Username, $Password, $CustomerID))) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    } else {
+                        return false;
+                    }
+                } else {
+                    return false;
+                }
+            }
+        }
         return false;
     }
 
