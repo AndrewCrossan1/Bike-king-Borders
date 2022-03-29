@@ -83,41 +83,7 @@ class Database
             return null;
         }
     }
-    /**
-     *  Insert a record into the database
-     *
-     * @param string $stmt Pre-made SQL statement
-     * @return boolean True or False
-     */
-    public function Insert(string $stmt, array $params = []): bool {
-        //Check if SQL statement is valid
-        if ($query = $this->conn->prepare($stmt)) {
-            //Check if parameters have been passed
-            if (!empty($params)) {
-                foreach ($params as $param) {
-                    //Check the data type of the parameter
-                    if (gettype($param) == "integer") {
-                        $query->bind_param('i', $param);
-                    }
-                    if (gettype($param) == "string") {
-                        $query->bind_param('s', $param);
-                    }
-                }
-            } else {
-                //Cannot insert with no parameters
-                return false;
-            }
-            //Check if query has executed properly
-            if ($query->execute()) {
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            //Return null because the SQL is incorrect or connection failed
-            return false;
-        }
-    }
+
     /**
      * Delete a record using a specified id
      *
