@@ -1,30 +1,44 @@
 <?php
-include('../Scripts/functions.php');
-    session_start();
-    //Page Description: Allows active users to login to their account
+session_start();
+//Page Description: Allows active users to login to their account
+
+include_once('../Scripts/functions.php');
+
+//Check if user is already logged in
+if (isset($_SESSION['Username'])) {
+    ?>
+    <script>
+        setTimeout(function(){
+            window.location.href = 'account.php';
+        }, 10);
+    </script>
+    <?php
+} else {
     //Set page name for required content in functions.php (Avoids file navigation errors which are extremely annoying - PHP just be smarter :,( )
     //Also keys is in with setting the pages active in header.php (Very fancy)
     $PageName = "Accounts";
 
     //Set page title for meta-data in header.php (An isset is used in the meta-data to check for this - Overkill because if it's not set I am dumb.)
     $PageTitle = "Login";
+
     require('../Scripts/header.php');
     //Require the header of the page (Includes Navigation, meta-data, etc.)
-?>
-<section id="header">
-    <div class="container-fluid bg-dark text-light p-5">
-        <div class="jumbotron">
-            <h1 class="display-5"><?php echo $PageTitle; ?></h1>
-            <p class="lead">Login to your account</p>
+    ?>
+    <section id="header">
+        <div class="container-fluid bg-dark text-light p-5">
+            <div class="jumbotron">
+                <h1 class="display-5"><?php echo $PageTitle; ?></h1>
+                <p class="lead">Login to your account</p>
+            </div>
         </div>
-    </div>
-</section>
-<?php
+    </section>
+
+    <?php
     //Check if message has been set in url
     if (isset($_GET['message'])) {
         functions::SendMessage(base64_decode($_GET['message']));
     }
-?>
+    ?>
     <div class="container-md bg-dark text-light border rounded " style="margin-top: 6%;">
         <div class="row p-2">
             <div class="col-lg text-center py-2">
@@ -85,7 +99,7 @@ include('../Scripts/functions.php');
                             </div>
                         </div>
                         <div class="col-md">
-                             <div class="form-outline mb-2 p-2">
+                            <div class="form-outline mb-2 p-2">
                                 <label for="Password" class="form-label">Password: </label><br>
                                 <input type="password" id="Password" name="Password" minlength="12" class="form-control w-75 m-auto" placeholder="Password" required/>
                                 <div class="invalid-feedback">
@@ -124,6 +138,7 @@ include('../Scripts/functions.php');
         </div>
     </div>
 
-<?php
+    <?php
     include('../Scripts/footer.php');
+}
 ?>
