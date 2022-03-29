@@ -1,7 +1,7 @@
 <?php
-    session_start();
-    //Page Description: Allows the user to view information on their account, also change it if they wish!
-
+session_start();
+//Page Description: Allows the user to view information on their account, also change it if they wish!
+if (isset($_SESSION['Username'])) {
     //Set page name for required content in functions.php (Avoids file navigation errors which are extremely annoying - PHP just be smarter :,( )
     //Also keys is in with setting the pages active in header.php (Very fancy)
     $PageName = "Account";
@@ -11,3 +11,12 @@
 
     //Require the header of the page (Includes Navigation, meta-data, etc.)
     require('../Scripts/header.php');
+} else {
+    ?>
+    <script>
+        setTimeout(function(){
+            window.location.href = 'login.php';
+        }, 10);
+    </script>
+    <?php
+}
