@@ -8,10 +8,9 @@ if (isset($PageName)) {
             break;
         //Product requires the Products model
         case "Products":
-            require("../Models/Product.php");
+            require_once("../Scripts/functions.php");
             require("../Scripts/database.php");
-            require("../Scripts/functions.php");
-            require("../Models/Offer.php");
+            require("../Models/Product.php");
             break;
         //Login requires the Employee and Customer Model
         case "Accounts":
@@ -231,9 +230,10 @@ class functions
     public static function FilterPriceRange($MinValue, $MaxValue): array|null
     {
         $Database = new Database();
-        if ($Database->Select("SELECT * FROM products WHERE Price BETWEEN(?, ?)", array($MinValue, $MaxValue)) != null) {
-            //Retrieve products from database
-            $result = $Database->Select("SELECT * FROM products WHERE Price BETWEEN(?, ?)");
+        $query = $Database->conn->prepare("SELECT * FROM products WHERE Price BETWEEN ? AND ?;");
+        $query->bind_param("ii", $MinValue, $MaxValue);
+        if ($query->execute()) {
+            $result = $query->get_result();
             //Create new products array
             $products = array();
             //Create new object and add to array for each row (Product)
@@ -241,8 +241,10 @@ class functions
                 array_push($products, new Product($row['ProductID'], $row['Name'], $row['Description'], $row['Price'], $row['imgslug'], $row['Colour'], $row['Age'], $row['Type']));
             }
             return $products;
+        } else {
+            echo $Database->conn->error;
+            return null;
         }
-        return null;
     }
 
     /**
