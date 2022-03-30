@@ -4,34 +4,57 @@ class Product
 {
     //Variable declaration
     private int $ProductID;
-    private string $ProductName;
-    private ?string $ProductDesc = null;
+    private string $Name;
+    private ?string $Description = null;
     private float $Price;
-    private int $CategoryID;
+    private ?string $imgslug = null;
+    private string $Colour;
+    private int $Age;
+    private string $Type;
 
-    public function __construct($ProductID, $Name, $Desc, $Price, $CategoryID) {
+    public function __construct($ProductID, $Name, $Description, $Price, $imgslug, $Colour, $Age, $Type) {
         $this->ProductID = $ProductID;
-        $this->ProductName = $Name;
-        $this->ProductDesc = $Desc;
+        $this->Name = $Name;
+        $this->Description = $Description;
         $this->Price = $Price;
-        $this->CategoryID = $CategoryID;
+        $this->imgslug = $imgslug;
+        $this->Colour = $Colour;
+        $this->Age = $Age;
+        $this->Type = $Type;
     }
 
     public function GetProductID():int {
         return $this->ProductID;
     }
 
-    public function getProductName(): string
+    public function getName(): string
     {
-        return $this->ProductName;
+        return $this->Name;
     }
 
-    public function getProductDesc(): ?string
+    public function getDescription(): ?string
     {
-        return $this->ProductDesc;
+        return $this->Description;
     }
 
     public function getPrice(): float {
         return $this->Price;
+    }
+
+    public function getSlug(): ?string {
+        return $this->imgslug;
+    }
+
+    public function getColour(): string {
+        return $this->Colour;
+    }
+
+    public function getAge(): int
+    {
+        return $this->Age;
+    }
+
+    public function getType(): string {
+        return $this->Type;
     }
 }
