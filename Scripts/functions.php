@@ -199,10 +199,14 @@ class functions
               ";
     }
 
+    //Product Functions
+
     /**
-     * Select all products from database
+     * Return all products, by default no filters are used
+     * @return array|null
      */
-    public static function GetProducts(): ?array {
+    public static function GetAllProducts(): array|null
+    {
         $Database = new Database();
         if ($Database->Select("SELECT * FROM products") != null) {
             //Retrieve products from database
@@ -211,9 +215,114 @@ class functions
             $products = array();
             //Create new object and add to array for each row (Product)
             while ($row = $result->fetch_assoc()) {
-                array_push($products, new Product($row['ProductID'], $row['Name'], $row['Description'], $row['Price'], $row['CategoryID']));
+                array_push($products, new Product($row['ProductID'], $row['Name'], $row['Description'], $row['Price'], $row['imgslug'], $row['Colour'], $row['Age'], $row['Type']));
             }
             return $products;
+        }
+        return null;
+    }
+
+    /**
+     * Return all products with a price in the specified range
+     * @param $MinValue
+     * @param $MaxValue
+     * @return array|null
+     */
+    public static function FilterPriceRange($MinValue, $MaxValue): array|null
+    {
+        $Database = new Database();
+        if ($Database->Select("SELECT * FROM products WHERE Price BETWEEN(?, ?)", array($MinValue, $MaxValue)) != null) {
+            //Retrieve products from database
+            $result = $Database->Select("SELECT * FROM products WHERE Price BETWEEN(?, ?)");
+            //Create new products array
+            $products = array();
+            //Create new object and add to array for each row (Product)
+            while ($row = $result->fetch_assoc()) {
+                array_push($products, new Product($row['ProductID'], $row['Name'], $row['Description'], $row['Price'], $row['imgslug'], $row['Colour'], $row['Age'], $row['Type']));
+            }
+            return $products;
+        }
+        return null;
+    }
+
+    /**
+     * Return all products where the type matches the input
+     * @param $Type
+     * @return array|null
+     */
+    public static function FilterBikeType($Type): array|null {
+        $Database = new Database();
+        if ($Database->Select("SELECT * FROM products WHERE Type = ?", array($Type)) != null) {
+            //Retrieve products from database
+            $result = $Database->Select("SELECT * FROM products WHERE Type = ?", array($Type));
+            //Create new products array
+            $products = array();
+            //Create new object and add to array for each row (Product)
+            while ($row = $result->fetch_assoc()) {
+                array_push($products, new Product($row['ProductID'], $row['Name'], $row['Description'], $row['Price'], $row['imgslug'], $row['Colour'], $row['Age'], $row['Type']));
+            }
+            return $products;
+        }
+        return null;
+    }
+
+    /**
+     * Get all distinct bike types
+     */
+    public static function GetBikeTypes(): array|null {
+        $Database = new Database();
+        if ($Database->Select("SELECT DISTINCT Type FROM products")) {
+            //Retrieve products from database
+            $result = $Database->Select("SELECT DISTINCT Type FROM products");
+            //Create new products array
+            $Types = array();
+            //Create new object and add to array for each row (Product)
+            while ($row = $result->fetch_assoc()) {
+                array_push($Types, $row['Type']);
+            }
+            return $Types;
+        }
+        return null;
+    }
+
+    /**
+     * Return all products where colour type matches input
+     * @param $Colour
+     * @return array|null
+     */
+    public static function ColourType($Colour): array|null {
+        $Database = new Database();
+        if ($Database->Select("SELECT * FROM products WHERE Colour = ?", array($Colour)) != null) {
+            //Retrieve products from database
+            $result = $Database->Select("SELECT * FROM products WHERE Colour = ?", array($Colour));
+            //Create new products array
+            $products = array();
+            //Create new object and add to array for each row (Product)
+            while ($row = $result->fetch_assoc()) {
+                array_push($products, new Product($row['ProductID'], $row['Name'], $row['Description'], $row['Price'], $row['imgslug'], $row['Colour'], $row['Age'], $row['Type']));
+            }
+            return $products;
+        }
+        return null;
+    }
+
+    /**
+     * Get all distinct bike colours
+     *
+     *@return array|null
+     */
+    public static function GetColours(): array|null {
+        $Database = new Database();
+        if ($Database->Select("SELECT DISTINCT Colour FROM products")) {
+            //Retrieve products from database
+            $result = $Database->Select("SELECT DISTINCT Colour FROM products");
+            //Create new products array
+            $Colours = array();
+            //Create new object and add to array for each row (Product)
+            while ($row = $result->fetch_assoc()) {
+                array_push($Colours, $row['Colour']);
+            }
+            return $Colours;
         }
         return null;
     }
