@@ -12,12 +12,44 @@
     require('../Scripts/header.php');
     include_once('../Scripts/functions.php');
 
-    $Bikes = functions::GetAllProducts();
+    $Bikes = functions::Filter("SELECT * FROM products WHERE Price BETWEEN ? AND ?", "ii", 0, 1000);
 
     //Check for filtering
     if (isset($_GET['FilterSubmit'])) {
-        if (functions::FilterPriceRange(0, (int)$_GET['PriceRange']) != null) {
-            $Bikes = functions::FilterPriceRange(0, (int)$_GET['PriceRange']);
+        //Filter by price firstly
+        if ($Bikes = functions::Filter("SELECT * FROM products WHERE Price BETWEEN ? AND ?", "ii", 0, $_GET['PriceRange']) != null) {
+            $Bikes = functions::Filter("SELECT * FROM products WHERE Price BETWEEN ? AND ?", "ii", 0, $_GET['PriceRange']);
+            //Filter by Bike Type and then if Colour is set filter by it
+            if ($_GET['BikeType'] != "None") {
+                $Bikes = functions::Filter("SELECT * FROM products WHERE Price BETWEEN ? AND ? AND Type = ?", "iis", 0, (int)$_GET['PriceRange'], $_GET['BikeType']);
+                if (count($Bikes) == 0) {
+                    $Bikes = null;
+                    $message = "No products available with chosen filter";
+                }
+                //Check if colour is chosen
+                if ($_GET['ColourType'] != "None") {
+                    $Bikes = functions::Filter("SELECT * FROM products WHERE Price BETWEEN ? AND ? AND Type = ? AND Colour = ?", "iiss", 0, (int)$_GET['PriceRange'], $_GET['BikeType'], $_GET['ColourType']);
+                    if (count($Bikes) == 0) {
+                        $Bikes = null;
+                        $message = "No products available with chosen filter";
+                    }
+                }
+            }
+            //Filter by Colour Type and then if Bike Type is set filter by it (Opposite of above to accommodate all filters) Price, Type, Colour, Price, Type, Price, Colour
+            if ($_GET['ColourType'] != "None") {
+                $Bikes = functions::Filter("SELECT * FROM products WHERE Price BETWEEN ? AND ? AND Colour = ?", "iis", 0, (int)$_GET['PriceRange'], $_GET['ColourType']);
+                if (count($Bikes) == 0) {
+                    $Bikes = null;
+                    $message = "No products available with chosen filter";
+                }
+                if ($_GET['BikeType'] != "None") {
+                    $Bikes = functions::Filter("SELECT * FROM products WHERE Price BETWEEN ? AND ? AND Type = ? AND Colour = ?", "iiss", 0, (int)$_GET['PriceRange'], $_GET['BikeType'], $_GET['ColourType']);
+                    if (count($Bikes) == 0) {
+                        $Bikes = null;
+                        $message = "No products available with chosen filter";
+                    }
+                }
+            }
         } else {
             $message = "No products available with chosen filter";
             $Bikes = null;
@@ -41,12 +73,12 @@
                     <div class="form-group mt-3">
                         <label for="BikeType">Bike Type:</label><br>
                         <select class="form-select mt-1 form-control" name="BikeType" aria-label="Bike Type Select">
-                            <option value="0">None</option>
+                            <option value="None">None</option>
                             <?php
                                 $Types = functions::GetBikeTypes();
                                 for ($x = 0; $x<count($Types); $x++) {
                                     ?>
-                                    <option <?php if (isset($_GET['BikeType']) && $_GET['BikeType'] == $x + 1) { echo 'selected '; }?>value="<?php echo $x + 1; ?>"><?php echo $Types[$x]; ?></option>
+                                    <option <?php if (isset($_GET['BikeType']) && $_GET['BikeType'] == $Types[$x]) { echo 'selected '; }?>value="<?php echo $Types[$x]; ?>"><?php echo $Types[$x]; ?></option>
                             <?php
                                 }
                             ?>
@@ -55,12 +87,13 @@
                     <div class="form-group mt-3">
                         <label for="ColourType">Colour:</label><br>
                         <select class="form-select mt-1 form-control" name="ColourType" aria-label="Colour Type Select">
-                            <option value="0">None</option>
+                            <option value="None">None</option>
                             <?php
                                 $Colours = functions::GetColours();
                                 for ($x = 0; $x<count($Colours); $x++) {
                                     ?>
-                                    <option value="<?php echo $x + 1; ?>"><?php echo $Colours[$x]; ?></option>
+                                    <!--Value is set to name of colour, if colour equals selected colour set to respective colour value -->
+                                    <option value="<?php echo $Colours[$x]; ?>" <?php if (isset($_GET['ColourType']) && $_GET['ColourType'] == $Colours[$x]) { echo ' selected '; }?>><?php echo $Colours[$x]; ?></option>
                             <?php
                                 }
                             ?>
