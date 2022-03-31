@@ -40,11 +40,17 @@ Testing is carried out thoroughly after the development of each module (Usually 
 <br>
 Product filtering is tested using different cases, some examples:
 - Price Range: £0 - £410 | Type: Mountain | Colour: Black
+<hr/>
 ![BlackMountain410](https://user-images.githubusercontent.com/74681613/161100272-f1d89448-5b26-4bdb-a89d-a97ea593d6fe.PNG)
+<hr/>
 - Price Range: £0 - £1000 | Type: None | Colour: Black
+<hr/>
 ![BlackBikes1000](https://user-images.githubusercontent.com/74681613/161100698-3b164eab-98a0-4b70-881a-139cb38d3092.PNG)
+<hr/>
 - Price Range: £0 - £1000 | Type: Hybrid | Colour: None
+<hr/>
 ![Hybrid1000](https://user-images.githubusercontent.com/74681613/161100942-5b8495fc-4b36-4236-ac30-bbbb718df787.PNG)
+<hr/>
 
 
 
