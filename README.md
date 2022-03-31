@@ -14,13 +14,14 @@ Currently as of 29/03/22 the website features the following:
 
 - User Account login and creation
 - Database connectivity (Obviously for the point above)
+- Viewing of products by user
+- Filtering of products using SQL
 
 Soon I wish to implement the following features in the website
 
 - Admin product CRUD
 - Viewing of products to user
 - The ability to add a product to basket and checkout
-- Filtering of products using SQL
 - A contact page where users can create tickets which can be viewed and replied to by administrators on an admin only page
 - The ability to create special offers
 - The abiltiy for users to apply special offers
@@ -36,6 +37,9 @@ The deadline for this project is 2/6/22
 
 ## Testing 
 Testing is carried out thoroughly after the development of each module (Usually by me using example accounts as a way of end user testing)
+<br>
+Product filtering is tested using different cases, some examples:
+- Price Range: £0 - £410 |Type: Mountain | Colour: Black
 
 ## Technologies used
 The project is majorly developed using PHP for scripting, where applicable I have went down the object-oriented route to enhance my OOP practising.
