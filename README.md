@@ -43,6 +43,7 @@ Product filtering is tested using different cases, some examples:
 <hr/>
 
 - Price Range: £0 - £410 | Type: Mountain | Colour: Black
+
 ![BlackMountain410](https://user-images.githubusercontent.com/74681613/161100272-f1d89448-5b26-4bdb-a89d-a97ea593d6fe.PNG)
 
 <hr/>
