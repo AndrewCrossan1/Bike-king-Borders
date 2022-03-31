@@ -39,7 +39,14 @@ The deadline for this project is 2/6/22
 Testing is carried out thoroughly after the development of each module (Usually by me using example accounts as a way of end user testing)
 <br>
 Product filtering is tested using different cases, some examples:
-- Price Range: £0 - £410 |Type: Mountain | Colour: Black
+- Price Range: £0 - £410 | Type: Mountain | Colour: Black
+![BlackMountain410](https://user-images.githubusercontent.com/74681613/161100272-f1d89448-5b26-4bdb-a89d-a97ea593d6fe.PNG)
+- Price Range: £0 - £1000 | Type: None | Colour: Black
+![BlackBikes1000](https://user-images.githubusercontent.com/74681613/161100698-3b164eab-98a0-4b70-881a-139cb38d3092.PNG)
+- Price Range: £0 - £1000 | Type: Hybrid | Colour: None
+![Hybrid1000](https://user-images.githubusercontent.com/74681613/161100942-5b8495fc-4b36-4236-ac30-bbbb718df787.PNG)
+
+
 
 ## Technologies used
 The project is majorly developed using PHP for scripting, where applicable I have went down the object-oriented route to enhance my OOP practising.
