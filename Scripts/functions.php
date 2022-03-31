@@ -201,69 +201,87 @@ class functions
     //Product Functions
 
     /**
-     * Return all products, by default no filters are used
-     * @return array|null
+     * Filter products
+     * @param $stmt string Order: Min Value Max Value Type (If used) Colour (If used)
+     * @param $DataTypes string|null bind_param Data types (iis) (ssi)
      */
-    public static function GetAllProducts(): array|null
-    {
+    public static function Filter(string $stmt, string|null $DataTypes = null, $MinValue = 0, $MaxValue = 1000, $Type = null, $Colour = null): array|null {
+        //Create database object
         $Database = new Database();
-        if ($Database->Select("SELECT * FROM products") != null) {
-            //Retrieve products from database
-            $result = $Database->Select("SELECT * FROM products");
-            //Create new products array
-            $products = array();
-            //Create new object and add to array for each row (Product)
-            while ($row = $result->fetch_assoc()) {
-                array_push($products, new Product($row['ProductID'], $row['Name'], $row['Description'], $row['Price'], $row['imgslug'], $row['Colour'], $row['Age'], $row['Type']));
-            }
-            return $products;
-        }
-        return null;
-    }
 
-    /**
-     * Return all products with a price in the specified range
-     * @param $MinValue
-     * @param $MaxValue
-     * @return array|null
-     */
-    public static function FilterPriceRange($MinValue, $MaxValue): array|null
-    {
-        $Database = new Database();
-        $query = $Database->conn->prepare("SELECT * FROM products WHERE Price BETWEEN ? AND ?;");
-        $query->bind_param("ii", $MinValue, $MaxValue);
-        if ($query->execute()) {
-            $result = $query->get_result();
-            //Create new products array
-            $products = array();
-            //Create new object and add to array for each row (Product)
-            while ($row = $result->fetch_assoc()) {
-                array_push($products, new Product($row['ProductID'], $row['Name'], $row['Description'], $row['Price'], $row['imgslug'], $row['Colour'], $row['Age'], $row['Type']));
+        //Filter
+        if ($query = $Database->conn->prepare($stmt)) {
+            //Check that data types are in correct order corresponding to parameters
+            //Filter by price range only
+            if ($Colour == null && $Type == null) {
+                if ($query->bind_param($DataTypes, $MinValue, $MaxValue)) {
+                    if ($query->execute()) {
+                        $result = $query->get_result();
+                        $products = array();
+                        while ($row = $result->fetch_assoc()) {
+                            array_push($products, new Product($row['ProductID'], $row['Name'], $row['Description'], $row['Price'], $row['imgslug'], $row['Colour'], $row['Age'], $row['Type']));
+                        }
+                        return $products;
+                    } else {
+                        return null;
+                    }
+                } else {
+                    return null;
+                }
             }
-            return $products;
-        } else {
-            echo $Database->conn->error;
-            return null;
-        }
-    }
-
-    /**
-     * Return all products where the type matches the input
-     * @param $Type
-     * @return array|null
-     */
-    public static function FilterBikeType($Type): array|null {
-        $Database = new Database();
-        if ($Database->Select("SELECT * FROM products WHERE Type = ?", array($Type)) != null) {
-            //Retrieve products from database
-            $result = $Database->Select("SELECT * FROM products WHERE Type = ?", array($Type));
-            //Create new products array
-            $products = array();
-            //Create new object and add to array for each row (Product)
-            while ($row = $result->fetch_assoc()) {
-                array_push($products, new Product($row['ProductID'], $row['Name'], $row['Description'], $row['Price'], $row['imgslug'], $row['Colour'], $row['Age'], $row['Type']));
+            //Filter by Price and Colour
+            if ($Colour != null && $Type == null) {
+                if ($query->bind_param($DataTypes, $MinValue, $MaxValue, $Colour)) {
+                    if ($query->execute()) {
+                        $result = $query->get_result();
+                        $products = array();
+                        while ($row = $result->fetch_assoc()) {
+                            array_push($products, new Product($row['ProductID'], $row['Name'], $row['Description'], $row['Price'], $row['imgslug'], $row['Colour'], $row['Age'], $row['Type']));
+                        }
+                        return $products;
+                    } else {
+                        return null;
+                    }
+                } else {
+                    return null;
+                }
             }
-            return $products;
+            //Filter by Price and Type
+            if ($Type != null && $Colour == null ) {
+                if ($query->bind_param($DataTypes, $MinValue, $MaxValue, $Type)) {
+                    if ($query->execute()) {
+                        $result = $query->get_result();
+                        $products = array();
+                        while ($row = $result->fetch_assoc()) {
+                            array_push($products, new Product($row['ProductID'], $row['Name'], $row['Description'], $row['Price'], $row['imgslug'], $row['Colour'], $row['Age'], $row['Type']));
+                        }
+                        return $products;
+                    } else {
+                        echo $Database->conn->error;
+                        return null;
+                    }
+                } else {
+                    echo $Database->conn->error;
+                    return null;
+                }
+            }
+            //Filter by Price, Type and Colour
+            if ($Type != null && $Colour != null) {
+                if ($query->bind_param($DataTypes, $MinValue, $MaxValue, $Type, $Colour)) {
+                    if ($query->execute()) {
+                        $result = $query->get_result();
+                        $products = array();
+                        while ($row = $result->fetch_assoc()) {
+                            array_push($products, new Product($row['ProductID'], $row['Name'], $row['Description'], $row['Price'], $row['imgslug'], $row['Colour'], $row['Age'], $row['Type']));
+                        }
+                        return $products;
+                    } else {
+                        return null;
+                    }
+                } else {
+                    return null;
+                }
+            }
         }
         return null;
     }
@@ -283,27 +301,6 @@ class functions
                 array_push($Types, $row['Type']);
             }
             return $Types;
-        }
-        return null;
-    }
-
-    /**
-     * Return all products where colour type matches input
-     * @param $Colour
-     * @return array|null
-     */
-    public static function ColourType($Colour): array|null {
-        $Database = new Database();
-        if ($Database->Select("SELECT * FROM products WHERE Colour = ?", array($Colour)) != null) {
-            //Retrieve products from database
-            $result = $Database->Select("SELECT * FROM products WHERE Colour = ?", array($Colour));
-            //Create new products array
-            $products = array();
-            //Create new object and add to array for each row (Product)
-            while ($row = $result->fetch_assoc()) {
-                array_push($products, new Product($row['ProductID'], $row['Name'], $row['Description'], $row['Price'], $row['imgslug'], $row['Colour'], $row['Age'], $row['Type']));
-            }
-            return $products;
         }
         return null;
     }
