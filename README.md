@@ -32,6 +32,7 @@ Soon I wish to implement the following features in the website
 - More content on each page
 - Keybinds which keyboard only users can use to navigate the website
 - Accessibility for impaired users (Text to speech and Magnification of text)
+- Live Search function using PHP, and AJAX.
 
 The deadline for this project is 2/6/22
 
