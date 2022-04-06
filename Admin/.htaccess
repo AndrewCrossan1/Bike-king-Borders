@@ -1,0 +1,4 @@
+AuthUserFile c:apachesecurity.htpasswd
+AuthName "Administrator only"
+AuthType Basic
+require valid-user
