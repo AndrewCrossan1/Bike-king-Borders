@@ -28,20 +28,20 @@ if (isset($PageName)) {
             require('Scripts/functions.php');
             require("Scripts/database.php");
             break;
-        case "AUsers":
-            require('../Scripts/functions.php');
+        case "AdminUsers":
+            require_once('../Scripts/functions.php');
             require("../models/Employee.php");
             require("../models/Customer.php");
             require("../Scripts/database.php");
             break;
-        case "AOffers":
-            require('../Scripts/functions.php');
+        case "AdminOffers":
+            require_once('../Scripts/functions.php');
             require("../Models/Product.php");
             require("../Scripts/database.php");
             require("../Models/Offer.php");
             break;
-        case "AProducts":
-            require('../Scripts/functions.php');
+        case "AdminProducts":
+            require_once('../Scripts/functions.php');
             require("../Scripts/database.php");
             require("../Models/Product.php");
             require("../Models/Offer.php");
@@ -325,4 +325,7 @@ class functions
         }
         return null;
     }
+}
+
+class AdminFunctions {
 }
