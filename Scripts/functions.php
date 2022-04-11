@@ -46,7 +46,7 @@ if (isset($PageName)) {
             require("../Models/Product.php");
             require("../Models/Offer.php");
             break;
-        case "AdminHome":
+        case "AdminLogin":
             require_once('../Scripts/functions.php');
             require_once('../Scripts/database.php');
             require('../Models/Admin.php');
