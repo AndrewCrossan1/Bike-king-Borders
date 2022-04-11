@@ -13,9 +13,16 @@ require('../Scripts/adminheader.php');
 
 ?>
 
+<?php
+//Check if message has been set in url
+if (isset($_GET['message'])) {
+    functions::SendMessage(base64_decode($_GET['message']));
+}
+?>
+
 <div class="container-md" style="margin-top: 10rem;">
     <div class="container" style="max-width: 30rem;">
-        <form method="post" action="" class="w-100 mx-auto needs-validation" novalidate>
+        <form method="post" action="validate.php" class="w-100 mx-auto needs-validation" novalidate>
             <div class="card" style="max-width: 30rem;">
                 <div class="card-header bg-primary p-3 text-light fs-5 text-center">
                     Administrator Login
@@ -38,7 +45,7 @@ require('../Scripts/adminheader.php');
                     </div>
                     <br/>
                     <div class="btn-group text-center w-100">
-                        <input type="submit" class="btn btn-primary" alt="Login" value="Login">
+                        <input type="submit" class="btn btn-primary" name="submit" alt="Login" value="Login">
                         <input type="reset" class="btn btn-outline-secondary" alt="Reset Values" value="Reset">
                     </div>
                 </div>
