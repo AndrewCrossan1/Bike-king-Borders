@@ -46,6 +46,10 @@ if (isset($PageName)) {
             require("../Models/Product.php");
             require("../Models/Offer.php");
             break;
+        case "AdminHome":
+            require_once('../Scripts/functions.php');
+            require_once('../Scripts/database.php');
+            require('../Models/Admin.php');
     }
 }
 
@@ -124,7 +128,8 @@ class functions
      * Create a new account
      *
      * @param $Username
-     * @param $password
+     * @param $Password
+     * @param $ConfirmPass
      * @param $Forename
      * @param $Surname
      * @param $Email
@@ -328,4 +333,63 @@ class functions
 }
 
 class AdminFunctions {
+    /**
+     * Return the details of a user (For users.php and returning the details of the logged in user)
+     *
+     * @param $Username
+     * @return object|null
+     */
+    public static function GetDetails($Username):?mysqli_result {
+        try {
+            //Create new database object to access functions
+            $Database = new Database();
+            //Create new statement
+            $stmt = "SELECT * FROM employees e, admins a WHERE e.EmployeeID = a.EmployeeID AND a.Username = ?";
+            $User = $Database->Select($stmt, array($Username));
+            if ($User == null) {
+                functions::SendMessage(base64_encode("User does not exist"));
+                return null;
+            } else {
+                return $User;
+            }
+        } catch (Exception) {
+            return null;
+        }
+    }
+
+    /**
+     * Used for logging into the administrator website
+     *
+     * @param string $Username
+     * @param string $Password
+     * @return bool
+     */
+    public static function Login(string $Username, string $Password): bool
+    {
+        try {
+            //Create new database object
+            $Database = new Database();
+            //Set variable to script
+            $stmt = "SELECT Username, Password FROM admins WHERE Username = ?";
+            //Select user from database
+            $User = $Database->Select($stmt, array($Username));
+            if ($User == null) {
+                functions::SendMessage(base64_encode("Username incorrect"));
+                return false;
+            } else {
+                $User = $User->fetch_assoc();
+                //Check if passwords match
+                if (password_verify($Password, $User['Password'])) {
+                    $_SESSION['Admin'] = true;
+                    $_SESSION['Username'] = $User['Username'];
+                    return true;
+                } else {
+                    functions::SendMessage(base64_encode("Password incorrect"));
+                    return false;
+                }
+            }
+        } catch (Exception) {
+            return false;
+        }
+    }
 }
