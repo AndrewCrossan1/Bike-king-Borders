@@ -1,11 +1,13 @@
 <?php
+//Used for validating a users request to create a new account.
+
 session_start();
 if (isset($_SESSION['Username'])) {
     ?>
     <script>
         setTimeout(function(){
             window.location.href = 'account.php';
-        }, 10);
+        });
     </script>
     <?php
 } else {
@@ -19,7 +21,7 @@ if (isset($_SESSION['Username'])) {
             <script>
                 setTimeout(function(){
                     window.location.href = '../index.php?message=<?php echo $Message; ?>';
-                }, 10);
+                });
             </script>
             <?php
         } else {
@@ -28,7 +30,7 @@ if (isset($_SESSION['Username'])) {
             <script>
                 setTimeout(function(){
                     window.location.href = 'create.php?message=<?php echo $Message; ?>';
-                }, 10);
+                });
             </script>
             <?php
         }
@@ -38,7 +40,7 @@ if (isset($_SESSION['Username'])) {
         <script>
             setTimeout(function(){
                 window.location.href = 'create.php?message=<?php echo $Message; ?>';
-            }, 10);
+            });
         </script>
         <?php
     }

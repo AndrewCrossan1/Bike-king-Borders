@@ -16,7 +16,7 @@ if (isset($_SESSION['Username'])) {
     <script>
         setTimeout(function(){
             window.location.href = 'login.php';
-        }, 10);
+        });
     </script>
     <?php
 }

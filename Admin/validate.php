@@ -1,6 +1,7 @@
 <?php
     session_start();
     //Include functions
+    $PageName = "AdminLogin";
     require_once('../Scripts/functions.php');
 
     if (isset($_SESSION['Admin'])) {
@@ -9,7 +10,7 @@
         <script>
             setTimeout(function() {
                 window.location.href = 'products.php';
-            },10);
+            });
         </script>
         <?php
     } else {
@@ -24,8 +25,8 @@
                 ?>
                 <script>
                     setTimeout(function() {
-                        window.location.href = 'index.php?message=<?php echo $Message; ?>';
-                    },10)
+                        window.location.href = 'home.php?message=<?php echo $Message; ?>';
+                    })
                 </script>
                 <?php
             } else {
@@ -34,8 +35,8 @@
                 <!--Redirect to admin login page with message saying invalid login-->
                 <script>
                     setTimeout(function() {
-                       window.location.href = 'login.php?message=<?php echo $Message; ?>';
-                    },10);
+                       window.location.href = 'index.php?message=<?php echo $Message; ?>';
+                    });
                 </script>
                 <?php
             }
@@ -45,8 +46,8 @@
             <!--Redirect to admin login page with message saying invalid login-->
             <script>
                 setTimeout(function() {
-                    window.location.href = 'login.php?message=<?php echo $Message; ?>';
-                },10);
+                    window.location.href = 'index.php?message=<?php echo $Message; ?>';
+                });
             </script>
             <?php
         }
