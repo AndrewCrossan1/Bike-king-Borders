@@ -26,7 +26,7 @@ if (isset($PageName) && str_contains($PageName, "Admin")) {
     ?>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark p-3">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/index.php">Bike King Borders</a>
+        <a id="logoutadmin" class="navbar-brand" href="/index.php">Bike King Borders</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -50,6 +50,18 @@ if (isset($PageName) && str_contains($PageName, "Admin")) {
                 </li>
             </ul>
         </div>
+        <script>
+            //Log user out of administrator session when main homepage is accessed
+            $(document).ready(function() {
+               $('#logoutadmin').click(function() {
+                   <?php
+                   if (isset($_SESSION['Admin'])) {
+                       session_destroy();
+                   }
+                   ?>
+               });
+            });
+        </script>
     </div>
 </nav>
     <?php
