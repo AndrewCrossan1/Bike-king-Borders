@@ -18,6 +18,6 @@
     <script>
         setTimeout(function(){
             window.location.href = '../index.php?message=<?php echo $Message; ?>';
-        }, 10);
+        });
     </script>
 
