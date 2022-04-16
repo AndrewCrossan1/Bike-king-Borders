@@ -1,3 +1,21 @@
 ErrorDocument 404 /Errors/Error404.php
 ErrorDocument 403 /Errors/Error403.php
 ErrorDocument 401 /Erros/Error401.php
+
+RewriteEngine on
+RewriteRule ^home/$ /index.php [NC]
+RewriteRule ^gallery/$ /gallery.php [NC]
+RewriteRule ^contact/$ /contact.php [NC]
+
+RewriteRule ^account/$ /Account/account.php [NC]
+RewriteRule ^account/myaccount/$ /Account/account.php [NC]
+RewriteRule ^account/login/$ /Account/login.php [NC]
+RewriteRule ^account/create/$ /Account/create.php [NC]
+RewriteRule ^account/logout/$ /Account/logout.php [NC]
+RewriteRule ^account/validatelogin/$ /Account/loginscript.php
+RewriteRule ^account/validatecreation/$ /Account/validate.php
+
+RewriteRule ^products/$ /Products/products.php [NC]
+RewriteRule ^products/Price=([0-9]+)/Type=([A-Za-z]+)/Colour=([A-Za-z]+)/$ /Products/products.php?PriceRange=$1&BikeType=$2&ColourType=$3&FilterSubmit=$4 [NC]
+
+RewriteRule ^/images/products?name=default$ /Media/Products/default.png [NC]

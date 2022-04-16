@@ -31,11 +31,11 @@
             <ul class="navbar-nav ms-auto">
                 <!-- Home -->
                 <li class="nav-item m-2 middle">
-                    <a class="nav-link<?php if (isset($PageName) && $PageName == 'Index') { echo ' active'; }?>" href="/index.php"><i class="fas fa-house"></i> Home</a>
+                    <a class="nav-link<?php if (isset($PageName) && $PageName == 'Index') { echo ' active'; }?>" href="/home/"><i class="fas fa-house"></i> Home</a>
                 </li>
                 <!--Gallery-->
                 <li class="nav-item m-2 middle">
-                    <a class="nav-link<?php if (isset($PageName) && $PageName == "Gallery") { echo ' active'; }?>" href="/gallery.php"><i class="fas fa-photo-film"></i> Gallery</a>
+                    <a class="nav-link<?php if (isset($PageName) && $PageName == "Gallery") { echo ' active'; }?>" href="/gallery/"><i class="fas fa-photo-film"></i> Gallery</a>
                 </li>
                 <!-- Account Dropdown menu -->
                 <li class="nav-item dropdown m-2 middle">
@@ -45,10 +45,10 @@
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <?php if (!isset($_SESSION['loggedin'])) {?>
                             <li>
-                                <a class="dropdown-item" href="/Account/login.php">Login</a>
+                                <a class="dropdown-item" href="/account/login/">Login</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="/Account/create.php">Create an account</a>
+                                <a class="dropdown-item" href="/account/create/">Create an account</a>
                             </li>
                             <li>
                                 <hr class="dropdown-divider"></li>
@@ -57,25 +57,25 @@
                             </li>
                         <?php } else {?>
                             <li>
-                                <a class="dropdown-item" href="/Account/account.php"><?php if (isset($_SESSION['Username'])) {echo $_SESSION['Username'];}?></a>
+                                <a class="dropdown-item" href="/account/"><?php if (isset($_SESSION['Username'])) {echo $_SESSION['Username'];}?></a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="/Account/Reset.php">Reset password</a>
+                                <a class="dropdown-item" href="/account/Reset.php">Reset password</a>
                             </li>
                             <hr class="dropdown-divider">
                             <li>
-                                <a class="dropdown-item" href="/Account/logout.php">Log out</a>
+                                <a class="dropdown-item" href="/account/logout/">Log out</a>
                             </li>
                         <?php } ?>
                     </ul>
                 </li>
                 <!--Products-->
                 <li class="nav-item m-2 middle">
-                    <a class="nav-link<?php if (isset($PageName) && $PageName == "Products") { echo ' active'; }?>" href="/Products/products.php"><i class="far fa-rectangle-list"></i> Products</a>
+                    <a class="nav-link<?php if (isset($PageName) && $PageName == "Products") { echo ' active'; }?>" href="/products/"><i class="far fa-rectangle-list"></i> Products</a>
                 </li>
                 <!--Contact us-->
                 <li class="nav-item m-2 middle">
-                    <a class="nav-link<?php if (isset($PageName) && $PageName == "Contact") { echo ' active'; }?>" href="/contact.php"><i class="fas fa-phone"></i> Contact us</a>
+                    <a class="nav-link<?php if (isset($PageName) && $PageName == "Contact") { echo ' active'; }?>" href="/contact/"><i class="fas fa-phone"></i> Contact us</a>
                 </li>
             </ul>
         </div>

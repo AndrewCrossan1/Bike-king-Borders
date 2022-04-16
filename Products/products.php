@@ -1,4 +1,5 @@
 <?php
+    session_start();
     //Page Description: Provides a list of products for the user to see
 
     //Set page name for required content in functions.php (Avoids file navigation errors which are extremely annoying - PHP just be smarter :,( )
@@ -16,6 +17,15 @@
 
     //Check for filtering
     if (isset($_GET['FilterSubmit'])) {
+        ?>
+        <script>
+            let url = window.location.href;
+            if (url.startsWith("https://localhost/products/?")) {
+                window.location.href = "https://localhost/products/Price=<?php echo $_GET['PriceRange'];?>/Type=<?php echo $_GET['BikeType'];?>/Colour=<?php echo $_GET['ColourType'];?>/"
+            }
+            console.log("URL: " + url);
+        </script>
+        <?php
         //Filter by price firstly
         if ($Bikes = functions::Filter("SELECT * FROM products WHERE Price BETWEEN ? AND ?", "ii", 0, $_GET['PriceRange']) != null) {
             $Bikes = functions::Filter("SELECT * FROM products WHERE Price BETWEEN ? AND ?", "ii", 0, $_GET['PriceRange']);
@@ -65,7 +75,7 @@
         <div class="col-md-2 bg-dark">
             <div class="card border border-0 bg-dark text-light p-2 sticky-top">
                 <h5 class="text-center" style="margin-bottom: 2rem; margin-top: 2rem;">Filters</h5>
-                <form class="bg-light text-dark p-2 rounded" method="get" action="">
+                <form class="bg-light text-dark p-2 rounded" method="get" action="/products/">
                     <div class="form-group">
                         <label id="PriceRangeLabel" for="PriceRange">Price Range: £0 - £<?php if (isset($_GET['PriceRange'])) {echo (int)$_GET['PriceRange'];} else {echo '1000'; }?></label><br>
                         <input type="range" class="form-range" id="PriceRange" min="0" max="1000" aria-valuemin="0" value="<?php if (isset($_GET['PriceRange'])) {echo (int)$_GET['PriceRange'];} else {echo '1000'; }?>" aria-valuemax="1000" name="PriceRange"/>
@@ -108,7 +118,7 @@
                     </div>
                     <div class="form-group mt-3">
                         <button type="submit" class="btn btn-primary" name="FilterSubmit" id="FilterSubmit">Filter</button>
-                        <a href="products.php"><button type="button" class="btn btn-secondary" name="FilterReset" id="FilterReset">Reset</button></a>
+                        <a href="/products/"><button type="button" class="btn btn-secondary" name="FilterReset" id="FilterReset">Reset</button></a>
                     </div>
                 </form>
             </div>
@@ -124,7 +134,7 @@
                 <div class="col-sm-3 col-6 mb-4">
                     <div class="card p-2 text-center">
                         <div class="card-img-top">
-                            <img src="../Media/Products/<?php if ($Bike->getSlug() == null) { echo 'default.png'; } else { echo $Bike->getSlug();}?>" class="img-fluid" alt="A bicycle"/>
+                            <img src="/Media/Products/<?php if ($Bike->getSlug() == null) { echo 'default.png'; } else { echo $Bike->getSlug();}?>" class="img-fluid" alt="A bicycle"/>
                         </div>
                         <div class="card-title">
                             <?php

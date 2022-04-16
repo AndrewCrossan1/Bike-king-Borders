@@ -17,7 +17,7 @@
     ?>
     <script>
         setTimeout(function(){
-            window.location.href = '../index.php?message=<?php echo $Message; ?>';
+            window.location.href = '/home/?message=<?php echo $Message; ?>';
         });
     </script>
 

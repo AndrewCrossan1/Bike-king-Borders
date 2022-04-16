@@ -87,7 +87,7 @@ if (isset($_SESSION['Username'])) {
                 <p class="small p-2 text-center">
                     Fill out the form to login in order to access member-exclusive offers and discounts
                 </p>
-                <form class="needs-validation mt-auto mb-auto" novalidate method="post" action="loginscript.php">
+                <form class="needs-validation mt-auto mb-auto" novalidate method="post" action="/account/validatelogin/">
                     <div class="form-row text-center">
                         <div class="col-md">
                             <div class="form-outline mb-4 p-2">

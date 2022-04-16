@@ -6,7 +6,7 @@
             ?>
             <script>
                 setTimeout(function(){
-                    window.location.href = 'account.php';
+                    window.location.href = '/account/';
                 }, 10);
             </script>
             <?php
@@ -63,7 +63,7 @@ if (isset($_GET['message'])) {
     <div class="row p-2">
         <div class="col-lg text-center text-dark bg-light p-2" style="box-shadow: 0px 0px 12px 1px #A2A3A5;">
             <p class="lead text-center">Fill in the form below and click submit to create your very own Bike King Borders account and reap the benefits of member perks!</p>
-            <form class="p-3 m-2 needs-validation" method="POST" action="validate.php" novalidate>
+            <form class="p-3 m-2 needs-validation" method="POST" action="/account/validatecreation/" novalidate>
                 <!--Username Input-->
                 <div class="form-group row pt-1">
                     <label for="UsernameInput" class="col-sm-2 col-form-label">Username</label>

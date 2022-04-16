@@ -6,7 +6,7 @@ if (isset($_SESSION['Username'])) {
     ?>
     <script>
         setTimeout(function(){
-            window.location.href = 'account.php';
+            window.location.href = '/account/';
         });
     </script>
     <?php
@@ -20,7 +20,7 @@ if (isset($_SESSION['Username'])) {
             ?>
             <script>
                 setTimeout(function(){
-                    window.location.href = '../index.php?message=<?php echo $Message; ?>';
+                    window.location.href = '/home/?message=<?php echo $Message; ?>';
                 });
             </script>
             <?php
@@ -29,7 +29,7 @@ if (isset($_SESSION['Username'])) {
             ?>
             <script>
                 setTimeout(function(){
-                    window.location.href = 'create.php?message=<?php echo $Message; ?>';
+                    window.location.href = '/account/create/?message=<?php echo $Message; ?>';
                 });
             </script>
             <?php
@@ -39,7 +39,7 @@ if (isset($_SESSION['Username'])) {
         ?>
         <script>
             setTimeout(function(){
-                window.location.href = 'create.php?message=<?php echo $Message; ?>';
+                window.location.href = '/account/create/?message=<?php echo $Message; ?>';
             });
         </script>
         <?php
