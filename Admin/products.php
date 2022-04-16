@@ -10,15 +10,4 @@
 
     //Require the header of the page (Includes Navigation, meta-data, etc.)
     require('../Scripts/adminheader.php');
-
-//If user is not admin then leave
-if (!isset($_SESSION['Admin'])) {
-    ?>
-    <script>
-        setTimeout(function(){
-            window.location.href = 'index.php';
-        });
-    </script>
-    <?php
-}
 ?>

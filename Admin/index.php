@@ -12,17 +12,6 @@ $PageTitle = "Admin Login";
 //Require the header of the page (Includes Navigation, meta-data, etc.)
 require('../Scripts/adminheader.php');
 require_once('../Scripts/functions.php');
-
-if (isset($_SESSION['Admin'])) {
-    ?>
-    <script>
-        setTimeout(function(){
-            window.location.href = 'home.php';
-        });
-    </script>
-    <?php
-}
-
 ?>
 
 <?php
