@@ -17,6 +17,8 @@ Currently as of 29/03/22 the website features the following:
 - Viewing of products by user
 - Filtering of products using SQL
 - URL Rewriting for improved SEO
+- Admin logging in and logging out
+- JavaScript IP gathering and website Entry Time gathering.
 
 Soon I wish to implement the following features in the website
 
