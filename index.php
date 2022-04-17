@@ -37,7 +37,9 @@ if (isset($_GET['message'])) {
     functions::SendMessage(base64_decode($_GET['message']));
 }
 ?>
-
+<script>
+    SetCookies();
+</script>
 <div class="container-md">
     <div class="row mt-5">
         <div class="col-12 text-center" style="font-family: Ubuntu, Verdana,serif">
