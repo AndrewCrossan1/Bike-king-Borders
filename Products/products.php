@@ -145,7 +145,9 @@
                             <p>£<?php echo $Bike->getPrice(); ?>.00</p>
                         </div>
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-primary">Add to basket</button>
+                            <button type="submit" class="btn btn-outline-primary w-75">Buy</button>
+                            <hr/>
+                            <button type="submit" class="btn btn-outline-primary w-75">Hire</button>
                         </div>
                     </div>
                 </div>
