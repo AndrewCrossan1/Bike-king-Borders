@@ -69,6 +69,15 @@ MySQLi is my choice for accessing databases.
 
 The project is hosted on a docker container running PHP-Apache, MySQL and PHPMyAdmin (You can't use it unless you plan on stealing my laptop)
 
+Adobe XD is my choice of software for developing wireframes for the site.
+
+The IDE I primarily use for this project is PHPStorm, it ticks all the boxes and gets the job done efficiently and in a robust manner.
+
+## Wireframes
+/admin/home/
+
+![image](https://user-images.githubusercontent.com/74681613/163696491-0aebd1d5-719b-47ce-85fe-cb6e7ca4c156.png)
+
 ## Credits
 
 The website has been developed by Andrew Crossan (Me!) :joy:
