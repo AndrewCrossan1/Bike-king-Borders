@@ -12,6 +12,15 @@ $PageTitle = "Admin Login";
 //Require the header of the page (Includes Navigation, meta-data, etc.)
 require('../Scripts/adminheader.php');
 require_once('../Scripts/functions.php');
+error_reporting(0);
+if(isset($_SESSION['Admin']) && $_SESSION['Admin'] == 1) {
+    ?>
+    <script>
+        window.location.href = "https://localhost/admin/home/";
+    </script>
+    <?php
+}
+
 ?>
 
 <?php
@@ -23,7 +32,7 @@ if (isset($_GET['message'])) {
 
 <div class="container-md" style="margin-top: 10rem;">
     <div class="container" style="max-width: 30rem;">
-        <form method="post" action="validate.php" class="w-100 mx-auto needs-validation" novalidate>
+        <form method="post" action="/admin/validate/" class="w-100 mx-auto needs-validation" novalidate>
             <div class="card" style="max-width: 30rem;">
                 <div class="card-header bg-primary p-3 text-light fs-5 text-center">
                     Administrator Login

@@ -11,4 +11,21 @@ $PageTitle = "Admin Home";
 
 //Require the header of the page (Includes Navigation, meta-data, etc.)
 require('../Scripts/adminheader.php');
+error_reporting(0);
+if(!isset($_SESSION['Admin']) && !$_SESSION['Admin'] == 1) {
+    ?>
+    <script>
+        window.location.href = "https://localhost/admin/login/";
+    </script>
+    <?php
+}
 ?>
+
+<section id="header">
+    <div class="container-fluid bg-dark text-light p-5">
+        <div class="jumbotron">
+            <h1 class="display-5"><?php echo $PageTitle; ?></h1>
+            <p class="lead">Here you can manage products, users, offers and view activity on the site.</p>
+        </div>
+    </div>
+</section>
