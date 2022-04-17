@@ -16,6 +16,7 @@ Currently as of 29/03/22 the website features the following:
 - Database connectivity (Obviously for the point above)
 - Viewing of products by user
 - Filtering of products using SQL
+- URL Rewriting for improved SEO
 
 Soon I wish to implement the following features in the website
 
