@@ -16,6 +16,7 @@
     <script src="https://kit.fontawesome.com/b4c6b2d3ed.js" crossorigin="anonymous"></script>
     <!--Importing local javascript file-->
     <script src="/JS/base.js"></script>
+    <script src="/JS/Cookies.js"></script>
     <!--Importing local css file-->
     <link href="/CSS/base.css" rel="stylesheet"/>
 </head>
