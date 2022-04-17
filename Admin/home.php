@@ -29,3 +29,49 @@ if(!isset($_SESSION['Admin']) && !$_SESSION['Admin'] == 1) {
         </div>
     </div>
 </section>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2 col-12 bg-dark">
+            <!--Side navigation bar-->
+            <div class="container-fluid p-5">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4 class="text-light">Bike King Borders</h4>
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Products</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Offers</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" tabindex="-1" aria-disabled="false">Users</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-10 col-12">
+            <!--Main content-->
+            <div class="container-fluid p-5">
+                <div class="row justify-content-center">
+                    <div class="col-md-4 col-12 text-center border">
+                        <p class="lead fs-4 p-1">Newly added products</p>
+                    </div>
+                    <div class="col-md-4 col-12 text-center border">
+                        <p class="lead fs-4 p-1">Newly added users</p>
+                    </div>
+                    <div class="col-md-4 col-12 text-center border">
+                        <p class="lead fs-4 p-1">Newly added offers</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
