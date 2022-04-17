@@ -1,5 +1,5 @@
 <?php
-    session_start();
+session_start();
     //Page Description: Allows the admin to view each account, also delete if needs be
 
     //Set page name for required content in functions.php (Avoids file navigation errors which are extremely annoying - PHP just be smarter :,( )
@@ -11,20 +11,15 @@
 
     //Require the header of the page (Includes Navigation, meta-data, etc.)
     require('../Scripts/adminheader.php');
-    error_reporting(0);
-if(!isset($_SESSION['Admin']) && !$_SESSION['Admin'] == 1) {
+
+//If user is not admin then leave
+if (!isset($_SESSION['Admin'])) {
     ?>
     <script>
-        window.location.href = "https://localhost/admin/login/";
+        setTimeout(function(){
+            window.location.href = '/admin/login/';
+        });
     </script>
     <?php
 }
 ?>
-<section id="header">
-    <div class="container-fluid bg-dark text-light p-5">
-        <div class="jumbotron">
-            <h1 class="display-5"><?php echo $PageTitle; ?></h1>
-            <p class="lead">Add, edit or remove users from the site</p>
-        </div>
-    </div>
-</section>
