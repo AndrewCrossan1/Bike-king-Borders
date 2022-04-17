@@ -26,7 +26,7 @@ if (isset($PageName) && str_contains($PageName, "Admin")) {
     ?>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark p-3">
     <div class="container-fluid">
-        <a id="logoutadmin" class="navbar-brand" href="/index.php">Bike King Borders</a>
+        <a id="logoutadmin" class="navbar-brand" href="/home/">Bike King Borders</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -34,34 +34,25 @@ if (isset($PageName) && str_contains($PageName, "Admin")) {
             <ul class="navbar-nav ms-auto">
                 <!-- Home -->
                 <li class="nav-item m-2 middle">
-                    <a class="nav-link<?php if (isset($PageName) && $PageName == 'AdminHome') { echo ' active'; }?>" href="/Admin/index.php"><i class="fas fa-house"></i> Home</a>
+                    <a class="nav-link<?php if (isset($PageName) && $PageName == 'AdminHome') { echo ' active'; }?>" href="/admin/home/"><i class="fas fa-house"></i> Home</a>
                 </li>
                 <!-- Products View -->
                 <li class="nav-item m-2 middle">
-                    <a class="nav-link<?php if (isset($PageName) && $PageName == 'AdminProducts') { echo ' active'; }?>" href="/Admin/products.php"><i class="fas fa-rectangle-list"></i> Products</a>
+                    <a class="nav-link<?php if (isset($PageName) && $PageName == 'AdminProducts') { echo ' active'; }?>" href="/admin/products/"><i class="fas fa-rectangle-list"></i> Products</a>
                 </li>
                 <!-- Offers View -->
                 <li class="nav-item m-2 middle">
-                    <a class="nav-link<?php if (isset($PageName) && $PageName == 'AdminOffers') { echo ' active'; }?>" href="/Admin/offers.php"><i class="fas fa-rectangle-list"></i> Offers</a>
+                    <a class="nav-link<?php if (isset($PageName) && $PageName == 'AdminOffers') { echo ' active'; }?>" href="/admin/offers/"><i class="fas fa-rectangle-list"></i> Offers</a>
                 </li>
                 <!-- Users View -->
                 <li class="nav-item m-2 middle">
-                    <a class="nav-link<?php if (isset($PageName) && $PageName == 'AdminUsers') { echo ' active'; }?>" href="/Admin/users.php"><i class="fas fa-user"></i> Users</a>
+                    <a class="nav-link<?php if (isset($PageName) && $PageName == 'AdminUsers') { echo ' active'; }?>" href="/admin/users/"><i class="fas fa-user"></i> Users</a>
+                </li>
+                <li class="nav-item m-2 middle">
+                    <a class="nav-link<?php if (isset($PageName) && $PageName == 'AdminLogout') { echo ' active'; }?>" href="/admin/logout/"><i class="fas fa-sign-out"></i> Logout</a>
                 </li>
             </ul>
         </div>
-        <script>
-            //Log user out of administrator session when main homepage is accessed
-            $(document).ready(function() {
-               $('#logoutadmin').click(function() {
-                   <?php
-                   if (isset($_SESSION['Admin'])) {
-                       session_destroy();
-                   }
-                   ?>
-               });
-            });
-        </script>
     </div>
 </nav>
     <?php
