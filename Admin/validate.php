@@ -9,7 +9,7 @@
         <!--Redirect to admin home page-->
         <script>
             setTimeout(function() {
-                window.location.href = 'products.php';
+                window.location.href = '/admin/home/';
             });
         </script>
         <?php
@@ -18,14 +18,15 @@
             if (AdminFunctions::Login($_POST['Username'], $_POST['Password'])) {
                 //Set username
                 $_SESSION['AdminUsername'] = $_POST['Username'];
+                $_SESSION['Admin'] = true;
                 //Retrieve user details
                 $User = AdminFunctions::GetDetails($_SESSION['AdminUsername']);
                 //Set message to be displayed to user upon logging in
-                $Message = base64_encode("Welcome ${$_POST['Username']}");
+                $Message = base64_encode("Welcome {$_POST['Username']}");
                 ?>
                 <script>
                     setTimeout(function() {
-                        window.location.href = 'home.php?message=<?php echo $Message; ?>';
+                        window.location.href = '/admin/home/?message=<?php echo $Message; ?>';
                     })
                 </script>
                 <?php
@@ -35,7 +36,7 @@
                 <!--Redirect to admin login page with message saying invalid login-->
                 <script>
                     setTimeout(function() {
-                       window.location.href = 'index.php?message=<?php echo $Message; ?>';
+                       window.location.href = '/admin/login/?message=<?php echo $Message; ?>';
                     });
                 </script>
                 <?php
@@ -46,7 +47,7 @@
             <!--Redirect to admin login page with message saying invalid login-->
             <script>
                 setTimeout(function() {
-                    window.location.href = 'index.php?message=<?php echo $Message; ?>';
+                    window.location.href = '/admin/login/?message=<?php echo $Message; ?>';
                 });
             </script>
             <?php
