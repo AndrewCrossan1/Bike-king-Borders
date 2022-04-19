@@ -28,6 +28,10 @@ if (isset($PageName)) {
             require('Scripts/functions.php');
             require("Scripts/database.php");
             break;
+        case "AdminHome":
+            require_once('../Scripts/functions.php');
+            require_once("../Scripts/database.php");
+            break;
         case "AdminUsers":
             require_once('../Scripts/functions.php');
             require("../models/Employee.php");
@@ -332,14 +336,16 @@ class functions
     }
 }
 
-class AdminFunctions {
+class AdminFunctions
+{
     /**
      * Return the details of a user (For users.php and returning the details of the logged in user)
      *
      * @param $Username
      * @return object|null
      */
-    public static function GetDetails($Username):?mysqli_result {
+    public static function GetDetails($Username): ?mysqli_result
+    {
         try {
             //Create new database object to access functions
             $Database = new Database();
@@ -391,5 +397,188 @@ class AdminFunctions {
         } catch (Exception) {
             return false;
         }
+    }
+
+    /**
+     * Return the number of products currently available
+     *
+     * @return int|mixed
+     */
+    public static function CountProducts(): mixed
+    {
+        try {
+            //Create new database object
+            $Database = new Database();
+            //SQL Query
+            $stmt = 'SELECT DISTINCT COUNT(ProductID) AS "NumOfProducts" FROM products;';
+            //Create Query
+            $query = $Database->conn->prepare($stmt);
+            //Get result from query
+            if ($query->execute()) {
+                $result = $query->get_result();
+                $int = $result->fetch_assoc();
+                return $int['NumOfProducts'];
+            } else {
+                return 0;
+            }
+        } catch (Exception) {
+            return 0;
+        }
+        return 0;
+    }
+
+    /**
+     * Return the number of users
+     *
+     * @return mixed
+     */
+    public static function CountUsers(): mixed
+    {
+        try {
+            //Create new database object
+            $Database = new Database();
+            //SQL Query
+            $stmt = 'SELECT DISTINCT COUNT(CustomerID) AS "NumOfCustomers" FROM customers;';
+            //Create Query
+            $query = $Database->conn->prepare($stmt);
+            //Get result from query
+            if ($query->execute()) {
+                $result = $query->get_result();
+                $int = $result->fetch_assoc();
+                return $int['NumOfCustomers'];
+            } else {
+                return 0;
+            }
+        } catch (Exception) {
+            return 0;
+        }
+        return 0;
+    }
+
+
+    /**
+     * Return the number of offers
+     *
+     * @return mixed
+     */
+    public static function CountOffers(): mixed
+    {
+        try {
+            //Create new database object
+            $Database = new Database();
+            //SQL Query
+            $stmt = 'SELECT DISTINCT COUNT(OfferID) AS "NumOfOffers" FROM Offers;';
+            //Create Query
+            $query = $Database->conn->prepare($stmt);
+            //Get result from query
+            if ($query->execute()) {
+                $result = $query->get_result();
+                $int = $result->fetch_assoc();
+                return $int['NumOfOffers'];
+            } else {
+                return 0;
+            }
+        } catch (Exception) {
+            return 0;
+        }
+        return 0;
+    }
+
+    /**
+     * Return 5 most recent users
+     *
+     * @return bool|mysqli_result|null
+     */
+    public static function RecentUsers(): bool|mysqli_result|null
+    {
+        try {
+            //Create new database object
+            $Database = new Database();
+            //SQL Query
+            $stmt = 'SELECT a.AccountID, Username, Email FROM customers c, accounts a WHERE c.CustomerID = a.CustomerID ORDER BY AccountID DESC LIMIT 5;';
+            //Create Query
+            $query = $Database->conn->prepare($stmt);
+            //Get result from query
+            if ($query->execute()) {
+                return $query->get_result();
+            } else {
+                return null;
+            }
+        } catch (Exception) {
+            return null;
+        }
+        return null;
+    }
+
+
+    /**
+     * Return 5 most recent products
+     *
+     * @return bool|mysqli_result|null
+     */
+    public static function RecentProducts(): bool|mysqli_result|null
+    {
+        try {
+            //Create new database object
+            $Database = new Database();
+            //SQL Query
+            $stmt = 'SELECT ProductID AS "ProductID", Name, Price FROM products ORDER BY ProductID DESC LIMIT 5;';
+            //Create Query
+            $query = $Database->conn->prepare($stmt);
+            //Get result from query
+            if ($query->execute()) {
+                return $query->get_result();
+            } else {
+                return null;
+            }
+        } catch (Exception) {
+            return null;
+        }
+        return null;
+    }
+
+    /**
+     * Retrieve 5 most recent purchases
+     *
+     * @return null
+     */
+    public static function RecentPurchases()
+    {
+        try {
+            $Database = new Database();
+            $sql = "SELECT SaleID, Username, products.Name, sales.Price, sales.Quantity FROM sales, accounts, customers, products WHERE sales.ProductID = products.ProductID AND sales.CustomerID = customers.CustomerID AND accounts.CustomerID = customers.CustomerID ORDER BY SaleID DESC LIMIT 5;";
+            $query = $Database->conn->prepare($sql);
+            if ($query->execute()) {
+                return $query->get_result();
+            } else {
+                return null;
+            }
+        } catch (Exception) {
+            return null;
+        }
+    }
+
+    /**
+     * Retrieve sales data for month specified
+     *
+     * @param int $month
+     * @return mixed|null
+     */
+    public static function GetMonthSale(int $month): mixed
+    {
+        try {
+            $Database = new Database();
+            $stmt = 'SELECT COUNT(SaleID) AS "Sales" FROM sales WHERE MONTH(Date) = ?';
+            $query = $Database->conn->prepare($stmt);
+            $query->bind_param("i", $month);
+            if ($query->execute()) {
+                $result = $query->get_result();
+                $count = $result->fetch_assoc();
+                return $count['Sales'];
+            }
+        } catch (Exception) {
+            return null;
+        }
+        return null;
     }
 }
