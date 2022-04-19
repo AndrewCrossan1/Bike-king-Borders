@@ -82,11 +82,6 @@ $DataPoints = array(
             </div>
         </div>
         <div class="col-md-10 col-12">
-            <?php
-            if (isset($_REQUEST['message'])) {
-                functions::SendMessage(base64_decode($_REQUEST['message']));
-            }
-            ?>
             <!--Main content-->
             <div class="container-fluid p-3">
                 <div class="row justify-content-center">
