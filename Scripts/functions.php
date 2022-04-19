@@ -54,6 +54,10 @@ if (isset($PageName)) {
             require_once('../Scripts/functions.php');
             require_once('../Scripts/database.php');
             require('../Models/Admin.php');
+            break;
+        case "DeleteConfirm":
+            require_once('../../Scripts/functions.php');
+            require_once('../../Scripts/database.php');
     }
 }
 
@@ -580,5 +584,28 @@ class AdminFunctions
             return null;
         }
         return null;
+    }
+
+    /**
+     * Get all products
+     *
+     * @param int $Limit
+     * @return mysqli_result|array|null
+     */
+    public static function GetProducts(int $Limit): mysqli_result|array|null
+    {
+        try {
+            $Database = new Database();
+            $Result = $Database->Select("SELECT * FROM products LIMIT ?", array($Limit));
+            if ($Result != null) {
+                return $Result;
+            } else {
+                return null;
+            }
+        } catch (Exception) {
+            return null;
+        }
+
+
     }
 }
