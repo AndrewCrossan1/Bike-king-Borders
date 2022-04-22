@@ -19,11 +19,14 @@ Currently as of 29/03/22 the website features the following:
 - URL Rewriting for improved SEO
 - Admin logging in and logging out
 - JavaScript IP gathering and website Entry Time gathering.
+- Admins can delete products
+- Admins can add products
+- Admins can read products, offers and sales.
 
 Soon I wish to implement the following features in the website
 
-- Admin product CRUD
-- Viewing of products to user
+- Admin login timeouts
+- Admin product updating
 - The ability to add a product to basket and checkout
 - A contact page where users can create tickets which can be viewed and replied to by administrators on an admin only page
 - The ability to create special offers
@@ -80,6 +83,14 @@ The IDE I primarily use for this project is PHPStorm, it ticks all the boxes and
 /admin/home/
 
 ![image](https://user-images.githubusercontent.com/74681613/163696491-0aebd1d5-719b-47ce-85fe-cb6e7ca4c156.png)
+
+## Evaluating as I progress
+For the next major version of this site I plan to utilise:
+- PHP.INI for auto starting sessions on each page
+- Incorporating a settings.php file which includes media urls
+- A static folder for holding css, js and others
+- No Code-Behind style of writing (PHP Pages will only require and include necessary files)
+- More focus on the modelling of database tables (I neglected them halfway through)
 
 ## Credits
 
