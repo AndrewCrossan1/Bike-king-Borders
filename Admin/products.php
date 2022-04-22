@@ -105,7 +105,7 @@ if(!isset($_SESSION['Admin']) && !$_SESSION['Admin'] == 1) {
                                     </tbody>
                                     <tfoot class="text-center bg-dark">
                                         <tr>
-                                            <td colspan="100"><a class="btn btn-outline-light w-100 p-3 m-0" href="/admin/product/add/">Add Product</a></td>
+                                            <td colspan="100"><a class="btn btn-outline-light w-100 p-3 m-0" href="../ProductFunctions/Add.php">Add Product</a></td>
                                         </tr>
                                     </tfoot>
                                 </table>
