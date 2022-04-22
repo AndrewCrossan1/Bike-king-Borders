@@ -84,6 +84,11 @@ $DataPoints = array(
         <div class="col-md-10 col-12">
             <!--Main content-->
             <div class="container-fluid p-3">
+                <?php
+                if (isset($_GET['message'])) {
+                    functions::SendMessage(base64_decode($_GET['message']));
+                }
+                ?>
                 <div class="row justify-content-center">
                     <div class="col-md-3 col-6">
                         <div class="card bg-primary p-3 my-2">
