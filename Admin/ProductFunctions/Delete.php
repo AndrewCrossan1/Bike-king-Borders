@@ -29,7 +29,6 @@ if (isset($_REQUEST['ProductID']) && $_REQUEST['ProductID'] == null) {
 }
 ?>
 
-<body id="body">
 <div class="container-md mt-5 ml-auto mr-auto text-center">
     <p class="display-6">
         Are you lost? Click <a href="<?php echo $_SERVER['HTTP_REFERER']; ?>">here</a> to go to the previous page
@@ -45,7 +44,7 @@ if (isset($_REQUEST['ProductID']) && $_REQUEST['ProductID'] == null) {
                 </a>
             </div>
             <div class="modal-body">
-                <form method="post" action="/admin/product/delete/confirm/">
+                <form method="post" action="/admin/product/confirm/">
                     <input type="hidden" name="ProductID" value="<?php echo $_GET['id'];?>"/>
                     <p class="lead">Please enter the following number in order to delete this product:</p>
                     <hr/>
@@ -70,5 +69,3 @@ if (isset($_REQUEST['ProductID']) && $_REQUEST['ProductID'] == null) {
             $('#myModal').modal("show")
         });
 </script>
-
-<body>
