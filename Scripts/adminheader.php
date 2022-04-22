@@ -25,7 +25,7 @@
 <?php
 if (isset($PageName) && str_contains($PageName, "Admin")) {
     ?>
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark p-3">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark p-3 sticky-top">
     <div class="container-fluid">
         <a id="logoutadmin" class="navbar-brand" href="/admin/logout/">Bike King Borders Admin</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
