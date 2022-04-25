@@ -384,7 +384,6 @@ class AdminFunctions
             //Select user from database
             $User = $Database->Select($stmt, array($Username));
             if ($User == null) {
-                functions::SendMessage(base64_encode("Username incorrect"));
                 return false;
             } else {
                 $User = $User->fetch_assoc();
@@ -394,7 +393,6 @@ class AdminFunctions
                     $_SESSION['Username'] = $User['Username'];
                     return true;
                 } else {
-                    functions::SendMessage(base64_encode("Password incorrect"));
                     return false;
                 }
             }
