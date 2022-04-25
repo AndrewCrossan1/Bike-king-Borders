@@ -134,7 +134,7 @@
                 <div class="col-sm-3 col-6 mb-4">
                     <div class="card p-2 text-center">
                         <div class="card-img-top">
-                            <img src="/Media/Products/<?php if ($Bike->getSlug() == null) { echo 'default.png'; } else { echo $Bike->getSlug();}?>" class="img-fluid" alt="A bicycle"/>
+                            <img src="/Media/Products/<?php if ($Bike->getSlug() == null) { echo 'default.png'; } else { echo $Bike->getSlug();}?>" class="img-fluid" style="max-height: 300px;" alt="A bicycle"/>
                         </div>
                         <div class="card-title">
                             <?php
@@ -142,7 +142,7 @@
                             ?>
                         </div>
                         <div class="card-body p-0">
-                            <p>£<?php echo $Bike->getPrice(); ?>.00</p>
+                            <p>£<?php echo $Bike->getPrice(); ?></p>
                         </div>
                         <div class="card-footer">
                             <button type="submit" class="btn btn-outline-primary w-75">Buy</button>
