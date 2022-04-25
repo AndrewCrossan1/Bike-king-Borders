@@ -42,7 +42,11 @@ class Product
     }
 
     public function getSlug(): ?string {
-        return $this->imgslug;
+        if ($this->imgslug == null) {
+            return $this->imgslug;
+        } else {
+            return $this->ProductID . "/" . $this->imgslug;
+        }
     }
 
     public function getColour(): string {

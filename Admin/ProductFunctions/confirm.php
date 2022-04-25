@@ -69,20 +69,8 @@ if (isset($_POST['AddSubmit'])) {
     if (isset($_POST['ProductDescription'])) {
         $cd['Description'] = filter_input(INPUT_POST, "ProductDescription", FILTER_SANITIZE_STRING);
     }
-    //Get temporary save location
-    $TempFileName = $_FILES['ProductImage']['tmp_name'];
-    //Set file destination
-    $target_dir = "../../Media/Products/";
     if (isset($_FILES['ProductImage'])) {
         //Check if file can be saved
-        if (!move_uploaded_file($TempFileName, $target_dir . $_FILES['ProductImage']['name'])) {
-            $Message = base64_encode("Could not create product!");
-            ?>
-            <script>
-                window.location.href = "https://localhost/admin/home/?message=<?php echo $Message; ?>";
-            </script>
-            <?php
-        }
         $cd['imgslug'] = $_FILES['ProductImage']['name'];
     }
     //Proceed to database upload then file saving
@@ -92,17 +80,43 @@ if (isset($_POST['AddSubmit'])) {
         //Array with keys is used for readability
         if ($query->bind_param("ssdssis", $cd['Name'], $cd['Description'], $cd['Price'], $cd['imgslug'], $cd['Colour'], $cd['Age'], $cd['Type'])) {
             if ($query->execute()) {
-                $Message = "Product added!";
+                $TempResult = $Database->Select("SELECT ProductID FROM products WHERE Name = ?", array($cd['Name']));
+                $Result = $TempResult->fetch_assoc();
+                //For use in picture saving
+                $ProductID = $Result['ProductID'];
+                //Save picture to folder if set
+                if ($cd["imgslug"] != null) {
+                    //Get temporary save location
+                    $TempFileName = $_FILES['ProductImage']['tmp_name'];
+                    //Set target directory
+                    $target_dir = "../../Media/Products/";
+                    //Create directory with product id
+                    //Set error message for common if statements
+                    $Message = base64_encode("Could not create product!");
+                    if (mkdir($target_dir . $ProductID)) {
+                        $target_dir = $target_dir . $ProductID . "/";
+                        //Move file to product id folder
+                        if (!move_uploaded_file($TempFileName, $target_dir . $cd['imgslug'])) {
+                            ?>
+                            <script>
+                                window.location.href = "https://localhost/admin/home/?message=<?php echo $Message; ?>";
+                            </script>
+                            <?php
+                        }
+                    } else {
+                        ?>
+                        <script>
+                            window.location.href = "https://localhost/admin/home/?message=<?php echo $Message; ?>";
+                        </script>
+                        <?php
+                    }
+                }
+                $Message = base64_encode("Product successfully added");
                 ?>
                 <script>
                     window.location.href = "https://localhost/admin/home/?message=<?php echo $Message; ?>";
                 </script>
                 <?php
-                //Saving image
-                $TempResult = $Database->Select("SELECT ProductID FROM products WHERE Name = ?", array($cd['Name']));
-                $Result = $TempResult->fetch_assoc();
-                $ProductID = $Result['ProductID'];
-                move_uploaded_file($TempFileName, $target_dir . "/" . (string)$ProductID . "/" . $cd['imgslug']);
             }
         } else {
             $Message = base64_encode("Could not create product!");
