@@ -27,6 +27,7 @@ RewriteRule ^admin/users/$ /Admin/users.php
 RewriteRule ^admin/validate/$ /Admin/validate.php
 RewriteRule ^admin/logout/$ /Admin/logout.php
 RewriteRule ^admin/product/delete/id=([0-9]+)$ /Admin/ProductFunctions/Delete.php?id=$1
+RewriteRule ^admin/product/edit/id=([0-9]+)$ /Admin/ProductFunctions/Edit.php?id=$1
 RewriteRule ^admin/product/confirm/$ /Admin/ProductFunctions/confirm.php
 
 RewriteRule ^admin/products/add/$ /Admin/ProductFuntions/Add.php
