@@ -56,7 +56,7 @@ if(!isset($_SESSION['Admin']) && !$_SESSION['Admin'] == 1) {
             <div class="container-fluid">
                 <p style="font-family: Ubuntu" class="text-primary display-6">Add a Product</p>
                 <p class="lead text-secondary">Fill out the required details in order to add a new product to the shop</p>
-                <form class="pt-1" enctype="multipart/form-data" action="/admin/product/confirm/" method="POST">
+                <form class="pt-1 needs-validation" enctype="multipart/form-data" action="/admin/product/confirm/" method="POST" novalidate>
                     <hr/>
                     <br>
                     <div class="row">
@@ -65,6 +65,12 @@ if(!isset($_SESSION['Admin']) && !$_SESSION['Admin'] == 1) {
                         </div>
                         <div class="col-md-10 col-8">
                             <input class="form-control form-control-md w-75 py-2" minlength="4" maxlength="1000" type="text" id="ProductName" required name="ProductName"/>
+                        </div>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Something doesn't look right!
                         </div>
                     </div>
                     <br>
@@ -76,6 +82,12 @@ if(!isset($_SESSION['Admin']) && !$_SESSION['Admin'] == 1) {
                         </div>
                         <div class="col-md-10 col-8">
                             <textarea class="form-control form-control-md w-75 py-2" minlength="10" maxlength="1000" type="text" id="ProductDescription" name="ProductDescription"></textarea>
+                        </div>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Something doesn't look right!
                         </div>
                     </div>
                     <br>
@@ -92,6 +104,12 @@ if(!isset($_SESSION['Admin']) && !$_SESSION['Admin'] == 1) {
                                 </div>
                                 <input type="number" step="0.01" class="form-control py-2" min="0.00" max="9999.00" aria-label="ProductPrice" required id="ProductPrice" name="ProductPrice" aria-describedby="basic-addon1">
                             </div>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                            <div class="invalid-feedback">
+                                Something doesn't look right!
+                            </div>
                         </div>
                     </div>
                     <br>
@@ -104,6 +122,12 @@ if(!isset($_SESSION['Admin']) && !$_SESSION['Admin'] == 1) {
                         <div class="col-md-10 col-8">
                             <input class="form-control form-control-md w-75 py-2" type="text" maxlength="1000" minlength="1" id="ProductType" required name="ProductType"/>
                         </div>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Something doesn't look right!
+                        </div>
                     </div>
                     <br>
                     <hr/>
@@ -115,6 +139,12 @@ if(!isset($_SESSION['Admin']) && !$_SESSION['Admin'] == 1) {
                         <div class="col-md-10 col-8">
                             <input class="form-control w-75 form-control-md py-2" type="text" id="ProductColour" required name="ProductColour"/>
                         </div>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Something doesn't look right!
+                        </div>
                     </div>
                     <br>
                     <hr/>
@@ -125,6 +155,12 @@ if(!isset($_SESSION['Admin']) && !$_SESSION['Admin'] == 1) {
                         </div>
                         <div class="col-md-10 col-8">
                             <input class="form-control form-control-md w-75 py-2" type="number" min="1" id="ProductAge" name="ProductAge" required/>
+                        </div>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Something doesn't look right!
                         </div>
                     </div>
                     <br>
@@ -148,6 +184,26 @@ if(!isset($_SESSION['Admin']) && !$_SESSION['Admin'] == 1) {
                             <button type="reset" class="btn btn-secondary m-1 w-50">Reset</button>
                         </div>
                     </div>
+                    <script>
+                        // Example starter JavaScript for disabling form submissions if there are invalid fields
+                        (function() {
+                            'use strict';
+                            window.addEventListener('load', function() {
+                                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                                var forms = document.getElementsByClassName('needs-validation');
+                                // Loop over them and prevent submission
+                                var validation = Array.prototype.filter.call(forms, function(form) {
+                                    form.addEventListener('submit', function(event) {
+                                        if (form.checkValidity() === false) {
+                                            event.preventDefault();
+                                            event.stopPropagation();
+                                        }
+                                        form.classList.add('was-validated');
+                                    }, false);
+                                });
+                            }, false);
+                        })();
+                    </script>
                 </form>
             </div>
         </div>
