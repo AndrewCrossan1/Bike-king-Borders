@@ -58,6 +58,12 @@ if (isset($PageName)) {
         case "DeleteConfirm":
             require_once('../../Scripts/functions.php');
             require_once('../../Scripts/database.php');
+            break;
+        case "AdminEdit":
+            require_once('../../Scripts/functions.php');
+            require_once('../../Scripts/database.php');
+            require_once('../../Models/Product.php');
+            break;
     }
 }
 
@@ -603,7 +609,20 @@ class AdminFunctions
         } catch (Exception) {
             return null;
         }
+    }
 
-
+    public static function GetProduct(int $ID): Product|null {
+        try {
+            $Database = new Database();
+            $Result = $Database->Select("SELECT * FROM products WHERE ProductID = ?;", array($ID));
+            if ($Result != null) {
+                $row = $Result->fetch_assoc();
+                return new Product($row['ProductID'], $row['Name'], $row['Description'], $row['Price'], $row['imgslug'], $row['Colour'], $row['Age'], $row['Type'], $row['date']);
+            } else {
+                return null;
+            }
+        } catch (Exception) {
+            return null;
+        }
     }
 }
