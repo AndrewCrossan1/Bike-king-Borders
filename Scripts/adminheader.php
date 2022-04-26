@@ -19,6 +19,7 @@
     <script src="/JS/base.js"></script>
     <!--Importing local css file-->
     <link href="/CSS/base.css" rel="stylesheet"/>
+    <link href="/Media/Images/icon.ico" rel="icon"/>
 </head>
 
 <!--Admin Header-->
