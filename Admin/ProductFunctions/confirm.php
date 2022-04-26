@@ -167,10 +167,12 @@ if (isset($_POST['SaveSubmit'])) {
     }
     //Proceed to database upload then file saving
     $Database = new Database();
-    $sql = "UPDATE products SET Name = ?, Price = ?, Type = ?, Colour = ?, Age = ?, Description = ?, imgslug = ? WHERE ProductID = ?;";
+    $sql = "UPDATE products SET Name = ?, Price = ?, Type = ?, Colour = ?, Age = ?, Description = ?, imgslug = ?, ModifiedDate = ? WHERE ProductID = ?;";
     if ($query = $Database->conn->prepare($sql)) {
         //Array with keys is used for readability
-        if ($query->bind_param("sdssissi", $cd['Name'], $cd['Price'], $cd['Type'], $cd['Colour'], $cd['Age'], $cd['Description'], $cd['imgslug'], $_REQUEST['id'])) {
+        //DD-MM-YYYY
+        $Date = $_POST['ModDate'];
+        if ($query->bind_param("sdssisssi", $cd['Name'], $cd['Price'], $cd['Type'], $cd['Colour'], $cd['Age'], $cd['Description'], $cd['imgslug'], $Date, $_REQUEST['id'])) {
             if ($query->execute()) {
                 if ($cd["imgslug"] != null) {
                     //Get temporary save location
@@ -200,6 +202,7 @@ if (isset($_POST['SaveSubmit'])) {
                 </script>
                 <?php
             } else {
+
             }
         } else {
             $Message = base64_encode("Could not modify product!");

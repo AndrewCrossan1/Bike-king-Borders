@@ -170,6 +170,23 @@ $Product = AdminFunctions::GetProduct($_GET['id']);
                     <br>
                     <hr/>
                     <br>
+                    <div class="row">
+                        <div class="col-md-2 col-4">
+                            <label class="form-label py-1 fs-5" for="ProductAge">Modification Date: </label>
+                        </div>
+                        <div class="col-md-10 col-8">
+                            <?php
+                            $month = date('m');
+                            $day = date('d');
+                            $year = date('Y');
+
+                            $today = $year . '-' . $month . '-' . $day;
+                            ?>
+                            <input class="form-control form-control-md w-75 py-2 text-center disabled" readonly value="<?php echo $today; ?>" type="date" id="ModDate" name="ModDate"/>
+                        </div>
+                    </div>
+                    <br>
+                    <hr/>
                     <input type="hidden" value="<?php echo $_REQUEST['id']; ?>" name="id"/>
                     <div class="row">
                         <div class="col-md-2 col-4">
