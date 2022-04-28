@@ -1,9 +1,8 @@
 <?php
-
 class Basket
 {
-    protected array $List;
-    private static int $Count;
+    private array $List;
+    private int $Count = 0;
 
     /**
      * Create a new instance of the Basket class
@@ -11,7 +10,6 @@ class Basket
     public function __construct()
     {
         $this->List = array();
-        $Count = count($this->List);
     }
 
     /**
@@ -21,9 +19,8 @@ class Basket
      */
     public function Add(Product $Product, int $Quantity)
     {
-        $List[$Product->GetProductID()]['Quantity'] = $Quantity;
-        $List[$Product->GetProductID()]['Product'] = $Product;
-        $Count = count($this->List);
+        array_push($this->List, $Product);
+        $this->Count = count($this->List);
     }
 
     /**
@@ -33,7 +30,7 @@ class Basket
      */
     public function Remove(int $Position) {
         array_splice($this->List, $Position);
-        $Count = count($this->List);
+        $this->Count = count($this->List);
     }
 
     /**
@@ -43,7 +40,7 @@ class Basket
     */
     public function getCount(): int
     {
-        return self::$Count;
+        return $this->Count;
     }
 
     /**
@@ -68,5 +65,32 @@ class Basket
         } else {
             return false;
         }
+    }
+
+    /**
+     * Calculate the price of an item
+     *
+     * @param int $PositionID
+     * @return float|bool
+     */
+    public function GetPrice(int $PositionID):float|bool {
+        if (isset($this->List[$PositionID])) {
+            return $this->List[$PositionID]['Product']->getPrice() * $this->List[$PositionID]['Quantity'];
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Calculate the total cost of the basket
+     *
+     * @return float
+     */
+    public function GetTotal():float {
+        $Total = (float)0.00;
+        for ($x = 0; $x < $this->getCount(); $x++) {
+            $Total += $this->GetPrice($x);
+        }
+        return $Total;
     }
 }
