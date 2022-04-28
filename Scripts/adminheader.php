@@ -23,10 +23,7 @@
 </head>
 
 <!--Admin Header-->
-<?php
-if (isset($PageName) && str_contains($PageName, "Admin")) {
-    ?>
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark p-3 sticky-top">
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark p-3 sticky-top">
     <div class="container-fluid">
         <a id="logoutadmin" class="navbar-brand" href="/admin/logout/">Bike King Borders Admin</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
@@ -35,14 +32,11 @@ if (isset($PageName) && str_contains($PageName, "Admin")) {
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item m-2 middle">
-                    <a class="nav-link<?php if (isset($PageName) && $PageName == 'AdminLogout') { echo ' active'; }?>" href="/admin/logout/"><i class="fas fa-sign-out"></i> Logout</a>
+                    <a class="nav-link" href="/admin/logout/"><i class="fas fa-sign-out"></i> Logout</a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
-    <?php
-}
-?>
 
 
