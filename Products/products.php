@@ -1,17 +1,12 @@
 <?php
     session_start();
-    //Page Description: Provides a list of products for the user to see
-
-    //Set page name for required content in functions.php (Avoids file navigation errors which are extremely annoying - PHP just be smarter :,( )
-    //Also keys is in with setting the pages active in header.php (Very fancy)
-    $PageName = "Products";
 
     //Set page title for meta-data in header.php (An isset is used in the meta-data to check for this - Overkill because if it's not set I am dumb.)
     $PageTitle = "Products";
 
-    //Require the header of the page (Includes Navigation, meta-data, etc.)
-    require('../Scripts/header.php');
-    include_once('../Scripts/functions.php');
+    //Load classes
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/' . 'settings.php');
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/Scripts/' . 'functions.php');
 
     $Bikes = functions::Filter("SELECT * FROM products WHERE Price BETWEEN ? AND ?", "ii", 0, 1000);
 
@@ -151,6 +146,12 @@
                                 </div>
                             </div>
                             <div class="row">
+                                <div class="col-md-12 col-12">
+                                    <a href="/products/"><button class="btn btn-warning w-100" onclick="" type="button">Add to cart</button></a>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row my-auto">
                                 <div class="col-md-6 col-12">
                                     <p class="text-left fs-6">Reviews (683)</p>
                                 </div>

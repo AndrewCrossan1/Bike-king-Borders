@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-$PageName = "DeleteConfirm";
-require('../../Scripts/functions.php');
+//Require the header of the page (Includes Navigation, meta-data, etc.)
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Scripts/' . 'adminfunctions.php');
 
 if(!isset($_SESSION['Admin']) && !$_SESSION['Admin'] == 1) {
     echo 'not logged in';
@@ -47,13 +47,13 @@ if (isset($_POST['AddSubmit'])) {
     //Cleaning Variables
     //Setting keys
     $cd = array(
-            "Name" => null,
-            "Description" => null,
-            "imgslug" => null,
-            "Price" => null,
-            "Colour" => null,
-            "Age" => null,
-            "Type" => null,
+        "Name" => null,
+        "Description" => null,
+        "imgslug" => null,
+        "Price" => null,
+        "Colour" => null,
+        "Age" => null,
+        "Type" => null,
     );
     $Name = filter_input(INPUT_POST, "ProductName", FILTER_SANITIZE_STRING);
     $Price = filter_input(INPUT_POST, "ProductPrice", FILTER_VALIDATE_FLOAT);

@@ -1,18 +1,11 @@
 <?php
 session_start();
-//Page Description: Allows the admin to manage current and historical offers
-
-//Set page name for required content in functions.php (Avoids file navigation errors which are extremely annoying - PHP just be smarter :,( )
-//Also keys is in with setting the pages active in header.php (Very fancy)
-$PageName = "AdminEdit";
 
 //Set page title for meta-data in header.php (An isset is used in the meta-data to check for this - Overkill because if it's not set I am dumb.)
 $PageTitle = "Edit Product";
 
 //Require the header of the page (Includes Navigation, meta-data, etc.)
-require('../../Scripts/adminheader.php');
-require_once('../../Scripts/functions.php');
-require_once('../../Models/Product.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Scripts/' . 'adminfunctions.php');
 
 if(!isset($_SESSION['Admin']) && !$_SESSION['Admin'] == 1 && isset($_GET['id'])) {
     ?>

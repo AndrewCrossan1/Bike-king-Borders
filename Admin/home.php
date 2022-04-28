@@ -1,17 +1,11 @@
 <?php
 session_start();
-//Page Description: Allows the admin to manage current and historical offers
-
-//Set page name for required content in functions.php (Avoids file navigation errors which are extremely annoying - PHP just be smarter :,( )
-//Also keys is in with setting the pages active in header.php (Very fancy)
-$PageName = "AdminHome";
 
 //Set page title for meta-data in header.php (An isset is used in the meta-data to check for this - Overkill because if it's not set I am dumb.)
 $PageTitle = "Admin Home";
 
 //Require the header of the page (Includes Navigation, meta-data, etc.)
-require_once('../Scripts/functions.php');
-require('../Scripts/adminheader.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Scripts/' . 'adminfunctions.php');
 
 if(!isset($_SESSION['Admin']) && !$_SESSION['Admin'] == 1) {
     ?>
@@ -25,18 +19,18 @@ if(!isset($_SESSION['Admin']) && !$_SESSION['Admin'] == 1) {
 //(Y axis will be number of sales)
 //(X axis will be months of the year)
 $DataPoints = array(
-    array("y" => AdminFunctions::GetMonthSale(1), "label" => "January"),
-    array("y" => AdminFunctions::GetMonthSale(2), "label" => "February"),
-    array("y" => AdminFunctions::GetMonthSale(3), "label" => "March"),
-    array("y" => AdminFunctions::GetMonthSale(4), "label" => "April"),
-    array("y" => AdminFunctions::GetMonthSale(5), "label" => "May"),
-    array("y" => AdminFunctions::GetMonthSale(6), "label" => "June"),
-    array("y" => AdminFunctions::GetMonthSale(7), "label" => "July"),
-    array("y" => AdminFunctions::GetMonthSale(8), "label" => "August"),
-    array("y" => AdminFunctions::GetMonthSale(9), "label" => "September"),
-    array("y" => AdminFunctions::GetMonthSale(10), "label" => "October"),
-    array("y" => AdminFunctions::GetMonthSale(11), "label" => "November"),
-    array("y" => AdminFunctions::GetMonthSale(12), "label" => "December"),
+    array("y" => adminfunctions::GetMonthSale(1), "label" => "January"),
+    array("y" => adminfunctions::GetMonthSale(2), "label" => "February"),
+    array("y" => adminfunctions::GetMonthSale(3), "label" => "March"),
+    array("y" => adminfunctions::GetMonthSale(4), "label" => "April"),
+    array("y" => adminfunctions::GetMonthSale(5), "label" => "May"),
+    array("y" => adminfunctions::GetMonthSale(6), "label" => "June"),
+    array("y" => adminfunctions::GetMonthSale(7), "label" => "July"),
+    array("y" => adminfunctions::GetMonthSale(8), "label" => "August"),
+    array("y" => adminfunctions::GetMonthSale(9), "label" => "September"),
+    array("y" => adminfunctions::GetMonthSale(10), "label" => "October"),
+    array("y" => adminfunctions::GetMonthSale(11), "label" => "November"),
+    array("y" => adminfunctions::GetMonthSale(12), "label" => "December"),
 );
 
 ?>
@@ -86,7 +80,7 @@ $DataPoints = array(
             <div class="container-fluid p-3">
                 <?php
                 if (isset($_GET['message'])) {
-                    functions::SendMessage(base64_decode($_GET['message']));
+                    adminfunctions::SendMessage(base64_decode($_GET['message']));
                 }
                 ?>
                 <div class="row justify-content-center">

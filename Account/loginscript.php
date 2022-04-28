@@ -2,6 +2,10 @@
 
 //Used for validating a users request to login.
 session_start();
+
+//Require the header of the page (Includes Navigation, meta-data, etc.)
+require_once($_SERVER['DOCUMENT_ROOT'] . '/' . 'settings.php');
+
 if (isset($_SESSION['Username'])) {
     ?>
     <script>
@@ -12,7 +16,6 @@ if (isset($_SESSION['Username'])) {
     <?php
 } else {
     $PageName = "Accounts";
-    require('../Scripts/functions.php');
     if (isset($_POST['submit'])) {
         // TODO: Use regex for submission
         if (($_POST['Username']) == null || ($_POST['Password'] == null)) {

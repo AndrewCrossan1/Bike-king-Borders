@@ -1,8 +1,11 @@
 <?php
 session_start();
-//Page Description: Allows active users to login to their account
 
-include_once('../Scripts/functions.php');
+//Set page title for meta-data in header.php (An isset is used in the meta-data to check for this - Overkill because if it's not set I am dumb.)
+$PageTitle = "Login";
+
+//Require the header of the page (Includes Navigation, meta-data, etc.)
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Scripts/' . 'functions.php');
 
 //Check if user is already logged in
 if (isset($_SESSION['Username'])) {
@@ -14,15 +17,6 @@ if (isset($_SESSION['Username'])) {
     </script>
     <?php
 } else {
-    //Set page name for required content in functions.php (Avoids file navigation errors which are extremely annoying - PHP just be smarter :,( )
-    //Also keys is in with setting the pages active in header.php (Very fancy)
-    $PageName = "Accounts";
-
-    //Set page title for meta-data in header.php (An isset is used in the meta-data to check for this - Overkill because if it's not set I am dumb.)
-    $PageTitle = "Login";
-
-    require('../Scripts/header.php');
-    //Require the header of the page (Includes Navigation, meta-data, etc.)
     ?>
     <section id="header">
         <div class="container-fluid bg-dark text-light p-5">
