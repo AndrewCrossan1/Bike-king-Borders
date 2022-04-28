@@ -132,22 +132,36 @@
                 foreach ($Bikes as $Bike) {
                     ?>
                 <div class="col-sm-3 col-6 mb-4">
-                    <div class="card p-2 text-center">
+                    <div class="card p-2">
                         <div class="card-img-top">
                             <img src="/Media/Products/<?php if ($Bike->getSlug() == null) { echo 'default.png'; } else { echo $Bike->getSlug();}?>" class="img-fluid" style="max-height: 300px;" alt="A bicycle"/>
                         </div>
-                        <div class="card-title">
+                        <div class="card-title text-left fw-bold">
                             <?php
                                 echo $Bike->getName();
                             ?>
                         </div>
-                        <div class="card-body p-0">
-                            <p>£<?php echo $Bike->getPrice(); ?></p>
-                        </div>
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-outline-primary w-75">Buy</button>
-                            <hr/>
-                            <button type="submit" class="btn btn-outline-primary w-75">Hire</button>
+                            <div class="row my-auto">
+                                <div class="col-md-5 col-12">
+                                    <p class="text-left fw-bold fs-3">£<?php echo $Bike->getPrice(); ?></p>
+                                </div>
+                                <div class="col-md-7 col-12">
+                                    <a href="product.php?id=<?php echo $Bike->getProductID();?>" class="btn btn-outline-primary w-100">View</a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-12">
+                                    <p class="text-left fs-6">Reviews (683)</p>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fa fa-star-half-stroke"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
