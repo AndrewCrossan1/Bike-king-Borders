@@ -1,12 +1,16 @@
 <?php
+    require($_SERVER['DOCUMENT_ROOT'] . "/Models/" . "Basket.php");
+    require($_SERVER['DOCUMENT_ROOT'] . "/Models/" . "Product.php");
     session_start();
+    if (!isset($_SESSION['basket'])) {
+        $_SESSION['basket'] = new Basket();
+    }
 
     //Set page title for meta-data in header.php (An isset is used in the meta-data to check for this - Overkill because if it's not set I am dumb.)
     $PageTitle = "Products";
 
-    //Load classes
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/' . 'settings.php');
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/Scripts/' . 'functions.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/' . 'settings.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Scripts/' . 'functions.php');
 
     $Bikes = functions::Filter("SELECT * FROM products WHERE Price BETWEEN ? AND ?", "ii", 0, 1000);
 
@@ -147,7 +151,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12 col-12">
-                                    <a href="/products/"><button class="btn btn-warning w-100" onclick="" type="button">Add to cart</button></a>
+                                    <a class="btn btn-warning w-100" href="add.php?ProductID=<?php echo $Bike->getProductID(); ?>">Add to cart</a>
                                 </div>
                             </div>
                             <br>
