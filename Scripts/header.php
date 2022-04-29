@@ -75,6 +75,30 @@
                 <li class="nav-item m-2 middle">
                     <a class="nav-link<?php if (isset($PageName) && $PageName == "Products") { echo ' active'; }?>" href="/products/"><i class="far fa-rectangle-list"></i> Products</a>
                 </li>
+
+                <!--Basket-->
+                <li class="nav-item dropdown m-2 middle">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa fa-shopping-basket"></i> Basket
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <?php
+                        if (isset($_SESSION['basket']) && $_SESSION['basket']->getCount() > 0) {
+                            $List = $_SESSION['basket']->getList();
+                            for ($x = 0; $x < count($List); $x++) {
+                                echo $List[$x]->getName() . "<br>";
+                            }
+                        }
+                        else {
+                        ?>
+                            <li>
+                                <a class="dropdown-item disabled" href="javascript:void(0)">Your basket is empty</a>
+                            </li>
+                        <?php
+                        }
+                        ?>
+                    </ul>
+                </li>
                 <!--Contact us-->
                 <li class="nav-item m-2 middle">
                     <a class="nav-link<?php if (isset($PageName) && $PageName == "Contact") { echo ' active'; }?>" href="/contact/"><i class="fas fa-phone"></i> Contact us</a>
