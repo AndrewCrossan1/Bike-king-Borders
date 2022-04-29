@@ -4,6 +4,18 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/' . 'settings.php');
 
 class functions
 {
+    public static function SendMessage($message) {
+        //Send message with parameter based output
+        echo "
+                <div class='container-md'>
+                    <div class='alert alert-info alert-dismissible fade show m-4' role='alert'>
+                        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                        <strong>Notice:</strong> {$message}
+                    </div>
+                </div>
+              ";
+    }
+
     /**
      * Check if a username already exists
      *
