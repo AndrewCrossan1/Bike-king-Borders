@@ -31,3 +31,4 @@ RewriteRule ^admin/product/edit/id=([0-9]+)$ /Admin/ProductFunctions/Edit.php?id
 RewriteRule ^admin/product/confirm/$ /Admin/ProductFunctions/confirm.php
 
 RewriteRule ^admin/products/add/$ /Admin/ProductFuntions/Add.php
+RewriteRule ^basket/$ /Products/basket.php [NC]

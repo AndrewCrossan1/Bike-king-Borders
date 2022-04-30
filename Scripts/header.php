@@ -1,3 +1,13 @@
+<?php
+define("MEDIA_URL", $_SERVER['DOCUMENT_ROOT']. "/Media/");
+function isimageset($imgslug) {
+    if ($imgslug == null) {
+        return "/Media/" . "Products/" . "default.png";
+    } else {
+        return "/Media/" . "Products/" . $imgslug;
+    }
+}
+?>
 <head>
     <!--Setting meta-data -->
     <meta name="author" content="Andrew Crossan"/>
@@ -34,6 +44,12 @@
                 <!-- Home -->
                 <li class="nav-item m-2 middle">
                     <a class="nav-link<?php if (isset($PageName) && $PageName == 'Index') { echo ' active'; }?>" href="/home/"><i class="fas fa-house"></i> Home</a>
+                </li>
+                <!--Basket-->
+                <li class="nav-item m-2 middle">
+                    <a class="nav-link" href="/basket/">
+                        <i class="fa fa-shopping-basket"></i> Basket
+                    </a>
                 </li>
                 <!--Gallery-->
                 <li class="nav-item m-2 middle">
@@ -74,30 +90,6 @@
                 <!--Products-->
                 <li class="nav-item m-2 middle">
                     <a class="nav-link<?php if (isset($PageName) && $PageName == "Products") { echo ' active'; }?>" href="/products/"><i class="far fa-rectangle-list"></i> Products</a>
-                </li>
-
-                <!--Basket-->
-                <li class="nav-item dropdown m-2 middle">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fa fa-shopping-basket"></i> Basket
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <?php
-                        if (isset($_SESSION['basket']) && $_SESSION['basket']->getCount() > 0) {
-                            $List = $_SESSION['basket']->getList();
-                            for ($x = 0; $x < count($List); $x++) {
-                                echo $List[$x]->getName() . "<br>";
-                            }
-                        }
-                        else {
-                        ?>
-                            <li>
-                                <a class="dropdown-item disabled" href="javascript:void(0)">Your basket is empty</a>
-                            </li>
-                        <?php
-                        }
-                        ?>
-                    </ul>
                 </li>
                 <!--Contact us-->
                 <li class="nav-item m-2 middle">
