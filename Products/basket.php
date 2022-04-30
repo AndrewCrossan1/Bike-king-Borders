@@ -11,13 +11,20 @@ function isimage($imgslug) {
     }
 }
 
+if (isset($_GET['discount']) && !isset($_SESSION['discount'])) {
+    $_SESSION['discount'] = $_GET['discount'];
+    $_SESSION['discountcode'] = $_GET['code'];
+}
+
 //Set page title for meta-data in header.php (An isset is used in the meta-data to check for this - Overkill because if it's not set I am dumb.)
 $PageTitle = "Your basket";
 
 //Require the header of the page (Includes Navigation, meta-data, etc.)
 require_once($_SERVER['DOCUMENT_ROOT'] . '/Scripts/' . 'functions.php');
 
-$List = $_SESSION['basket']->getList();
+if (isset($_SESSION['basket'])) {
+    $List = $_SESSION['basket']->getList();
+}
 
 ?>
 <body>
@@ -30,6 +37,16 @@ $List = $_SESSION['basket']->getList();
     </div>
 </section>
 
+<?php
+
+if (isset($_GET['discountmessage'])) {
+    functions::SendMessage(base64_decode($_GET['discountmessage']));
+}
+
+?>
+
+<?php
+if (isset($List)) {?>
 <section class="h-100 pt-5">
     <div class="container h-100">
         <div class="row d-flex justify-content-center align-items-center h-75">
@@ -38,7 +55,7 @@ $List = $_SESSION['basket']->getList();
                     <table class="table">
                         <thead>
                         <tr>
-                            <th scope="col" class="h5">Your basket <span class="small fs-6 fw-normal">(<?php echo count($List);?> items in your basket)</span></th>
+                            <th scope="col" class="h5">Your basket <span class="small fs-6 fw-normal">(<?php if (isset($List)) { echo count($List); } else {echo 0;}?> items in your basket)</span></th>
                             <th scope="col">Colour</th>
                             <th scope="col">Quantity</th>
                             <th scope="col">Price</th>
@@ -102,22 +119,42 @@ $List = $_SESSION['basket']->getList();
                                 </div>
 
                                 <hr class="my-4">
+                                <div class="d-flex justify-content-between">
+                                    <?php
+                                    if (isset($_SESSION['discount'])) {
+                                        $discountperc = (float)$_SESSION['discount'] * 100;
+                                        echo "<p class='small text-success'>{$_SESSION['discountcode']}: {$discountperc}% Discount</p>";
+                                        echo "<a class='small text-danger' href='/basket/resetdiscount/'>Remove</a>";
+                                    }
 
+                                    ?>
+                                </div>
                                 <div class="d-flex justify-content-between mb-2" style="font-weight: 500;">
                                     <p class="mb-2">Total (tax included)</p>
-                                    <p class="mb-2">£<?php echo $TotalPrice + $Shipping;?> <script></script></p>
+                                    <p class="mb-2">
+                                        <?php
+                                        if (isset($_REQUEST['discount'])) {
+                                            $Discount = ($TotalPrice + $Shipping) * (float)$_REQUEST['discount'];
+                                            $TotalPrice = $TotalPrice - $Discount;
+                                        } elseif (isset($_SESSION['discount'])) {
+                                            $Discount = ($TotalPrice + $Shipping) * (float)$_SESSION['discount'];
+                                            $TotalPrice = $TotalPrice - $Discount;
+                                        }
+                                        ?>
+                                        £<?php echo (float)round($TotalPrice + $Shipping, 2);?>
+                                    </p>
                                 </div>
                                 <div class="d-flex justify-content-between">
                                     <p class="small">
                                         Discount code:
                                     </p>
                                 </div>
-                                <div class="d-flex justify-content-between mb-4 w-100">
-                                    <form method="post" action="/verifydiscount/">
+                                <div class="d-flex justify-content-between mb-5 w-100">
+                                    <form method="GET" action="/basket/verifydiscount/">
                                         <div class="input-group">
-                                            <input type="text" placeholder="Enter discount code" name="discount" class="form-control rounded"/>
+                                            <input type="text" required <?php if (isset($_SESSION['discount'])) { echo 'disabled'; }?> placeholder="Enter discount code" name="discountcode" class="form-control rounded"/>
                                             <div class="input-group-prepend">
-                                                <button class="btn btn-outline-secondary" type="submit">Enter</button>
+                                                <button class="btn btn-outline-secondary" <?php if (isset($_SESSION['discount'])) { echo 'disabled'; }?> type="submit">Enter</button>
                                             </div>
                                         </div>
                                     </form>
@@ -136,4 +173,11 @@ $List = $_SESSION['basket']->getList();
         </div>
     </div>
 </section>
+<?php } else {?>
+<div class="container-md mt-5 text-center">
+    <h1 class="display-2" style="font-family: Ubuntu, Verdana;">Bike King Borders</h1>
+    <i class="fas fa-shopping-basket" style="font-size: 75px;"></i>
+    <h1 class="display-6">Your basket is empty</h1>
+</div>
+<?php }?>
 </body>
