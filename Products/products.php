@@ -151,7 +151,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/Scripts/' . 'functions.php');
                             </div>
                             <div class="row">
                                 <div class="col-md-12 col-12">
-                                    <a class="btn btn-warning w-100" href="add.php?ProductID=<?php echo $Bike->getProductID(); ?>">Add to cart</a>
+                                    <a class="btn btn-warning w-100" href="/basket/add/<?php echo $Bike->getProductID(); ?>/">Add to cart</a>
                                 </div>
                             </div>
                             <br>
