@@ -32,3 +32,4 @@ RewriteRule ^admin/product/confirm/$ /Admin/ProductFunctions/confirm.php
 
 RewriteRule ^admin/products/add/$ /Admin/ProductFuntions/Add.php
 RewriteRule ^basket/$ /Products/basket.php [NC]
+RewriteRule ^basket/add/([0-9]+)/$ /Products/add.php?id=$1 [NC]
