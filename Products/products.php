@@ -1,17 +1,16 @@
 <?php
+    require($_SERVER['DOCUMENT_ROOT'] . "/Models/" . "Basket.php");
+    require($_SERVER['DOCUMENT_ROOT'] . "/Models/" . "Product.php");
     session_start();
-    //Page Description: Provides a list of products for the user to see
-
-    //Set page name for required content in functions.php (Avoids file navigation errors which are extremely annoying - PHP just be smarter :,( )
-    //Also keys is in with setting the pages active in header.php (Very fancy)
-    $PageName = "Products";
+    if (!isset($_SESSION['basket'])) {
+        $_SESSION['basket'] = new Basket();
+    }
 
     //Set page title for meta-data in header.php (An isset is used in the meta-data to check for this - Overkill because if it's not set I am dumb.)
     $PageTitle = "Products";
 
-    //Require the header of the page (Includes Navigation, meta-data, etc.)
-    require('../Scripts/header.php');
-    include_once('../Scripts/functions.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/' . 'settings.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Scripts/' . 'functions.php');
 
     $Bikes = functions::Filter("SELECT * FROM products WHERE Price BETWEEN ? AND ?", "ii", 0, 1000);
 
@@ -132,22 +131,42 @@
                 foreach ($Bikes as $Bike) {
                     ?>
                 <div class="col-sm-3 col-6 mb-4">
-                    <div class="card p-2 text-center">
+                    <div class="card p-2">
                         <div class="card-img-top">
                             <img src="/Media/Products/<?php if ($Bike->getSlug() == null) { echo 'default.png'; } else { echo $Bike->getSlug();}?>" class="img-fluid" style="max-height: 300px;" alt="A bicycle"/>
                         </div>
-                        <div class="card-title">
+                        <div class="card-title text-left fw-bold">
                             <?php
                                 echo $Bike->getName();
                             ?>
                         </div>
-                        <div class="card-body p-0">
-                            <p>£<?php echo $Bike->getPrice(); ?></p>
-                        </div>
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-outline-primary w-75">Buy</button>
-                            <hr/>
-                            <button type="submit" class="btn btn-outline-primary w-75">Hire</button>
+                            <div class="row my-auto">
+                                <div class="col-md-5 col-12">
+                                    <p class="text-left fw-bold fs-3">£<?php echo $Bike->getPrice(); ?></p>
+                                </div>
+                                <div class="col-md-7 col-12">
+                                    <a href="product.php?id=<?php echo $Bike->getProductID();?>" class="btn btn-outline-primary w-100">View</a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 col-12">
+                                    <a class="btn btn-warning w-100" href="/basket/add/<?php echo $Bike->getProductID(); ?>/">Add to cart</a>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row my-auto">
+                                <div class="col-md-6 col-12">
+                                    <p class="text-left fs-6">Reviews (683)</p>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fa fa-star-half-stroke"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

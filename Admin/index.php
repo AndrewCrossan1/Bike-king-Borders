@@ -1,18 +1,12 @@
 <?php
 session_start();
-//Page Description: Allows the admin to manage current and historical offers
-
-//Set page name for required content in functions.php (Avoids file navigation errors which are extremely annoying - PHP just be smarter :,( )
-//Also keys is in with setting the pages active in header.php (Very fancy)
-$PageName = "AdminLogin";
 
 //Set page title for meta-data in header.php (An isset is used in the meta-data to check for this - Overkill because if it's not set I am dumb.)
 $PageTitle = "Admin Login";
 
 //Require the header of the page (Includes Navigation, meta-data, etc.)
-require('../Scripts/adminheader.php');
-require_once('../Scripts/functions.php');
-error_reporting(0);
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Scripts/' . 'adminfunctions.php');
+
 if(isset($_SESSION['Admin']) && $_SESSION['Admin'] == 1) {
     ?>
     <script>
@@ -21,12 +15,9 @@ if(isset($_SESSION['Admin']) && $_SESSION['Admin'] == 1) {
     <?php
 }
 
-?>
-
-<?php
 //Check if message has been set in url
 if (isset($_GET['message'])) {
-    functions::SendMessage(base64_decode($_GET['message']));
+    adminfunctions::SendMessage(base64_decode($_GET['message']));
 }
 ?>
 <body style="background: url('/Media/Images/AdminBackground.jpg'); background-size: cover;">

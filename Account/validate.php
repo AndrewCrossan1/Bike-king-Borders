@@ -1,7 +1,8 @@
 <?php
 //Used for validating a users request to create a new account.
-
 session_start();
+//Require the header of the page (Includes Navigation, meta-data, etc.)
+
 if (isset($_SESSION['Username'])) {
     ?>
     <script>

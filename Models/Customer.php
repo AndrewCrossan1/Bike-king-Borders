@@ -1,6 +1,5 @@
 <?php
 
-require_once('Account.php');
 class Customer extends Account
 {
     private ?int $CustomerID = null;

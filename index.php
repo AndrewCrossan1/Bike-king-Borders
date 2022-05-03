@@ -19,8 +19,7 @@
     $PageName = "Index";
 
     //Require the header of the page (Includes Navigation, meta-data, etc.)
-    require('Scripts/header.php');
-    require('Scripts/functions.php');
+    require($_SERVER['DOCUMENT_ROOT'] . "/Scripts/" . "functions.php");
 ?>
 <section id="header">
     <div class="container-fluid bg-dark text-light p-5">

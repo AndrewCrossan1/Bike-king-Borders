@@ -11,8 +11,9 @@ class Product
     private string $Colour;
     private int $Age;
     private string $Type;
+    private ?string $Date;
 
-    public function __construct($ProductID, $Name, $Description, $Price, $imgslug, $Colour, $Age, $Type) {
+    public function __construct($ProductID, $Name, $Description, $Price, $imgslug, $Colour, $Age, $Type, $Date = null) {
         $this->ProductID = $ProductID;
         $this->Name = $Name;
         $this->Description = $Description;
@@ -21,6 +22,7 @@ class Product
         $this->Colour = $Colour;
         $this->Age = $Age;
         $this->Type = $Type;
+        $this->Date = $Date;
     }
 
     public function GetProductID():int {
@@ -60,5 +62,9 @@ class Product
 
     public function getType(): string {
         return $this->Type;
+    }
+
+    public function getDate(): Date|null {
+        return $this->Date;
     }
 }

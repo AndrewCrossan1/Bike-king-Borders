@@ -1,16 +1,11 @@
 <?php
 session_start();
-//Page Description: Allows the admin to manage current and historical offers
-
-//Set page name for required content in functions.php (Avoids file navigation errors which are extremely annoying - PHP just be smarter :,( )
-//Also keys is in with setting the pages active in header.php (Very fancy)
-$PageName = "AdminDelete";
 
 //Set page title for meta-data in header.php (An isset is used in the meta-data to check for this - Overkill because if it's not set I am dumb.)
 $PageTitle = "Delete Product";
 
 //Require the header of the page (Includes Navigation, meta-data, etc.)
-require('../../Scripts/adminheader.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Scripts/' . 'adminfunctions.php');
 
 if(!isset($_SESSION['Admin']) && !$_SESSION['Admin'] == 1) {
     ?>
@@ -25,7 +20,7 @@ if (isset($_REQUEST['ProductID']) && $_REQUEST['ProductID'] == null) {
     <script>
         window.location.href = "https://localhost/admin/home/?message=<?php echo base64_encode('A product must be selected!');?>";
     </script>
-<?php
+    <?php
 }
 ?>
 
@@ -58,14 +53,14 @@ if (isset($_REQUEST['ProductID']) && $_REQUEST['ProductID'] == null) {
                 <a type="button" class="btn btn-secondary" href="/admin/products/">Exit</a>
                 <button type="submit" name="submitdelete" class="btn btn-primary">Delete</button>
             </div>
-                </form>
+            </form>
         </div>
     </div>
 </div>
 
 <!-- Button trigger modal -->
 <script>
-        $(window).on('load', function() {
-            $('#myModal').modal("show")
-        });
+    $(window).on('load', function() {
+        $('#myModal').modal("show")
+    });
 </script>

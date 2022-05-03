@@ -1,3 +1,13 @@
+<?php
+define("MEDIA_URL", $_SERVER['DOCUMENT_ROOT']. "/Media/");
+function isimageset($imgslug) {
+    if ($imgslug == null) {
+        return "/Media/" . "Products/" . "default.png";
+    } else {
+        return "/Media/" . "Products/" . $imgslug;
+    }
+}
+?>
 <head>
     <!--Setting meta-data -->
     <meta name="author" content="Andrew Crossan"/>
@@ -19,6 +29,7 @@
     <script src="/JS/Cookies.js"></script>
     <!--Importing local css file-->
     <link href="/CSS/base.css" rel="stylesheet"/>
+    <link href="/Media/Images/icon.ico" rel="icon"/>
 </head>
 
 <body>
@@ -33,6 +44,12 @@
                 <!-- Home -->
                 <li class="nav-item m-2 middle">
                     <a class="nav-link<?php if (isset($PageName) && $PageName == 'Index') { echo ' active'; }?>" href="/home/"><i class="fas fa-house"></i> Home</a>
+                </li>
+                <!--Basket-->
+                <li class="nav-item m-2 middle">
+                    <a class="nav-link" href="/basket/">
+                        <i class="fa fa-shopping-basket"></i> Basket
+                    </a>
                 </li>
                 <!--Gallery-->
                 <li class="nav-item m-2 middle">

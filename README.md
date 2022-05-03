@@ -22,17 +22,19 @@ Currently as of 29/03/22 the website features the following:
 - Admins can delete products
 - Admins can add products
 - Admins can read products, offers and sales.
+- Admins can update products
+- Products previews are displayed
 
 Soon I wish to implement the following features in the website
 
 - Admin login timeouts
-- Admin product updating
 - The ability to add a product to basket and checkout
 - A contact page where users can create tickets which can be viewed and replied to by administrators on an admin only page
 - The ability to create special offers
 - The abiltiy for users to apply special offers
 - Users can change their password if forgotten
 - The viewing and changing of account details
+- Specific product viewing page
 - A gallery containing images of trails and bikes which can be scrolled through by the user
 - Admins having the abiltiy to remove/add users
 - More content on each page
