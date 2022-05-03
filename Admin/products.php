@@ -59,7 +59,7 @@ if(!isset($_SESSION['Admin']) && !$_SESSION['Admin'] == 1) {
             <!--Main content-->
             <?php
             if (isset($_REQUEST['message'])) {
-                functions::SendMessage(base64_decode($_REQUEST['message']));
+                adminfunctions::SendMessage(base64_decode($_REQUEST['message']));
             }
             ?>
             <div class="container-fluid p-3">

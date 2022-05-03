@@ -45,6 +45,39 @@ if (isset($_GET['discountmessage'])) {
 
 ?>
 
+<script>
+    var array = [];
+
+    function GetQuantity(x) {
+        return document.getElementById("form" + x).value;
+    }
+
+    function SetList(x, Price) {
+        array[x] = GetQuantity(x) * Price;
+    }
+
+    function Total() {
+        let total = 0;
+        for (let x = 0; x<array.length; x++) {
+            total += array[x];
+        }
+        return total;
+    }
+
+    function StepU(x, Price) {
+        document.getElementById("form" + x).stepUp();
+        SetList(x, Price);
+        console.log(array)
+        SetSubTotal();
+    }
+
+    function StepD(x, Price) {
+        document.getElementById("form" + x).stepDown();
+        SetList(x, Price);
+        SetSubTotal();
+    }
+</script>
+
 <?php
 if (isset($List)) {?>
 <section class="h-100 pt-5">
@@ -84,12 +117,12 @@ if (isset($List)) {?>
                                 <td class="align-middle">
                                     <div class="d-flex flex-row">
                                         <button id="quantityDown" class="btn btn-link px-2"
-                                                onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                                onclick="StepD(<?php echo $x;?>,<?php echo $List[$x]->getPrice();?>);">
                                             <i class="fas fa-minus"></i>
                                         </button>
-                                        <input id="form1" min="1" name="quantity<?php echo $x;?>" value="1" type="number" class="form-control form-control-sm" style="width: 50px;" />
+                                        <input id="form<?php echo $x;?>" min="1" name="quantity<?php echo $x;?>" value="1" type="number" class="form-control form-control-sm" style="width: 50px;" />
                                         <button id="quantityUp" class="btn btn-link px-2"
-                                                onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                                onclick="StepU(<?php echo $x;?>, <?php echo $List[$x]->getPrice();?>);">
                                             <i class="fas fa-plus"></i>
                                         </button>
                                     </div>
