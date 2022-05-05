@@ -89,10 +89,11 @@ The IDE I primarily use for this project is PHPStorm, it ticks all the boxes and
 ## Evaluating as I progress
 For the next major version of this site I plan to utilise:
 - PHP.INI for auto starting sessions on each page
-- Incorporating a settings.php file which includes media urls
+- Incorporating a settings.php file which includes media urls - Technically done but not to the extent I want
 - A static folder for holding css, js and others
 - No Code-Behind style of writing (PHP Pages will only require and include necessary files)
 - More focus on the modelling of database tables (I neglected them halfway through)
+- Using more advanced SQL (Multi-Table Insert for account creation)
 
 ## Credits
 
