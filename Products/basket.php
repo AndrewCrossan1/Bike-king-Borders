@@ -56,25 +56,14 @@ if (isset($_GET['discountmessage'])) {
         array[x] = GetQuantity(x) * Price;
     }
 
-    function Total() {
-        let total = 0;
-        for (let x = 0; x<array.length; x++) {
-            total += array[x];
-        }
-        return total;
-    }
-
     function StepU(x, Price) {
         document.getElementById("form" + x).stepUp();
         SetList(x, Price);
-        console.log(array)
-        SetSubTotal();
     }
 
     function StepD(x, Price) {
         document.getElementById("form" + x).stepDown();
         SetList(x, Price);
-        SetSubTotal();
     }
 </script>
 
@@ -166,6 +155,7 @@ if (isset($List)) {?>
                                     <p class="mb-2">Total (tax included)</p>
                                     <p class="mb-2">
                                         <?php
+                                        //Calculate discounted price
                                         if (isset($_REQUEST['discount'])) {
                                             $Discount = ($TotalPrice + $Shipping) * (float)$_REQUEST['discount'];
                                             $TotalPrice = $TotalPrice - $Discount;
