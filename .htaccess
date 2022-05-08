@@ -5,7 +5,7 @@ ErrorDocument 401 /Erros/Error401.php
 RewriteEngine on
 RewriteRule ^home/$ /index.php [NC]
 RewriteRule ^gallery/$ /gallery.php [NC]
-RewriteRule ^contact/$ /contact.php [NC]
+RewriteRule ^contact/$ /Contact/contact.php [NC]
 
 RewriteRule ^account/$ /Account/account.php [NC]
 RewriteRule ^account/myaccount/$ /Account/account.php [NC]
@@ -29,9 +29,11 @@ RewriteRule ^admin/logout/$ /Admin/logout.php
 RewriteRule ^admin/product/delete/id=([0-9]+)$ /Admin/ProductFunctions/Delete.php?id=$1
 RewriteRule ^admin/product/edit/id=([0-9]+)$ /Admin/ProductFunctions/Edit.php?id=$1
 RewriteRule ^admin/product/confirm/$ /Admin/ProductFunctions/confirm.php
+RewriteRule ^admin/products/add/$ /Admin/ProductFuntions/Add.php [NC]
 
-RewriteRule ^admin/products/add/$ /Admin/ProductFuntions/Add.php
 RewriteRule ^basket/$ /Products/basket.php [NC]
 RewriteRule ^basket/add/([0-9]+)/$ /Products/add.php?id=$1 [NC]
 RewriteRule ^basket/verifydiscount/$ /Products/verifydiscount.php [NC]
 RewriteRule ^basket/resetdiscount/$ /Products/resetdiscount.php [NC]
+
+RewriteRule ^ContactSend/$ /Contact/ContactSend.php [NC]
