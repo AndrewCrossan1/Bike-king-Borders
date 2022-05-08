@@ -24,12 +24,16 @@ function isimageset($imgslug) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/b4c6b2d3ed.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <!--Importing local javascript file-->
     <script src="/JS/base.js"></script>
     <script src="/JS/Cookies.js"></script>
     <!--Importing local css file-->
     <link href="/CSS/base.css" rel="stylesheet"/>
     <link href="/Media/Images/icon.ico" rel="icon"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
 </head>
 
 <body>
