@@ -39,7 +39,7 @@ if(!isset($_SESSION['Admin']) && !$_SESSION['Admin'] == 1) {
                             </li>
                             <hr style="color: white;"/>
                             <li class="nav-item">
-                                <a class="nav-link text-light active" aria-selected="true" href="/admin/products/">Products</a>
+                                <a class="nav-link active text-light" aria-selected="true" href="/admin/products/">Products</a>
                             </li>
                             <hr style="color: white;"/>
                             <li class="nav-item">
@@ -48,6 +48,10 @@ if(!isset($_SESSION['Admin']) && !$_SESSION['Admin'] == 1) {
                             <hr style="color: white;"/>
                             <li class="nav-item">
                                 <a class="nav-link text-light" href="/admin/users/" tabindex="-1">Users</a>
+                            </li>
+                            <hr style="color: white;"/>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" href="/admin/support/" tabindex="-1">Support Tickets</a>
                             </li>
                             <hr style="color: white;"/>
                         </div>

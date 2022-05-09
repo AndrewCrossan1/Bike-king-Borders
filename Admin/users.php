@@ -47,7 +47,11 @@ if (!isset($_SESSION['Admin'])) {
                             </li>
                             <hr style="color: white;"/>
                             <li class="nav-item">
-                                <a class="nav-link text-light active" href="/admin/users/" tabindex="-1">Users</a>
+                                <a class="nav-link text-light active" aria-selected="true" href="/admin/users/" tabindex="-1">Users</a>
+                            </li>
+                            <hr style="color: white;"/>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" href="/admin/support/" tabindex="-1">Support Tickets</a>
                             </li>
                             <hr style="color: white;"/>
                         </div>
