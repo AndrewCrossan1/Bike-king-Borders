@@ -24,14 +24,15 @@ Currently as of 29/03/22 the website features the following:
 - Admins can read products, offers and sales.
 - Admins can update products
 - Products previews are displayed
+- A contact page where users can create tickets which can be viewed and replied to by administrators on an admin only page
+- The ability to add a product to basket and checkout
+- The abiltiy for users to apply special offers
+- Live Search function using PHP, and AJAX.
 
 Soon I wish to implement the following features in the website
 
 - Admin login timeouts
-- The ability to add a product to basket and checkout
-- A contact page where users can create tickets which can be viewed and replied to by administrators on an admin only page
 - The ability to create special offers
-- The abiltiy for users to apply special offers
 - Users can change their password if forgotten
 - The viewing and changing of account details
 - Specific product viewing page
@@ -40,7 +41,6 @@ Soon I wish to implement the following features in the website
 - More content on each page
 - Keybinds which keyboard only users can use to navigate the website
 - Accessibility for impaired users (Text to speech and Magnification of text)
-- Live Search function using PHP, and AJAX.
 
 The deadline for this project is 2/6/22
 
@@ -94,6 +94,8 @@ For the next major version of this site I plan to utilise:
 - No Code-Behind style of writing (PHP Pages will only require and include necessary files)
 - More focus on the modelling of database tables (I neglected them halfway through)
 - Using more advanced SQL (Multi-Table Insert for account creation)
+- Creating functions of constantly used scripts, like redirecting if not logged in or not admin using JavaScript
+- Less repetition of scripts where one function can be modified to accomodate all uses (Getting something from a database)
 
 ## Credits
 
