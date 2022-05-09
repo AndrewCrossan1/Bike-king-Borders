@@ -30,6 +30,7 @@ RewriteRule ^admin/product/delete/id=([0-9]+)$ /Admin/ProductFunctions/Delete.ph
 RewriteRule ^admin/product/edit/id=([0-9]+)$ /Admin/ProductFunctions/Edit.php?id=$1
 RewriteRule ^admin/product/confirm/$ /Admin/ProductFunctions/confirm.php
 RewriteRule ^admin/products/add/$ /Admin/ProductFuntions/Add.php [NC]
+RewriteRule ^admin/support/$ /Admin/support.php [NC]
 
 RewriteRule ^basket/$ /Products/basket.php [NC]
 RewriteRule ^basket/add/([0-9]+)/$ /Products/add.php?id=$1 [NC]
