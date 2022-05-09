@@ -70,6 +70,10 @@ $DataPoints = array(
                                 <a class="nav-link text-light" href="/admin/users/" tabindex="-1">Users</a>
                             </li>
                             <hr style="color: white;"/>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" href="/admin/support/" tabindex="-1">Support Tickets</a>
+                            </li>
+                            <hr style="color: white;"/>
                         </div>
                     </div>
                 </div>
@@ -120,11 +124,11 @@ $DataPoints = array(
                     <div class="col-md-3 col-6">
                         <div class="card bg-primary p-3 my-2">
                             <div class="card-title text-left">
-                                <p class="display-6" style="font-family: Ubuntu, Verdana; color: white;"><b>56</b></p>
+                                <p class="display-6" style="font-family: Ubuntu, Verdana; color: white;"><b>5</b></p>
                             </div>
                             <div class="card-body p-0 text-left" style="max-width: 18rem;">
-                                <p class="lead text-light"><b>Reviews made</b></p>
-                                <a href="/admin/reviews/" class="btn btn-outline-warning">View all</a>
+                                <p class="lead text-light"><b>Support Tickets</b></p>
+                                <a href="/admin/support/" class="btn btn-outline-warning">View all</a>
                             </div>
                         </div>
                     </div>
