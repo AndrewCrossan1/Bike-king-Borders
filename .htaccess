@@ -31,6 +31,7 @@ RewriteRule ^admin/product/edit/id=([0-9]+)$ /Admin/ProductFunctions/Edit.php?id
 RewriteRule ^admin/product/confirm/$ /Admin/ProductFunctions/confirm.php
 RewriteRule ^admin/products/add/$ /Admin/ProductFuntions/Add.php [NC]
 RewriteRule ^admin/support/$ /Admin/support.php [NC]
+RewriteRule ^admin/support/status=([A-Za-z]+)/order=([A-Za-z]+)/$ /Admin/support.php?status=$1&dateposted=$2 [NC]
 
 RewriteRule ^basket/$ /Products/basket.php [NC]
 RewriteRule ^basket/add/([0-9]+)/$ /Products/add.php?id=$1 [NC]
