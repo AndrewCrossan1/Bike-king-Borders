@@ -14,6 +14,10 @@ if(!isset($_SESSION['Admin']) && !$_SESSION['Admin'] == 1) {
     </script>
     <?php
 }
+
+if (!isset($_SESSION['filteredcontent'])) {
+    $Tickets = adminfunctions::GetTickets();
+}
 ?>
 
 <section id="header">
@@ -115,7 +119,7 @@ if(!isset($_SESSION['Admin']) && !$_SESSION['Admin'] == 1) {
                     });
                 </script>
                 <?php
-                if (isset($_SESSION['filteredcontent']) || $_SESSION['filteredcontent'] != null) {
+                if (isset($_SESSION['filteredcontent']) && $_SESSION['filteredcontent'] != null) {
                     for ($x = 0; $x<count($_SESSION['filteredcontent']); $x++) {?>
                         <div class="col-md-3 col-6" style="min-height: 400px;">
                             <div class="card p-2 bg-primary my-3 text-white w-100">
@@ -141,8 +145,35 @@ if(!isset($_SESSION['Admin']) && !$_SESSION['Admin'] == 1) {
                             </div>
                         </div>
                     </div>
-                <?php }
-                } else {
+                    <?php }
+                    } else if ($Tickets != null && (isset($_SESSION['filteredcontent']) && $_SESSION['filteredcontent'] !=null)) {
+                        for ($x = 0; $x<count($Tickets); $x++) {?>
+                        <div class="col-md-3 col-6" style="min-height: 400px;">
+                            <div class="card p-2 bg-primary my-3 text-white w-100">
+                                <div class="card-body">
+                                    <h5 class="card-title"><?php echo $Tickets[$x]['Subject']; ?></h5>
+                                    <p class="card-text">By: <?php echo $Tickets[$x]['Fullname']; ?></p>
+                                </div>
+                                <div class="card-footer rounded bg-light">
+                                    <?php
+                                    if ($Tickets[$x]['Active'] == 1) {
+                                        $status = 'Open';
+                                    } else {
+                                        $status = 'Closed';
+                                    }
+                                    ?>
+                                    <p class="card-text text-dark">Date Created: <?php echo $Tickets[$x]['DateCreated'];?></p>
+                                    <p class="card-text text-dark">Status: <?php echo $status; ?></p>
+                                    <p class="card-text text-dark">ProductID: <?php echo $Tickets[$x]['ProductID'];?></p>
+                                    <div class="btn-group w-100">
+                                        <a type="button" href="/support/respond/" class="btn btn-outline-primary w-50">Respond</a>
+                                        <a type="button" href="/support/delete/" class="btn btn-outline-danger w-50">Close</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php }
+                    } else {
                     adminfunctions::SendMessage('No Products available with chosen filters');
                 }?>
             </div>
