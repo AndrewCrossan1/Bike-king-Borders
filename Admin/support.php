@@ -17,24 +17,20 @@ if(!isset($_SESSION['Admin']) && !$_SESSION['Admin'] == 1) {
 ?>
 
 <script>
-    var tickets;
-    function GetTicket() {
-        let Status = $('#status').val();
-        let DatePosted = $('#DatePosted').val();
-        let xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function() {
-
-            if (this.readyState == 4 && this.status == 200) {
-                tickets = this.response;
-                console.log(tickets);
-            }
-        };
-        xmlhttp.open("GET", "/Admin/SupportScripts/GetTickets.php?status=" + Status + "&dateposted=" + DatePosted, true);
-        xmlhttp.send();
-    }
-    function SearchTicket() {
-
-    }
+    $(document).ready(function() {
+        var items = [];
+        $('#status').change(function() {
+            $.getJSON('/Admin/SupportScripts/GetTickets.php',
+                {
+                    status : $('#status').val(),
+                    dateposted : $('#DatePosted').val(),
+                },
+                function(data) {
+                    items = data[0];
+                    console.log(items);
+                });
+            });
+    });
 </script>
 
 <section id="header">
@@ -88,6 +84,9 @@ if(!isset($_SESSION['Admin']) && !$_SESSION['Admin'] == 1) {
                 adminfunctions::SendMessage(base64_decode($_REQUEST['message']));
             }
             ?>
+            <script>
+                document.writeln(content);
+            </script>
             <div class="container-fluid p-3">
                 <div class="row justify-content-center">
                     <div class="col-md-12">
@@ -95,7 +94,7 @@ if(!isset($_SESSION['Admin']) && !$_SESSION['Admin'] == 1) {
                         <div class="form-group border border-dark border-2 rounded row p-3">
                             <div class="col-md-4 col-12">
                                 <label for="status" class="form-label">Ticket Status</label>
-                                <select name="Status" onchange="GetTicket(this.id)" id="status" class="form-select">
+                                <select name="Status" id="status" class="form-select">
                                     <option value="Active">Active</option>
                                     <option value="Closed">Closed</option>
                                     <option value="All">All</option>
