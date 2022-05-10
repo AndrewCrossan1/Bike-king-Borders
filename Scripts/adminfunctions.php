@@ -298,6 +298,24 @@ class AdminFunctions
             return null;
         }
     }
+
+    public static function GetTickets() {
+        try {
+            $Database = new Database();
+            $Result = $Database->Select("SELECT * FROM Tickets, products WHERE products.ProductID = Tickets.ProductID;");
+            if ($Result != null) {
+                $array = array();
+                while ($row = $Result->fetch_assoc()) {
+                    array_push($array, $row);
+                }
+                return $array;
+            } else {
+                return null;
+            }
+        } catch (Exception) {
+            return null;
+        }
+    }
 }
 
 ?>
