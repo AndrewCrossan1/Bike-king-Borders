@@ -316,6 +316,40 @@ class AdminFunctions
             return null;
         }
     }
+
+    public static function FilterTickets($status, $dateposted) {
+        //Get products
+        $Database = new Database();
+
+        //Get submitted variables
+        $Status = $status;
+        $DatePosted = $dateposted;
+
+        //Set SQL statement
+        $sql = match ($Status) {
+            'all' => "SELECT Tickets.TicketID, Tickets.Email, Tickets.Fullname, Tickets.Subject, Tickets.Message, Tickets.DateCreated, Tickets.Active, products.ProductID, products.Name FROM Tickets, products WHERE Tickets.ProductID = products.ProductID",
+            'closed' => "SELECT Tickets.TicketID, Tickets.Email, Tickets.Fullname, Tickets.Subject, Tickets.Message, Tickets.DateCreated, Tickets.Active, products.ProductID, products.Name FROM Tickets, products WHERE Tickets.ProductID = products.ProductID AND Active = 0",
+            'active' => "SELECT Tickets.TicketID, Tickets.Email, Tickets.Fullname, Tickets.Subject, Tickets.Message, Tickets.DateCreated, Tickets.Active, products.ProductID, products.Name FROM Tickets, products WHERE Tickets.ProductID = products.ProductID AND Active = 1",
+        };
+
+        //Append ordering to sql statement
+        $sql = match ($DatePosted) {
+            'newest' => $sql . ' ORDER BY DateCreated DESC;',
+            'oldest' => $sql . ' ORDER BY DateCreated ASC;',
+        };
+        $array = array();
+
+        $Tickets = $Database->Select($sql);
+
+        if ($Tickets == null) {
+            return null;
+        } else {
+            while ($result = $Tickets->fetch_assoc()) {
+                array_push($array, $result);
+            }
+            return $array;
+        }
+    }
 }
 
 ?>
