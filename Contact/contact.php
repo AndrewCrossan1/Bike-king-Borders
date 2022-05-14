@@ -13,8 +13,8 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/' . 'settings.php');
 
 <?php
 //Send message if it is set
-if (isset($_GET['message'])) {
-    functions::SendMessage(base64_decode($_GET['message']));
+if (isset($_GET['Message'])) {
+    functions::SendMessage(base64_decode($_GET['Message']));
 }
 ?>
 

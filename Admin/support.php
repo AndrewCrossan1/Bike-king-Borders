@@ -14,28 +14,24 @@ if(!isset($_SESSION['Admin']) && !$_SESSION['Admin'] == 1) {
     </script>
     <?php
 }
+
+if (isset($_REQUEST['status'])) {
+    ?>
+    <script>
+        let url = window.location.href;
+        if (url.startsWith("https://localhost/Admin/support.php?")) {
+            window.location.href = "https://localhost/admin/support/status=<?php echo $_REQUEST['status'];?>/dateposted=<?php echo $_REQUEST['dateposted'];?>/"
+        }
+    </script>
+    <?php
+}
+
+if (isset($_REQUEST['status']) && isset($_REQUEST['dateposted'])) {
+    $_SESSION['filteredcontent'] = adminfunctions::FilterTickets($_REQUEST['status'], $_REQUEST['dateposted']);
+} else {
+    $_SESSION['filteredcontent'] = adminfunctions::GetTickets();
+}
 ?>
-
-<script>
-    var tickets;
-    function GetTicket() {
-        let Status = $('#status').val();
-        let DatePosted = $('#DatePosted').val();
-        let xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function() {
-
-            if (this.readyState == 4 && this.status == 200) {
-                tickets = this.response;
-                console.log(tickets);
-            }
-        };
-        xmlhttp.open("GET", "/Admin/SupportScripts/GetTickets.php?status=" + Status + "&dateposted=" + DatePosted, true);
-        xmlhttp.send();
-    }
-    function SearchTicket() {
-
-    }
-</script>
 
 <section id="header">
     <div class="container-fluid bg-dark text-light p-5">
@@ -91,65 +87,83 @@ if(!isset($_SESSION['Admin']) && !$_SESSION['Admin'] == 1) {
             <div class="container-fluid p-3">
                 <div class="row justify-content-center">
                     <div class="col-md-12">
-                        <!--AJAX Filters-->
-                        <div class="form-group border border-dark border-2 rounded row p-3">
-                            <div class="col-md-4 col-12">
-                                <label for="status" class="form-label">Ticket Status</label>
-                                <select name="Status" onchange="GetTicket(this.id)" id="status" class="form-select">
-                                    <option value="Active">Active</option>
-                                    <option value="Closed">Closed</option>
-                                    <option value="All">All</option>
-                                </select>
+                        <!--Filters-->
+                        <form class="form" action="/Admin/support.php" method="get">
+                            <div class="form-group border border-dark border-2 rounded row p-3">
+                                <div class="col-md-4 col-12">
+                                    <label for="status" class="form-label">Ticket Status</label>
+                                    <select name="status" id="status" class="form-select">
+                                        <?php if (isset($_REQUEST['status']) && $_REQUEST['status'] == 'Active') { echo ' selected';} ?>
+                                        <option value="active" <?php if (isset($_REQUEST['status']) && $_REQUEST['status'] == 'active') { echo ' selected';} ?>>Active</option>
+                                        <option value="closed" <?php if (isset($_REQUEST['status']) && $_REQUEST['status'] == 'closed') { echo ' selected';} ?>>Closed</option>
+                                        <option value="all" <?php if (isset($_REQUEST['status']) && $_REQUEST['status'] == 'all') { echo ' selected';} ?>>All</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4 col-12">
+                                    <label class="form-label" for="DatePosted">Date Posted</label>
+                                    <select name="dateposted" id="DatePosted" class="form-select fg-white">
+                                        <option value="newest" <?php if (isset($_REQUEST['dateposted']) && $_REQUEST['dateposted'] == 'newest') { echo ' selected';} ?>>Newest</option>
+                                        <option value="oldest" <?php if (isset($_REQUEST['dateposted']) && $_REQUEST['dateposted'] == 'oldest') { echo ' selected';} ?>>Oldest</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4 col-12">
+                                    <label class="form-label" for="submit">Filter results:</label>
+                                    <button type="submit" class="btn btn-primary w-100">Filter</button>
+                                </div>
                             </div>
-                            <div class="col-md-4 col-12">
-                                <label class="form-label" for="DatePosted">Date Posted</label>
-                                <select name="DatePosted" id="DatePosted" class="form-select fg-white">
-                                    <option value="Newest" selected>Newest</option>
-                                    <option value="Oldest">Oldest</option>
-                                </select>
-                            </div>
-                            <div class="col-md-4 col-12">
-                                <label class="form-label" for="Search">Search for post</label>
-                                <input placeholder="Enter subject" type="search" name="Search" id="Search" class="form-control">
-                            </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
-                <div class="row">
-                    <script>
-                        $(document).ready(function() {
-                            $('.row').each(function() {
-                                var highest = 0;
-                                //Loop each element
-                                $('.card', this).each(function() {
-                                    if ($(this).height() > highest) {
-                                        highest = $(this).height();
-                                    }
-                                });
-                                $('.card', this).height(highest);
+            </div>
+            <div class="row">
+                <!--Get the tallest element and apply height to all otherw -->
+                <script>
+                    $(document).ready(function() {
+                        $('.row').each(function() {
+                            var highest = 0;
+                            //Loop each element
+                            $('.card', this).each(function() {
+                                if ($(this).height() > highest) {
+                                    highest = $(this).height();
+                                }
                             });
+                            $('.card', this).height(highest);
                         });
-                    </script>
-                    <?php for ($x = 0; $x<12; $x++) {?>
-                    <div class="col-md-3 col-6" style="min-height: 400px;">
-                        <div class="card p-2 bg-primary my-3 text-white w-100">
-                            <div class="card-body">
-                                <h5 class="card-title">The wheels on my bike have broken, what do I do?</h5>
-                                <p class="card-text">By: Andrew Crossan</p>
+                    });
+                </script>
+                <?php
+                if (isset($_SESSION['filteredcontent']) && $_SESSION['filteredcontent'] != null) {
+                    for ($x = 0; $x<count($_SESSION['filteredcontent']); $x++) {?>
+                        <div class="col-md-3 col-6" style="min-height: 400px;">
+                            <div class="card p-2 bg-primary my-3 text-white w-100">
+                                <div class="card-body">
+                                <h5 class="card-title"><?php echo $_SESSION['filteredcontent'][$x]['Subject']; ?></h5>
+                                <p class="card-text">By: <?php echo $_SESSION['filteredcontent'][$x]['Fullname']; ?></p>
                             </div>
                             <div class="card-footer rounded bg-light">
-                                <p class="card-text text-dark">Status: Active</p>
-                                <p class="card-text text-dark">ProductID: 4</p>
+                                <?php
+                                if ($_SESSION['filteredcontent'][$x]['Active'] == 1) {
+                                    $status = 'Open';
+                                } else {
+                                    $status = 'Closed';
+                                }
+                                ?>
+                                <p class="card-text text-dark">Date Created: <?php echo $_SESSION['filteredcontent'][$x]['DateCreated'];?></p>
+                                <p class="card-text text-dark">Status: <?php echo $status; ?></p>
+                                <p class="card-text text-dark">ProductID: <?php echo $_SESSION['filteredcontent'][$x]['ProductID'];?></p>
                                 <div class="btn-group w-100">
-                                    <a type="button" href="/support/respond/" class="btn btn-outline-primary w-50">Respond</a>
-                                    <a type="button" href="/support/delete/" class="btn btn-outline-danger w-50">Close</a>
+                                    <a href="https://localhost/admin/support/respond/" class="btn btn-outline-primary w-50">Respond</a>
+                                    <a href="https://localhost/admin/support/close/id=<?php echo $_SESSION['filteredcontent'][$x]['TicketID'];?>/" class="btn btn-outline-danger w-50">Close</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <?php }?>
-                </div>
+                    <?php }
+                    } else {
+                    adminfunctions::SendMessage('No Products available with chosen filters');
+                }?>
             </div>
         </div>
     </div>
+</div>
 </div>
