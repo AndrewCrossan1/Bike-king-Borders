@@ -12,3 +12,18 @@ function SetCookies() {
         document.cookie = `IP=${data.ip}`
     });
 };
+
+function SetClickedPhotoURL(URL, ImageID) {
+    //Check if item is already set
+    if (window.sessionStorage.getItem(ImageID) != null) {
+        console.log(window.sessionStorage.getItem(ImageID));
+        console.log("Already set");
+    } else {
+        //Set session item
+        window.sessionStorage.setItem(ImageID, URL);
+    }
+}
+function GetClickedPhotoURL(ImageID) {
+    let URL = window.sessionStorage.getItem(ImageID);
+    return URL;
+}
