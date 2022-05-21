@@ -24,7 +24,7 @@ if (isset($_GET['message'])) {
 }
 ?>
 
-<div class="container-md mt-5 rounded">
+<div class="container-md mt-5 rounded mb-5">
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
