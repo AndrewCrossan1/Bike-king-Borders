@@ -1,7 +1,9 @@
+var images = [];
+
 function GetCookie(CookieName) {
     let cookies = document.cookie.split(';');
     for (let x = 0; x<cookies.length; x++) {
-        let c = ca[i];
+        let c = cookies[x];
         while (c.charAt(0) == " ") {
             c = c.substring(1);
         }
@@ -13,34 +15,28 @@ function GetCookie(CookieName) {
 }
 
 function SetCookies() {
-    if (GetCookie("VisitingTime=") == null) {
-        let date = Date.now();
-        let today = new Date(date);
+    let date = Date.now();
+    let today = new Date(date);
+    if (GetCookie("VisitingTime=") != today.toUTCString()) {
         document.cookie = `VisitingTime=${today.toUTCString()}`;
     }
-    if (GetCookie("IP=") == null) {
-        /* Add "https://api.ipify.org?format=json" statement
-                 this will communicate with the ipify servers in
-                 order to retrieve the IP address $.getJSON will
-                 load JSON-encoded data from the server using a
-                 GET HTTP request */
-        $.getJSON("https://api.ipify.org?format=json", function(data) {
-            document.cookie = `IP=${data.ip}`
-        });
-    }
+    $.getJSON("https://api.ipify.org?format=json", function(data) {
+        if (GetCookie("IP=") !=data.ip) {
+            document.cookie = `IP=${data.ip}`;
+        }
+    });
 }
 
 function SetClickedPhotoURL(URL, ImageID) {
     //Check if item is already set
-    if (window.sessionStorage.getItem(ImageID) != null) {
-        console.log(window.sessionStorage.getItem(ImageID));
-        console.log("Already set");
-    } else {
-        //Set session item
-        window.sessionStorage.setItem(ImageID, URL);
+    for (let x = 0; x<images.length; x++) {
+        if (images[x][0] == ImageID) {
+            console.log("Image already added");
+            //Cancel function
+            return;
+        }
     }
+    images.push([ImageID, URL]);
+    window.sessionStorage.setItem("images", JSON.stringify(images));
 }
-function GetClickedPhotoURL(ImageID) {
-    let URL = window.sessionStorage.getItem(ImageID);
-    return URL;
-}
+
