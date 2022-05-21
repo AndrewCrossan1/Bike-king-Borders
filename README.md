@@ -28,6 +28,8 @@ Currently as of 29/03/22 the website features the following:
 - The ability to add a product to basket and checkout
 - The abiltiy for users to apply special offers
 - Live Search function using PHP, and AJAX.
+- A gallery containing images of trails and bikes which can be scrolled through by the user
+- More content on each page
 
 Soon I wish to implement the following features in the website
 
@@ -36,9 +38,7 @@ Soon I wish to implement the following features in the website
 - Users can change their password if forgotten
 - The viewing and changing of account details
 - Specific product viewing page
-- A gallery containing images of trails and bikes which can be scrolled through by the user
 - Admins having the abiltiy to remove/add users
-- More content on each page
 - Keybinds which keyboard only users can use to navigate the website
 - Accessibility for impaired users (Text to speech and Magnification of text)
 
@@ -95,7 +95,7 @@ For the next major version of this site I plan to utilise:
 - More focus on the modelling of database tables (I neglected them halfway through)
 - Using more advanced SQL (Multi-Table Insert for account creation)
 - Creating functions of constantly used scripts, like redirecting if not logged in or not admin using JavaScript
-- Less repetition of scripts where one function can be modified to accomodate all uses (Getting something from a database)
+- Less repetition of scripts where one function can be modified to accommodate all uses (Getting something from a database)
 
 ## Credits
 
