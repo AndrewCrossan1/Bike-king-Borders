@@ -6,6 +6,7 @@ RewriteEngine on
 RewriteRule ^home/$ /index.php [NC]
 RewriteRule ^gallery/$ /gallery.php [NC]
 RewriteRule ^contact/$ /Contact/contact.php [NC]
+RewriteRule ^localarea/$ /localarea.php [NC]
 
 RewriteRule ^account/$ /Account/account.php [NC]
 RewriteRule ^account/myaccount/$ /Account/account.php [NC]
