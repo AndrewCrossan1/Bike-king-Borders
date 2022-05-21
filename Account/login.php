@@ -100,7 +100,7 @@ if (isset($_SESSION['Username'])) {
                                     Oops! Something doesn't look right
                                 </div>
                             </div>
-                            <p class="small">New user? Click <a href="create.php">here</a> to create an account!</p>
+                            <p class="small">New user? Click <a href="/account/create/">here</a> to create an account!</p>
                         </div>
                         <div class="col-md p-2">
                             <input type="submit" name="submit" id="submit" class="btn btn-primary w-25">

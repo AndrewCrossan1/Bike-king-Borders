@@ -139,7 +139,7 @@ if (isset($_GET['message'])) {
                                 </div>
                             </div>
                         </div>
-                        <p class="small mt-3">Already have an account? Click <a href="login.php">here</a> to login!</p>
+                        <p class="small mt-3">Already have an account? Click <a href="/account/login/">here</a> to login!</p>
                     </div>
                     <script>
                         // Example starter JavaScript for disabling form submissions if there are invalid fields
