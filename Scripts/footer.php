@@ -1,4 +1,4 @@
-<div class="container-fluid bg-dark p-3 text-light" style="margin-top: 6%;">
+<div class="container-fluid bg-dark p-3 text-light">
         <section id="footer" class="text-center">
             <div class="row justify-content-center">
                 <div class="col-sm-2 m-3">
