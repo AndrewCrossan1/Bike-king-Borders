@@ -160,8 +160,55 @@ require($_SERVER['DOCUMENT_ROOT'] . "/" . "settings.php");
                 </div>
             </div>
         </div>
-        <div class="row">
-
+        <div class="row" style="margin-top: 10%; margin-bottom: 5%;">
+            <div class="col-md-12">
+                <div class="card border-dark p-2">
+                    <div class="card border">
+                        <div class="card-header text-center">
+                            <h3>Images you have viewed</h3>
+                        </div>
+                        <div class="card-body text">
+                            <div class="row" id="imagerow">
+                                <script>
+                                    //Get saved images
+                                    let viewedimgs = JSON.parse(window.sessionStorage.getItem("images"));
+                                    //Check if no images are saved
+                                    if (viewedimgs == null) {
+                                        //Display sad face message
+                                        $('#imagerow').append(
+                                            `<div class="col-md-12 col-12 mb-3 text-center">
+                                                    <div class="card border">
+                                                        <div class="card-header text-center">
+                                                            <h5>You have not viewed any images!</h5>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            `
+                                        );
+                                    } else {
+                                        //Display card for each image
+                                        viewedimgs.forEach(function (image) {
+                                            $('#imagerow').append(
+                                                `<div class="col-md-4 col-12 mb-3">
+                                                    <div class="card border">
+                                                        <div class="card-header text-center">
+                                                            <h5>${image[0]}</h5>
+                                                        </div>
+                                                        <div class="card-body text-center">
+                                                            <img src="${image[1]}" class="img-fluid" alt="${image[0]}"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                `
+                                            );
+                                        });
+                                    }
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
