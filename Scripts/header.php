@@ -55,6 +55,12 @@ function isimageset($imgslug) {
                         <i class="fa fa-shopping-basket"></i> Basket
                     </a>
                 </li>
+                <!--Local Area-->
+                <li class="nav-item m-2 middle">
+                    <a class="nav-link" href="/localarea/">
+                        <i class="fa fa-globe"></i> Local Area
+                    </a>
+                </li>
                 <!--Gallery-->
                 <li class="nav-item m-2 middle">
                     <a class="nav-link<?php if (isset($PageName) && $PageName == "Gallery") { echo ' active'; }?>" href="/gallery/"><i class="fas fa-photo-film"></i> Gallery</a>
