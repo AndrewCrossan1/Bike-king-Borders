@@ -171,7 +171,7 @@ require($_SERVER['DOCUMENT_ROOT'] . "/" . "settings.php");
                             <div class="row" id="imagerow">
                                 <script>
                                     //Get saved images
-                                    let viewedimgs = JSON.parse(window.sessionStorage.getItem("images"));
+                                    let viewedimgs = JSON.parse(window.localStorage.getItem("images"));
                                     //Check if no images are saved
                                     if (viewedimgs == null) {
                                         //Display sad face message

@@ -21,7 +21,7 @@ function SetCookies() {
         document.cookie = `VisitingTime=${today.toUTCString()}`;
     }
     $.getJSON("https://api.ipify.org?format=json", function(data) {
-        if (GetCookie("IP=") !=data.ip) {
+        if (GetCookie("IP=") != data.ip) {
             document.cookie = `IP=${data.ip}`;
         }
     });
@@ -37,6 +37,6 @@ function SetClickedPhotoURL(URL, ImageID) {
         }
     }
     images.push([ImageID, URL]);
-    window.sessionStorage.setItem("images", JSON.stringify(images));
+    window.localStorage.setItem("images", JSON.stringify(images));
 }
 
