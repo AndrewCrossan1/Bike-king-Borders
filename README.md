@@ -96,6 +96,7 @@ For the next major version of this site I plan to utilise:
 - Using more advanced SQL (Multi-Table Insert for account creation)
 - Creating functions of constantly used scripts, like redirecting if not logged in or not admin using JavaScript
 - Less repetition of scripts where one function can be modified to accommodate all uses (Getting something from a database)
+- Using composer packages: Twig, Google Captcha and Facebook authentication.
 
 ## Credits
 
