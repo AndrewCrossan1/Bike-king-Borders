@@ -400,6 +400,72 @@ class AdminFunctions
             return $array;
         }
     }
+
+    public static function FilterUsers($type, $datecreated) {
+        //Create database object
+        $Database = new Database();
+
+        $Type = $type;
+        $DateCreated = $datecreated;
+
+        //Get submitted variables
+        $sql = match ($type) {
+            'all' => "SELECT DISTINCT AccountID, Username, Password, DateCreated, accounts.CustomerID, accounts.EmployeeID FROM accounts, customers, employees WHERE accounts.CustomerID = customers.CustomerID OR accounts.EmployeeID = employees.EmployeeID",
+            'employee' => "SELECT AccountID, Username, Password, accounts.EmployeeID, employees.Email, accounts.DateCreated FROM accounts, employees WHERE CustomerID IS NULL AND accounts.EmployeeID = employees.EmployeeID",
+            'customer' => "SELECT AccountID, Username, Password, accounts.CustomerID, customers.Email, accounts.DateCreated FROM accounts, customers WHERE EmployeeID IS NULL AND accounts.CustomerID = customers.CustomerID"
+        };
+        //Append ordering to sql statement
+        $sql = match ($DateCreated) {
+            'newest' => $sql . ' ORDER BY AccountID DESC;',
+            'oldest' => $sql . ' ORDER BY AccountID ASC;',
+        };
+        $array = array();
+
+        $Users = $Database->Select($sql);
+        if ($Users == null) {
+            return null;
+        } else {
+            while ($result = $Users->fetch_assoc()) {
+                array_push($array, $result);
+            }
+            return $array;
+        }
+    }
+    public static function GetUsers() {
+        try {
+            $Database = new Database();
+            $Result = $Database->Select("SELECT * FROM accounts;");
+            if ($Result != null) {
+                $array = array();
+                while ($row = $Result->fetch_assoc()) {
+                    array_push($array, $row);
+                }
+                return $array;
+            } else {
+                return null;
+            }
+        } catch (Exception) {
+            return null;
+        }
+    }
+    public static function GetUser($ID) {
+        try {
+            $Database = new Database();
+            $Result = $Database->Select("SELECT AccountID, Username, Password, Email FROM accounts, customers WHERE accounts.CustomerID = customers.CustomerID AND AccountID = ?;", array($ID));
+            if ($Result != null) {
+                $array = array();
+                while ($row = $Result->fetch_assoc()) {
+                    array_push($array, $row);
+                }
+                return $array;
+            } else {
+                var_dump($Result);
+                return null;
+            }
+        } catch (Exception) {
+            return null;
+        }
+    }
 }
 
 
