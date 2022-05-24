@@ -51,7 +51,7 @@ if(!isset($_SESSION['Admin']) && !$_SESSION['Admin'] == 1) {
                 <div class="container-fluid">
                     <p style="font-family: Ubuntu" class="text-primary display-6">Add an offer</p>
                     <p class="lead text-secondary">Fill out the required details in order to add a new offer to the shop</p>
-                    <form class="pt-1 needs-validation" enctype="multipart/form-data" action="/admin/offer/confirm/" method="POST" novalidate>
+                    <form class="pt-1 needs-validation" enctype="multipart/form-data" action="/admin/offers/confirm/" method="POST" novalidate>
                         <hr/>
                         <br>
                         <div class="row">
