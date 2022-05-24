@@ -35,6 +35,11 @@ RewriteRule ^admin/support/$ /Admin/support.php [NC]
 RewriteRule ^admin/support/status=([A-Za-z]+)/dateposted=([A-Za-z]+)/$ /Admin/support.php?status=$1&dateposted=$2 [NC]
 RewriteRule ^admin/support/close/id=([0-9]+)/$ /Admin/SupportFunctions/close.php?id=$1
 RewriteRule ^admin/support/confirm/$ /Admin/SupportFunctions/confirm.php [NC]
+RewriteRule ^admin/offers/status=([A-Za-z]+)/dateposted=([A-Za-z]+)/$ /Admin/offers.php?status=$1&dateposted=$2 [NC]
+RewriteRule ^admin/offers/add/ /Admin/OfferFunctions/add.php [NC]
+RewriteRule ^admin/offer/delete/id=([0-9]+)/$ /Admin/OfferFunctions/delete.php?id=$1
+RewriteRule ^admin/offer/edit/id=([0-9]+)/$ /Admin/OfferFunctions/edit.php?id=$1
+RewriteRule ^admin/offers/confirm/$ /Admin/OfferFunctions/confirm.php
 
 RewriteRule ^basket/$ /Products/basket.php [NC]
 RewriteRule ^basket/add/([0-9]+)/$ /Products/add.php?id=$1 [NC]
