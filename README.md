@@ -100,6 +100,8 @@ For the next major version of this site I plan to utilise:
 - Specific Product viewing
 - Specific Account Viewing
 - Specific Offer Viewing
+- Asynchronous retrieval and updating of user data using $.get method.
+
 ## Credits
 
 The website has been developed by Andrew Crossan (Me!) :joy:
