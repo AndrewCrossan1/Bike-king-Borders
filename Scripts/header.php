@@ -47,23 +47,23 @@ function isimageset($imgslug) {
             <ul class="navbar-nav ms-auto">
                 <!-- Home -->
                 <li class="nav-item m-2 middle">
-                    <a class="nav-link<?php if (isset($PageName) && $PageName == 'Index') { echo ' active'; }?>" href="/home/"><i class="fas fa-house"></i> Home</a>
+                    <a class="nav-link<?php if (isset($PageName) && $PageName == 'Index') { echo ' active'; }?>" href="/home/"  data-bs-toggle="tooltip" title="CTRL + H" data-bs-placement="bottom"><i class="fas fa-house"></i> Home</a>
                 </li>
                 <!--Basket-->
                 <li class="nav-item m-2 middle">
-                    <a class="nav-link" href="/basket/">
+                    <a class="nav-link" href="/basket/" data-bs-toggle="tooltip" title="CTRL + B" data-bs-placement="bottom">
                         <i class="fa fa-shopping-basket"></i> Basket
                     </a>
                 </li>
                 <!--Local Area-->
                 <li class="nav-item m-2 middle">
-                    <a class="nav-link" href="/localarea/">
+                    <a class="nav-link" href="/localarea/" data-bs-toggle="tooltip" title="CTRL + L" data-bs-placement="bottom">
                         <i class="fa fa-globe"></i> Local Area
                     </a>
                 </li>
                 <!--Gallery-->
                 <li class="nav-item m-2 middle">
-                    <a class="nav-link<?php if (isset($PageName) && $PageName == "Gallery") { echo ' active'; }?>" href="/gallery/"><i class="fas fa-photo-film"></i> Gallery</a>
+                    <a class="nav-link<?php if (isset($PageName) && $PageName == "Gallery") { echo ' active'; }?>" href="/gallery/" data-bs-toggle="tooltip" title="CTRL + G" data-bs-placement="bottom"><i class="fas fa-photo-film"></i> Gallery</a>
                 </li>
                 <!-- Account Dropdown menu -->
                 <li class="nav-item dropdown m-2 middle">
@@ -99,14 +99,21 @@ function isimageset($imgslug) {
                 </li>
                 <!--Products-->
                 <li class="nav-item m-2 middle">
-                    <a class="nav-link<?php if (isset($PageName) && $PageName == "Products") { echo ' active'; }?>" href="/products/"><i class="far fa-rectangle-list"></i> Products</a>
+                    <a data-bs-toggle="tooltip" title="CTRL + P" data-bs-placement="bottom" class="nav-link<?php if (isset($PageName) && $PageName == "Products") { echo ' active'; }?>" href="/products/"><i class="far fa-rectangle-list"></i> Products</a>
                 </li>
                 <!--Contact us-->
                 <li class="nav-item m-2 middle">
-                    <a class="nav-link<?php if (isset($PageName) && $PageName == "Contact") { echo ' active'; }?>" href="/contact/"><i class="fas fa-phone"></i> Contact us</a>
+                    <a data-bs-toggle="tooltip" title="CTRL + C" data-bs-placement="bottom" class="nav-link<?php if (isset($PageName) && $PageName == "Contact") { echo ' active'; }?>" href="/contact/"><i class="fas fa-phone"></i> Contact us</a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
 </body>
+
+<script>
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+</script>
