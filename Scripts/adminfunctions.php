@@ -350,6 +350,58 @@ class AdminFunctions
             return $array;
         }
     }
+    public static function GetOffers() {
+        try {
+            $Database = new Database();
+            $Result = $Database->Select("SELECT * FROM Offers;");
+            if ($Result != null) {
+                $array = array();
+                while ($row = $Result->fetch_assoc()) {
+                    array_push($array, $row);
+                }
+                return $array;
+            } else {
+                return null;
+            }
+        } catch (Exception) {
+            return null;
+        }
+    }
+    public static function FilterOffers($status, $dateposted) {
+        //Get products
+        $Database = new Database();
+
+        //Get submitted variables
+        $Status = $status;
+        $DatePosted = $dateposted;
+
+        //Set SQL statement
+        $sql = match ($Status) {
+            'all' => "SELECT * FROM Offers",
+            'closed' => "SELECT * FROM Offers WHERE ValidTo < SYSDATE()",
+            'active' => "SELECT * FROM Offers WHERE ValidTo > SYSDATE()"
+        };
+
+        //Append ordering to sql statement
+        $sql = match ($DatePosted) {
+            'newest' => $sql . ' ORDER BY ValidFrom DESC;',
+            'oldest' => $sql . ' ORDER BY ValidFrom ASC;',
+        };
+        $array = array();
+
+        $Tickets = $Database->Select($sql);
+
+        if ($Tickets == null) {
+            return null;
+        } else {
+            while ($result = $Tickets->fetch_assoc()) {
+                array_push($array, $result);
+            }
+            return $array;
+        }
+    }
 }
+
+
 
 ?>
