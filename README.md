@@ -26,16 +26,18 @@ Currently as of 29/03/22 the website features the following:
 - Products previews are displayed
 - A contact page where users can create tickets which can be viewed and replied to by administrators on an admin only page
 - The ability to add a product to basket and checkout
-- The abiltiy for users to apply special offers
+- The ability for users to apply special offers
 - Live Search function using PHP, and AJAX.
 - A gallery containing images of trails and bikes which can be scrolled through by the user
 - More content on each page
 - The ability to create special offers
+- Admins having the ability to update user passwords
+- Keybindings which keyboard-only users can use to navigate the website
+- Specific product viewing page
 
 Soon I wish to implement the following features in the website
+- Offer viewing page
 
-- Admins having the abiltiy to update user passwords
-- Keybinds which keyboard only users can use to navigate the website
 
 The deadline for this project is 2/6/22
 
@@ -104,6 +106,6 @@ The website has been developed by Andrew Crossan (Me!) :joy:
 
 It serves as an example of my work for potential employers or educators and also an assignment for my HND.
 
-If you wish to use my code or get in contact give me a message on twitter 🙂
+If you wish to use my code or get in contact give me a message on Twitter 🙂
 
 <a href="https://twitter.com/andrewcrossan11">My Twitter 😸</a>
