@@ -1,17 +1,35 @@
 <?php
 //Page Description: Contains data on the individual product which has been selected by the user
-
-//Disclaimer:
-//I like leaving whitespace for more readable code so enjoy some satisfyingly well put together PHP.
-//End of disclaimer
-
-//Set page name for required content in functions.php (Avoids file navigation errors which are extremely annoying - PHP just be smarter :,( )
-//Also keys is in with setting the pages active in header.php (Very fancy)
-$PageName = "Products";
+session_start();
 
 //Set page title for meta-data in header.php (An isset is used in the meta-data to check for this - Overkill because if it's not set I am dumb.)
-$PageTitle = "NAME OF PRODUCT";
+$PageTitle = 'Product: ' . $_REQUEST['id'];
 
-//Require the header of the page (Includes Navigation, meta-data, etc.)
-require('../Scripts/header.php');
+require($_SERVER['DOCUMENT_ROOT'] . '/settings.php');
+
+if (isset($_REQUEST['id'])) {
+    $Product = functions::GetProduct($_REQUEST['id']);
+} else {
+    ?>
+    <script>
+        window.location.href = "/products/"
+    </script>
+    <?php
+}
 ?>
+
+<body style="background-color: lightgrey;">
+<div class="container-fluid">
+    <div class="row bg-white p-3 light-shadow">
+        <div class="col-md-3 mx-auto text-center justify-content-center align-items-center p-1">
+            <?php echo $Product['Name'];?>
+        </div>
+        <div class="col-md-3 mx-auto text-center">
+            <a href="#addtobasket" class="btn btn-primary">Add to basket</a>
+        </div>
+    </div>
+    <div class="container-md bg-white my-5 rounded light-shadow h-75">
+        hel
+    </div>
+</div>
+</body>
