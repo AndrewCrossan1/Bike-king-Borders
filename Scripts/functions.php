@@ -272,4 +272,15 @@ class functions
         }
         return null;
     }
+
+    public static function GetProduct(int $id): ?array
+    {
+        $Database = new Database();
+        $query = $Database->Select("SELECT * FROM products WHERE ProductID = ?", array($id));
+        if ($query == null) {
+            return null;
+        } else {
+            return $query->fetch_assoc();
+        }
+    }
 }
