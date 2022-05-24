@@ -30,17 +30,12 @@ Currently as of 29/03/22 the website features the following:
 - Live Search function using PHP, and AJAX.
 - A gallery containing images of trails and bikes which can be scrolled through by the user
 - More content on each page
+- The ability to create special offers
 
 Soon I wish to implement the following features in the website
 
-- Admin login timeouts
-- The ability to create special offers
-- Users can change their password if forgotten
-- The viewing and changing of account details
-- Specific product viewing page
-- Admins having the abiltiy to remove/add users
+- Admins having the abiltiy to update user passwords
 - Keybinds which keyboard only users can use to navigate the website
-- Accessibility for impaired users (Text to speech and Magnification of text)
 
 The deadline for this project is 2/6/22
 
@@ -97,7 +92,12 @@ For the next major version of this site I plan to utilise:
 - Creating functions of constantly used scripts, like redirecting if not logged in or not admin using JavaScript
 - Less repetition of scripts where one function can be modified to accommodate all uses (Getting something from a database)
 - Using composer packages: Twig, Google Captcha and Facebook authentication.
-
+- Keeping all edit, delete, add and confirm actions in three files, doing it for each object is not good practice.
+- Create forms.php, which contains forms with names, so add, delete, edit for a more dynamic webpage, keys in with above point.
+- In general, better programming, this is probably the ugliest code I have genuinely ever written, V2 will be much better.
+- Specific Product viewing
+- Specific Account Viewing
+- Specific Offer Viewing
 ## Credits
 
 The website has been developed by Andrew Crossan (Me!) :joy:
