@@ -102,6 +102,7 @@ For the next major version of this site I plan to utilise:
 - Specific Offer Viewing
 - Asynchronous retrieval and updating of user data using $.get method.
 - Product Reviewing system
+- Bike King Borders Points Reward system
 
 ## Credits
 
