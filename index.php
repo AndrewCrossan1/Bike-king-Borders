@@ -16,6 +16,8 @@ $PageTitle = "Home";
 
 //Require the header of the page (Includes Navigation, meta-data, etc.)
 require($_SERVER['DOCUMENT_ROOT'] . "/" . "settings.php");
+
+$Times = functions::ReadTimes();
 ?>
 <section id="header">
     <div class="container-fluid bg-dark text-light p-5">
@@ -204,6 +206,55 @@ require($_SERVER['DOCUMENT_ROOT'] . "/" . "settings.php");
                                         });
                                     }
                                 </script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card border-primary p-3 my-2">
+                    <div class="card border">
+                        <div class="card-header text-center">
+                            <h3>Opening Times</h3>
+                        </div>
+                        <div class="card-body text-center">
+                            <div class="container-fluid">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-6">Monday:</div>
+                                        <div class="col-md-6"><input type="text" disabled name="OpeningTimeMonday" value="<?php echo $Times[2][1] ;?>" required id="OpeningTimeMonday"> to <input type="text" required name="ClosingTimeMonday" disabled value="<?php echo $Times[2][2] ;?>" id="ClosingTimeMonday"></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">Tuesday:</div>
+                                        <div class="col-md-6"><input type="text" disabled name="OpeningTimeTuesday" value="<?php echo $Times[3][1] ;?>" required id="OpeningTimeTuesday"> to <input type="text" required name="ClosingTimeTuesday" disabled value="<?php echo $Times[3][2] ;?>" id="ClosingTimeTuesday"></div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">Wednesday:</div>
+                                        <div class="col-md-6"><input type="text" disabled name="OpeningTimeWednesday" value="<?php echo $Times[4][1] ;?>" required id="OpeningTimeWednesday"> to <input type="text" required name="ClosingTimeWednesday" disabled value="<?php echo $Times[4][2] ;?>" id="ClosingTimeWednesday"></div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">Thursday:</div>
+                                        <div class="col-md-6"><input type="text" disabled name="OpeningTimeThursday" value="<?php echo $Times[5][1] ;?>" required id="OpeningTimeThursday"> to <input type="text" required name="ClosingTimeThursday" disabled value="<?php echo $Times[5][2] ;?>" id="ClosingTimeThursday"></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">Friday:</div>
+                                        <div class="col-md-6"><input type="text" disabled name="OpeningTimeFriday" value="<?php echo $Times[6][1] ;?>" required id="OpeningTimeFriday"> to <input type="text" required name="ClosingTimeFriday" disabled value="<?php echo $Times[6][2] ;?>" id="ClosingTimeFriday"></div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">Saturday:</div>
+                                        <div class="col-md-6"><input type="text" disabled name="OpeningTimeSaturday" value="<?php echo $Times[7][1] ;?>" required id="OpeningTimeSaturday"> to <input type="text" required name="ClosingTimeSaturday" disabled value="<?php echo $Times[7][2] ;?>" id="ClosingTimeSaturday"></div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">Sunday:</div>
+                                        <div class="col-md-6"><input type="text" disabled name="OpeningTimeSunday" value="<?php echo $Times[8][1] ;?>" required id="OpeningTimeSunday"> to <input type="text" required name="ClosingTimeSunday" disabled value="<?php echo $Times[8][2] ;?>" id="ClosingTimeSunday"></div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
