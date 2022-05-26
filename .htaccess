@@ -52,3 +52,5 @@ RewriteRule ^basket/verifydiscount/$ /Products/verifydiscount.php [NC]
 RewriteRule ^basket/resetdiscount/$ /Products/resetdiscount.php [NC]
 
 RewriteRule ^ContactSend/$ /Contact/ContactSend.php [NC]
+
+RewriteRule ^offers/$ /viewoffers.php [NC]
