@@ -134,7 +134,7 @@ if (isset($_REQUEST['status']) && isset($_REQUEST['dateposted'])) {
                     <?php
                     if (isset($_SESSION['filteredcontentoffers']) && $_SESSION['filteredcontentoffers'] != null) {
                         for ($x = 0; $x<count($_SESSION['filteredcontentoffers']); $x++) {?>
-                            <div class="col-md-3 col-6" style="min-height: 400px;">
+                            <div class="col-md-3 col-12" style="min-height: 400px;">
                                 <div class="card p-2 bg-primary my-3 text-white w-100">
                                     <div class="card-body">
                                         <h5 class="card-title"><?php echo $_SESSION['filteredcontentoffers'][$x]['Name']; ?></h5>
