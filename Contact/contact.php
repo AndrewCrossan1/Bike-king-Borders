@@ -9,7 +9,7 @@
 require_once($_SERVER['DOCUMENT_ROOT'] . '/' . 'settings.php');
     ?>
 
-<body style="background: url('/Media/Images/AdminBackground.jpg'); background-size: cover;">
+<body style="background-image: url('/Media/Images/AdminBackground.jpg'); background-size: cover;">
 
 <?php
 //Send message if it is set
@@ -18,7 +18,7 @@ if (isset($_GET['Message'])) {
 }
 ?>
 
-<div class="container-md mb-0 bg-white light-shadow rounded-3" style="margin-top: 6%;">
+<div class="container-md bg-white light-shadow rounded-3" style="margin-top: 6%; margin-bottom: 6%;">
     <div class="row">
         <div class="col-md-12 m-0 col-12 rounded-3">
             <form class="form" method="post" action="/ContactSend/">
@@ -34,7 +34,7 @@ if (isset($_GET['Message'])) {
                     <div class="col-md-6">
                         <div class="form-group rounded p-3 mx-auto" style="background-color: #D3D3D3;">
                             <label class="form-label" for="FullName">Full Name:</label>
-                            <input type="text" class="custom-control bg-transparent" placeholder="Enter full name..." name="FullName" id="FullName" required>
+                            <input type="text" class="custom-control bg-transparent" minlength="3" placeholder="Enter full name..." name="FullName" id="FullName" required>
                         </div>
                     </div>
                 </div>
@@ -70,7 +70,7 @@ if (isset($_GET['Message'])) {
                     <div class="col-md-12">
                         <div class="form-group rounded p-3 mx-auto" style="background-color: #D3D3D3;">
                             <label class="form-label" for="Subject">Subject:</label>
-                            <input type="text" class="custom-control bg-transparent fs-4" style="padding: 1%;" placeholder="My wheel has fallen off!" name="Subject" id="Subject" required>
+                            <input type="text" class="custom-control bg-transparent fs-4" minlength="7" style="padding: 1%;" placeholder="My wheel has fallen off!" name="Subject" id="Subject" required>
                         </div>
                     </div>
                 </div>
@@ -78,7 +78,7 @@ if (isset($_GET['Message'])) {
                     <div class="col-md-12">
                         <div class="form-group rounded p-3 mx-auto" style="background-color: #D3D3D3;">
                             <label class="form-label" for="Message">Message:</label>
-                            <textarea rows="5" class="custom-control bg-transparent fs-5 text-black" style="padding: unset;" name="Message" id="Message" required>Enter message here</textarea>
+                            <textarea rows="5" class="custom-control bg-transparent fs-5 text-black" minlength="25" style="padding: unset;" name="Message" id="Message" required>Enter message here</textarea>
                         </div>
                     </div>
                 </div>
@@ -98,7 +98,7 @@ if (isset($_GET['Message'])) {
 
 
 <?php
-    include('Scripts/footer.php');
+    include($_SERVER['DOCUMENT_ROOT'] . '/Scripts/footer.php');
 ?>
 
 </body>
