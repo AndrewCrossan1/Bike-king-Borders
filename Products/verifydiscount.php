@@ -3,7 +3,7 @@ require($_SERVER['DOCUMENT_ROOT'] . "/Scripts/" . "database.php");
 if (isset($_GET['discountcode'])) {
     $Database = new Database();
     //Get corresponding code from database
-    $sql = "SELECT * FROM Offers WHERE Code = ? & ValidTo <= sysdate()";
+    $sql = "SELECT * FROM Offers WHERE Code = ? AND ValidTo > sysdate() AND ValidFrom <= sysdate()";
     $query = $Database->conn->prepare($sql);
     if ($query->bind_param("s", $_GET['discountcode'])) {
         //Execute
