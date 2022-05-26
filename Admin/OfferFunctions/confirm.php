@@ -82,14 +82,11 @@ if (isset($_POST['AddSubmit'])) {
                 <?php
             } else {
                 $Message = base64_encode("Could not create offer!");
-                var_dump($cd);
-                /*
                 ?>
                 <script>
                     window.location.href = "https://localhost/admin/home/?message=<?php echo $Message; ?>";
                 </script>
-                */
-
+                <?php
             }
         } else {
             $Message = base64_encode("Could not create offer!");
