@@ -283,4 +283,39 @@ class functions
             return $query->fetch_assoc();
         }
     }
+    public static function GetOffers(): ?array
+    {
+        try {
+            $Database = new Database();
+            $Result = $Database->Select("SELECT * FROM Offers;");
+            if ($Result != null) {
+                $array = array();
+                while ($row = $Result->fetch_assoc()) {
+                    array_push($array, $row);
+                }
+                return $array;
+            } else {
+                return null;
+            }
+        } catch (Exception) {
+            return null;
+        }
+    }
+    public static function ReadTimes() {
+        $Times = [[]];
+        $filename = BASE_DIR . '/Media/data/openingtimes.csv';
+        // open csv file for writing
+        $f = fopen($filename, 'r');
+
+        if ($f == false) {
+            return false;
+        }
+
+        // read each line in CSV file at a time
+        while (($row = fgetcsv($f)) !== false) {
+            $Times[] = $row;
+        }
+        fclose($f);
+        return $Times;
+    }
 }
