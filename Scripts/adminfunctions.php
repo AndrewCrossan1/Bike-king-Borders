@@ -119,7 +119,7 @@ class AdminFunctions
             //Create new database object
             $Database = new Database();
             //SQL Query
-            $stmt = 'SELECT DISTINCT COUNT(CustomerID) AS "NumOfCustomers" FROM customers;';
+            $stmt = 'SELECT DISTINCT COUNT(AccountID) AS "NumOfCustomers" FROM accounts;';
             //Create Query
             $query = $Database->conn->prepare($stmt);
             //Get result from query
@@ -465,6 +465,69 @@ class AdminFunctions
         } catch (Exception) {
             return null;
         }
+    }
+    public static function CountTickets() {
+        try {
+            //Create new database object
+            $Database = new Database();
+            //SQL Query
+            $stmt = 'SELECT DISTINCT COUNT(TicketID) AS "NumOfProducts" FROM Tickets;';
+            //Create Query
+            $query = $Database->conn->prepare($stmt);
+            //Get result from query
+            if ($query->execute()) {
+                $result = $query->get_result();
+                $int = $result->fetch_assoc();
+                return $int['NumOfProducts'];
+            } else {
+                return 0;
+            }
+        } catch (Exception) {
+            return 0;
+        }
+        return 0;
+    }
+    public static function WriteTimes($Times) {
+        $Times = [
+            ['Day of the week', 'Opening Time', 'Closing Time'],
+            [$Times[0][0], $Times[0][1], $Times[0][2]],
+            [$Times[1][0], $Times[1][1], $Times[1][2]],
+            [$Times[2][0], $Times[2][1], $Times[2][2]],
+            [$Times[3][0], $Times[3][1], $Times[3][2]],
+            [$Times[4][0], $Times[4][1], $Times[4][2]],
+            [$Times[5][0], $Times[5][1], $Times[5][2]],
+            [$Times[6][0], $Times[6][1], $Times[6][2]],
+        ];
+        $filename = BASE_DIR . '/Media/data/openingtimes.csv';
+        // open csv file for writing
+        $f = fopen($filename, 'w');
+
+        if ($f == false) {
+            return false;
+        }
+
+        // write each row at a time to a file
+        foreach ($Times as $row) {
+            fputcsv($f, $row);
+        }
+        fclose($f);
+    }
+    public static function ReadTimes() {
+        $Times = [[]];
+        $filename = BASE_DIR . '/Media/data/openingtimes.csv';
+        // open csv file for writing
+        $f = fopen($filename, 'r');
+
+        if ($f == false) {
+            return false;
+        }
+
+        // read each line in CSV file at a time
+        while (($row = fgetcsv($f)) !== false) {
+            $Times[] = $row;
+        }
+        fclose($f);
+        return $Times;
     }
 }
 
