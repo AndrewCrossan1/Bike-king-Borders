@@ -78,6 +78,7 @@ Adobe XD is my choice of software for developing wireframes for the site.
 
 The IDE I primarily use for this project is PHPStorm, it ticks all the boxes and gets the job done efficiently and in a robust manner.
 
+.htaccess is used extensively for the renaming of the URL, primarily for SEO optimisation
 ## Wireframes
 /admin/home/
 
