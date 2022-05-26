@@ -35,7 +35,7 @@ if (isset($_GET['message'])) {
 }
 ?>
 
-    <div class="container-fluid mr-auto ml-auto" style="margin-top: 3%;">
+    <div class="container-fluid mr-auto ml-auto" style="margin-top: 3%; margin-bottom: 3%;">
         <h1 class="display-3 fw-bold text-center" style="font-family: Ubuntu, Verdana">Why join Bike King Borders?</h1>
         <div class="row p-3 justify-content-center">
             <div class="col-md-3 m-1 text-dark border border-dark rounded text-center p-2">
@@ -72,9 +72,15 @@ if (isset($_GET['message'])) {
                     <div class="form-group row pt-3">
                         <label for="PasswordInput" class="col-sm-2 col-form-label">Password</label>
                         <div class="col-sm-10">
-                            <input type="password" id="PasswordInput" name="PasswordInput" class="form-control" minlength="9" placeholder="Password" required>
+                            <input type="password" id="PasswordInput" name="PasswordInput" class="form-control" pattern="^[A-Z]+[a-zA-Z]+[0-9]+[!?_#]+" minlength="9" placeholder="Password" required>
                             <div class="invalid-feedback">
-                                Oops! Something doesn't look right
+                                <p class="small text-danger">Password must contain the following</p>
+                                <ul class="small text-danger">
+                                    <li>Must start with a capital letter</li>
+                                    <li>Must contain a number</li>
+                                    <li>Must be 9-15 characters long</li>
+                                    <li>Must contain a special character (!?_#)</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
