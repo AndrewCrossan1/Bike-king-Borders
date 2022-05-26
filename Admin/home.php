@@ -7,12 +7,28 @@ $PageTitle = "Admin Home";
 //Require the header of the page (Includes Navigation, meta-data, etc.)
 require_once($_SERVER['DOCUMENT_ROOT'] . '/Scripts/' . 'adminfunctions.php');
 
+
 if(!isset($_SESSION['Admin']) && !$_SESSION['Admin'] == 1) {
     ?>
     <script>
         window.location.href = "https://localhost/admin/login/";
     </script>
     <?php
+}
+
+$Times = adminfunctions::ReadTimes();
+
+if (isset($_POST['SubmitTimes'])) {
+    $data = [
+        ['Monday', $_POST['OpeningTimeMonday'], $_POST['ClosingTimeMonday']],
+        ['Tuesday', $_POST['OpeningTimeTuesday'], $_POST['ClosingTimeTuesday']],
+        ['Wednesday', $_POST['OpeningTimeWednesday'], $_POST['ClosingTimeWednesday']],
+        ['Thursday', $_POST['OpeningTimeThursday'], $_POST['ClosingTimeThursday']],
+        ['Friday', $_POST['OpeningTimeFriday'], $_POST['ClosingTimeFriday']],
+        ['Saturday', $_POST['OpeningTimeSaturday'], $_POST['ClosingTimeSaturday']],
+        ['Sunday', $_POST['OpeningTimeSunday'], $_POST['ClosingTimeSunday']]
+    ];
+    adminfunctions::WriteTimes($data);
 }
 
 //Data from database thats going into CanvasJS graph
@@ -124,11 +140,66 @@ $DataPoints = array(
                     <div class="col-md-3 col-6">
                         <div class="card bg-primary p-3 my-2">
                             <div class="card-title text-left">
-                                <p class="display-6" style="font-family: Ubuntu, Verdana; color: white;"><b>5</b></p>
+                                <p class="display-6" style="font-family: Ubuntu, Verdana; color: white;"><b><?php echo AdminFunctions::CountTickets(); ?></b></p>
                             </div>
                             <div class="card-body p-0 text-left" style="max-width: 18rem;">
                                 <p class="lead text-light"><b>Support Tickets</b></p>
                                 <a href="/admin/support/" class="btn btn-outline-warning">View all</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card border-primary p-3 my-2">
+                            <div class="card border">
+                                <div class="card-header text-center">
+                                    <h3 class="text-primary">Opening Times</h3>
+                                </div>
+                                <div class="card-body text-center">
+                                    <div class="container-fluid">
+                                        <form action="https://localhost/admin/home/" method="post">
+                                            <div class="row">
+                                                <div class="col-md-6">Monday:</div>
+                                                <div class="col-md-6"><input type="text" name="OpeningTimeMonday" value="<?php echo $Times[2][1] ;?>" required id="OpeningTimeMonday"> to <input type="text" required name="ClosingTimeMonday" value="<?php echo $Times[2][2] ;?>" id="ClosingTimeMonday"></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">Tuesday:</div>
+                                                <div class="col-md-6"><input type="text" name="OpeningTimeTuesday" value="<?php echo $Times[3][1] ;?>" required id="OpeningTimeTuesday"> to <input type="text" required name="ClosingTimeTuesday" value="<?php echo $Times[3][2] ;?>" id="ClosingTimeTuesday"></div>
+
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">Wednesday:</div>
+                                                <div class="col-md-6"><input type="text" name="OpeningTimeWednesday" value="<?php echo $Times[4][1] ;?>" required id="OpeningTimeWednesday"> to <input type="text" required name="ClosingTimeWednesday" value="<?php echo $Times[4][2] ;?>" id="ClosingTimeWednesday"></div>
+
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">Thursday:</div>
+                                                <div class="col-md-6"><input type="text" name="OpeningTimeThursday" value="<?php echo $Times[5][1] ;?>" required id="OpeningTimeThursday"> to <input type="text" required name="ClosingTimeThursday" value="<?php echo $Times[5][2] ;?>" id="ClosingTimeThursday"></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">Friday:</div>
+                                                <div class="col-md-6"><input type="text" name="OpeningTimeFriday" value="<?php echo $Times[6][1] ;?>" required id="OpeningTimeFriday"> to <input type="text" required name="ClosingTimeFriday" value="<?php echo $Times[6][2] ;?>" id="ClosingTimeFriday"></div>
+
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">Saturday:</div>
+                                                <div class="col-md-6"><input type="text" name="OpeningTimeSaturday" value="<?php echo $Times[7][1] ;?>" required id="OpeningTimeSaturday"> to <input type="text" required name="ClosingTimeSaturday" value="<?php echo $Times[7][2] ;?>" id="ClosingTimeSaturday"></div>
+
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">Sunday:</div>
+                                                <div class="col-md-6"><input type="text" name="OpeningTimeSunday" value="<?php echo $Times[8][1] ;?>" required id="OpeningTimeSunday"> to <input type="text" required name="ClosingTimeSunday" value="<?php echo $Times[8][2] ;?>" id="ClosingTimeSunday"></div>
+                                            </div>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input type="submit" name="SubmitTimes" id="SubmitTimes" class="btn btn-primary"/>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
