@@ -29,7 +29,6 @@ if (isset($_REQUEST['id'])) {
         </div>
     </div>
     <div class="container-md bg-white my-5 rounded light-shadow h-75">
-        hel
     </div>
 </div>
 </body>
