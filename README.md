@@ -34,10 +34,7 @@ Currently as of 29/03/22 the website features the following:
 - Admins having the ability to update user passwords
 - Keybindings which keyboard-only users can use to navigate the website
 - Specific product viewing page
-
-Soon I wish to implement the following features in the website
-- Offer viewing page
-
+- Offer Viewing Page
 
 The deadline for this project is 2/6/22
 
@@ -104,6 +101,7 @@ For the next major version of this site I plan to utilise:
 - Asynchronous retrieval and updating of user data using $.get method.
 - Product Reviewing system
 - Bike King Borders Points Reward system
+- Fully custom CSS using Sass
 
 ## Credits
 
